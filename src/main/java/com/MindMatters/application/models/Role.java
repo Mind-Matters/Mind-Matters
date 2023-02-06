@@ -7,8 +7,15 @@ import jakarta.persistence.*;
 public class Role {
 
     @Id
+    @PrimaryKeyJoinColumn
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private long id;
+
+//    @Column
+//    @OneToOne(mappedBy = "user")
+//    private User user;
+
+
 
     @Column(nullable = false, unique = true)
     private String role_category;

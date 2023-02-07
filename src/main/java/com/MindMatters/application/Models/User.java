@@ -12,7 +12,7 @@ public class User {
     private long id;
 
     @Column(nullable = false, unique = true, length = 32)
-    private String user_name;
+    private String username;
 
     @Column(nullable = false, length = 32)
     private String password;
@@ -23,15 +23,22 @@ public class User {
     public User() {
     }
 
+    public User(User copy) {
+        this.id = copy.id;
+        this.username = copy.username;
+        this.password = copy.password;
+        this.isProvider = copy.isProvider;
+    }
+
     public User(String user_name, String password, boolean isProvider) {
-        this.user_name = user_name;
+        this.username = user_name;
         this.password = password;
         this.isProvider = isProvider;
     }
 
     public User(long id, String user_name, String password, boolean isProvider) {
         this.id = id;
-        this.user_name = user_name;
+        this.username = user_name;
         this.password = password;
         this.isProvider = isProvider;
     }
@@ -44,12 +51,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUsername(String user_name) {
+        this.username = user_name;
     }
 
     public String getPassword() {

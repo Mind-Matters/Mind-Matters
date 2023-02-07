@@ -11,31 +11,29 @@ public class User {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 32)
     private String user_name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 32)
     private String password;
 
-    @OneToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @Column(nullable = false)
+    private boolean isProvider;
 
     public User() {
     }
 
-    public User(String user_name, String password, Role role) {
+    public User(String user_name, String password, boolean isProvider) {
         this.user_name = user_name;
         this.password = password;
-        this.role = role;
+        this.isProvider = isProvider;
     }
 
-    public User(long id, String user_name, String password, Role role /*Relation relation*/) {
+    public User(long id, String user_name, String password, boolean isProvider) {
         this.id = id;
         this.user_name = user_name;
         this.password = password;
-        this.role = role;
-        /*this.relation = relation;*/
+        this.isProvider = isProvider;
     }
 
     public long getId() {
@@ -62,19 +60,11 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
+    public boolean getIsProvider() {
+        return isProvider;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setIsProvider(boolean isProvider) {
+        this.isProvider = isProvider;
     }
-
-/*    public Relation getRelation() {
-        return relation;
-    }
-
-    public void setRelation(Relation relation) {
-        this.relation = relation;
-    }*/
 }

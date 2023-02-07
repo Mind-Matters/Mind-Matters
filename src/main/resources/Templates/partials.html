@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:fragment="header">
+    <img class="logo" src="/src/main/resources/Images/LOGO2.png" alt="logo">
+    <nav>
+        <ul class="nav_links">
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a class="login" href="#"><button>Login</button></a></li>
+            <li><a class="sign-up" href="#"><button>Get Started</button></a></li>
+        </ul>
+    </nav>
+</header>
+
+ <nav th:fragment="navbar">
+     <img class="logo" src="#" alt="logo">
+
+         <ul class="nav_links">
+             <li><a href="#">Link</a></li>
+             <li><a href="#">Link</a></li>
+             <li><a href="#">Link</a></li>
+         </ul>
+     <a class="logout" href="#">Logout</a>
+ </nav>
+
+<h2 th:fragment="h2">i am a fragment</h2>
+</body>
+</html>

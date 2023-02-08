@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset='utf-8'/>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
     <script src="calendar-io.js"></script>
     <link rel="stylesheet" href="main.css">
+    <title>Calendar Testing</title>
 </head>
 <body>
-<h1 class="center-text">Hello XYZ</h1>
-<form method="post">
-    <label for="date">Enter the date in YYYY-MM-DD format below</label>
-    <input type="text" name="date" id="date">
-    <label for="title">Enter the title of the event below</label>
-    <input type="text" name="title" id="title">
-    <label for="event">Enter the event description below</label>
-    <input type="text" name="event" id="event">
-
-</form>
-<div id='calendar' id="calendar"></div>
+    <h1 class="center-text">Patient Dashboard</h1>
+    <form action="/add-event" method="post" >
+        <label for="date">Enter the date in YYYY-MM-DD format below</label>
+        <input type="text" name="date" id="date">
+        <label for="title">Enter the title of the event below</label>
+        <input type="text" name="title" id="title">
+        <label for="description">Enter the event description below</label>
+        <input type="text" name="description" id="description">
+        <input type="submit" value="Submit">
+    </form>
+    <div id='calendar' id="calendar"></div> // this line is causing a 500 error, probably a security filter chain issue.
 </body>
 </html>

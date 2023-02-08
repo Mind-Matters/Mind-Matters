@@ -1,7 +1,7 @@
 package com.MindMatters.application.Controllers;
 
 
-import com.MindMatters.application.Repositories.EventCatRepo;
+import com.MindMatters.application.Controllers.Repositories.EventCatRepo;
 import org.springframework.stereotype.Controller;
 
 @Controller

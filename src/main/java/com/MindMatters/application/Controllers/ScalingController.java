@@ -1,6 +1,6 @@
 package com.MindMatters.application.Controllers;
 
-import com.MindMatters.application.Repositories.ScalingRepo;
+import com.MindMatters.application.Controllers.Repositories.ScalingRepo;
 
 public class ScalingController {
 

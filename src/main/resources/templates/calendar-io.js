@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     var dateStr = document.getElementById('date').value;
                     // var title = prompt('Enter a date in YYYY-MM-DD format');
                     var title = document.getElementById('title').value;
-                    var event = document.getElementById("event").value;
+                    // var description = document.getElementById("description").value;
                     var date = new Date(dateStr + 'T00:00:00');
 
                     if (!isNaN(date.valueOf())) { // valid?

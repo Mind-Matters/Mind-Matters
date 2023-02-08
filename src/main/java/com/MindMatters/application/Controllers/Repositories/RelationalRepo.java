@@ -1,4 +1,4 @@
-package com.MindMatters.application.Repositories;
+package com.MindMatters.application.Controllers.Repositories;
 
 
 import com.MindMatters.application.Models.ProviderPatient;

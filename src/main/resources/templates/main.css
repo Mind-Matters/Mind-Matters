@@ -1,5 +1,9 @@
 #calendar{
-    /*display: flex;*/
-    /*max-height: 10em;*/
-    /*max-width: 500em;*/
+    display: flex;
+    flex-direction: column;
+    margin: 50px 40px 20px 0;
+}
+.center-text {
+    display: flex;
+    justify-content: center;
 }

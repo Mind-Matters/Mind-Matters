@@ -4,59 +4,36 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         initialDate: '2023-01-07',
+        selectable: true,
+        editable: true,
+        height: 500,
+        contentHeight: 100,
+        dayMaxEvents: true,
         headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
+            left: 'title,prev,next',
+            center: 'addEventButton',
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
-        events: [
-            {
-                title: 'All Day Event',
-                start: '2023-01-01'
-            },
-            {
-                title: 'Long Event',
-                start: '2023-01-07',
-                end: '2023-01-10'
-            },
-            {
-                groupId: '999',
-                title: 'Repeating Event',
-                start: '2023-01-09T16:00:00'
-            },
-            {
-                groupId: '999',
-                title: 'Repeating Event',
-                start: '2023-01-16T16:00:00'
-            },
-            {
-                title: 'Conference',
-                start: '2023-01-11',
-                end: '2023-01-13'
-            },
-            {
-                title: 'Meeting',
-                start: '2023-01-12T10:30:00',
-                end: '2023-01-12T12:30:00'
-            },
-            {
-                title: 'Lunch',
-                start: '2023-01-12T12:00:00'
-            },
-            {
-                title: 'Meeting',
-                start: '2023-01-12T14:30:00'
-            },
-            {
-                title: 'Birthday Party',
-                start: '2023-01-13T07:00:00'
-            },
-            {
-                title: 'Click for Google',
-                url: 'http://google.com/',
-                start: '2023-01-28'
+        customButtons:{
+            addEventButton:{
+                text: 'add event',
+                click: function(){
+                    var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+                    var date = new Date(dateStr + 'T00:00:00');
+
+                    if (!isNaN(date.valueOf())) { // valid?
+                        calendar.addEvent({
+                            title: 'dynamic event',
+                            start: date,
+                            allDay: true
+                        });
+                        alert('Great. Now, update your database...');
+                    } else {
+                        alert('Invalid date.');
+                    }
+                }
             }
-        ]
+        }
     });
 
     calendar.render();

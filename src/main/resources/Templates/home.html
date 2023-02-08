@@ -19,7 +19,7 @@
             justify-content: flex-end;
             align-items: center;
             padding: 15px 16px;
-            background-color: #8ab28a;
+            background-color: #4F695A;
         }
         .logo{
             cursor: pointer;
@@ -39,32 +39,144 @@
         }
         button{
             padding: 9px 25px;
-            color: white;
-            background-color: #8ab28a;
-            border: solid white 2px;
             border-radius: 50px;
             cursor: pointer;
         }
+        .login-btn{
+            color: white;
+            background-color: #4F695A;
+            border: solid white 2px;
+        }
+        .login-btn:hover{
+            color: #9BD58B;
+            border: solid #9BD58B 2px;
+            transition: all 0.3s ease;
+        }
+        .register-btn{
+            color: #4F695A;
+            background-color: white;
+            border: none;
+        }
+        #login-form{
+            display: none;
+        }
+        .form-box{
+            width: 380px;
+            height: 480px;
+            position: relative;
+            margin: 2% auto;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            overflow: hidden;
+        }
+        .button-box{
+            width: 220px;
+            margin: 35px auto;
+            position: relative;
+            /*box-shadow: 0 0 20px 9px #ff61241f;*/
+            /*border-radius: 30px;*/
+            text-align: center;
+            color: white;
+        }
+        .toggle-btn{
+            padding: 10px 30px;
+            cursor: pointer;
+            background: transparent;
+            border: 0;
+            outline: none;
+            position: relative;
+
+        }
+        #btn{
+            top: 0;
+            left: 0;
+            position: absolute;
+            width: 110px;
+            height: 100%;
+            background: #f3c693;
+            border-radius: 30px;
+            transition: 0.5s;
+        }
+        .input-group-login{
+            top: 150px;
+            position: absolute;
+            width: 280px;
+            transition: 0.5s;
+        }
+        .input-field{
+            width: 100%;
+            padding:10px 0;
+            margin:5px 0;
+            border-left: 0;
+            border-top:0;
+            border-right:0;
+            border-bottom:1px solid #999;
+            outline: none;
+            background: transparent;
+
+        }
+        #login{
+            left: 50px;
+        }
+        #login input{
+            color: white;
+            font-size: 15px;
+        }
+        .submit-btn{
+            width: 85%;
+            padding: 10px 30px;
+            cursor: pointer;
+            display: block;
+            margin: auto;
+            background: #9BD58B;
+            border: none;
+            outline: none;
+            border-radius: 30px;
+            color: #5B855E;
+
+        }
+
 
     </style>
 </head>
 <body>
 <!--<header th:replace="/partials.html :: header"></header>-->
-<header th:fragment="header">
-    <img class="logo" src="/src/main/resources/Images/LOGO2.png" alt="logo">
-    <nav>
-        <ul class="nav_links">
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a class="login" href="#"><button>Login</button></a></li>
-            <li><a class="sign-up" href="#"><button>Get Started</button></a></li>
-        </ul>
-    </nav>
-</header>
+
+<!--navbar starts-->
+    <header th:fragment="header">
+        <img class="logo" src="/src/main/resources/Images/LOGO2.png" alt="logo">
+        <nav>
+            <ul class="nav_links">
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a class="login" href="#"><button class="login-btn" onclick="document.getElementById('login-form').style.display='block'" style="width: auto">Login</button></a></li>
+                <li><a class="sign-up" href="#"><button class="register-btn" >Get Started</button></a></li>
+            </ul>
+        </nav>
+    </header>
+<!--navbar ends-->
+
 
 <h1>Hello Brainy-Bunch</h1>
 <h2 th:replace="partials :: h2"></h2>
 
+
+<!--dynamic login form starts-->
+    <div id="login-form" class="login-page">
+        <div class="form-box">
+            <div class="button-box">
+<!--                <div id="btn"></div>-->
+<!--                <button type="button" onclick="login()" class="toggle-btn">Log In</button>-->
+                <h3>Welcome Back!</h3>
+            </div>
+            <form id="login" class="input-group-login">
+                <input type="text" class="input-field" placeholder="Email" required>
+                <input type="password" class="input-field" placeholder="Password" required>
+                <button class="submit-btn">Log In</button>
+            </form>
+        </div>
+    </div>
+<!--dynamic login form starts-->
 </body>
 </html>

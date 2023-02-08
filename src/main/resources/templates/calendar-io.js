@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        initialDate: '2023-01-07',
+        initialDate: '2023-02-08',
         selectable: true,
         editable: true,
         height: 500,

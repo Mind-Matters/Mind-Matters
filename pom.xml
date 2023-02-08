@@ -35,7 +35,7 @@
 			<version>2.0.5</version>
 		</dependency>
 
-    <dependecy>
+    	<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
 		</dependency>

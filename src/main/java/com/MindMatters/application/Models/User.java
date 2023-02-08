@@ -30,15 +30,15 @@ public class User {
         this.isProvider = copy.isProvider;
     }
 
-    public User(String user_name, String password, boolean isProvider) {
-        this.username = user_name;
+    public User(String username, String password, boolean isProvider) {
+        this.username = username;
         this.password = password;
         this.isProvider = isProvider;
     }
 
-    public User(long id, String user_name, String password, boolean isProvider) {
+    public User(long id, String username, String password, boolean isProvider) {
         this.id = id;
-        this.username = user_name;
+        this.username = username;
         this.password = password;
         this.isProvider = isProvider;
     }
@@ -55,8 +55,8 @@ public class User {
         return username;
     }
 
-    public void setUsername(String user_name) {
-        this.username = user_name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

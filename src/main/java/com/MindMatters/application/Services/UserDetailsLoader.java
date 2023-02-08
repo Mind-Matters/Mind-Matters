@@ -2,7 +2,7 @@ package com.MindMatters.application.Services;
 
 import com.MindMatters.application.Models.User;
 import com.MindMatters.application.Models.UserWithRoles;
-import com.MindMatters.application.Repositories.UserRepo;
+import com.MindMatters.application.Controllers.Repositories.UserRepo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

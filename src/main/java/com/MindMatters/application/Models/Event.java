@@ -16,7 +16,7 @@ public class Event {
     private String title;
 
     @Column(nullable = false, length = 255)
-    private String event;
+    private String description;
 
     @Column(nullable = false)
     private Date date;
@@ -24,10 +24,10 @@ public class Event {
    @ManyToOne
     private User user;
 
-    public Event(long id, String title, String event, Date date, User user) {
+    public Event(long id, String title, String description, Date date, User user) {
         this.id = id;
         this.title = title;
-        this.event = event;
+        this.description = description;
         this.date = date;
         this.user = user;
     }
@@ -51,12 +51,12 @@ public class Event {
         this.title = title;
     }
 
-    public String getEvent() {
-        return event;
+    public String getDescription() {
+        return description;
     }
 
-    public void setEvent(String event) {
-        this.event = event;
+    public void setDescription(String event) {
+        this.description = event;
     }
 
     public Date getDate() {

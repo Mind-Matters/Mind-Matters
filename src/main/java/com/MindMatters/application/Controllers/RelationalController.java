@@ -1,7 +1,7 @@
 package com.MindMatters.application.Controllers;
 
 
-import com.MindMatters.application.Repositories.RelationalRepo;
+import com.MindMatters.application.Controllers.Repositories.RelationalRepo;
 import org.springframework.stereotype.Controller;
 
 @Controller

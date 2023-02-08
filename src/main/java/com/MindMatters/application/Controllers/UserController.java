@@ -18,16 +18,6 @@ public class UserController {
     }
 
 
-    @GetMapping("/signup")
-    public String showSignupForm(Model model){
-        model.addAttribute("user", new User());
-        return "/signup";
-    }
-
-    @PostMapping("/signup")
-    public String createUser(@ModelAttribute User user){
-        userDao.save(user);
-        return "/home";
-    }
+//
 
 }

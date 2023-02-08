@@ -18,15 +18,23 @@ document.addEventListener('DOMContentLoaded', function() {
             addEventButton:{
                 text: 'add event',
                 click: function(){
-                    var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+                    // var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+                    var dateStr = document.getElementById('date').value;
+                    // var title = prompt('Enter a date in YYYY-MM-DD format');
+                    var title = document.getElementById('title').value;
+                    var event = document.getElementById("event").value;
                     var date = new Date(dateStr + 'T00:00:00');
 
                     if (!isNaN(date.valueOf())) { // valid?
                         calendar.addEvent({
-                            title: 'dynamic event',
+                            title: title,
                             start: date,
                             allDay: true
                         });
+                        //create mindmatters event, "event bean"
+                        //make bean accessible
+                        // send bean to java file ?
+                        // event controller has @POSTMAPPING
                         alert('Great. Now, update your database...');
                     } else {
                         alert('Invalid date.');
@@ -34,6 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
+        , events: [
+
+        ]
     });
 
     calendar.render();

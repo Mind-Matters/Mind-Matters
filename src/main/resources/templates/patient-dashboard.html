@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset='utf-8'/>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
@@ -8,6 +8,15 @@
 </head>
 <body>
 <h1 class="center-text">Hello XYZ</h1>
+<form method="post">
+    <label for="date">Enter the date in YYYY-MM-DD format below</label>
+    <input type="text" name="date" id="date">
+    <label for="title">Enter the title of the event below</label>
+    <input type="text" name="title" id="title">
+    <label for="event">Enter the event description below</label>
+    <input type="text" name="event" id="event">
+
+</form>
 <div id='calendar' id="calendar"></div>
 </body>
 </html>

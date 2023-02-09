@@ -167,8 +167,8 @@
 <!--                <button type="button" onclick="login()" class="toggle-btn">Log In</button>-->
                 <h3>Welcome Back!</h3>
             </div>
-            <form id="login" class="input-group-login">
-                <input type="text" class="input-field" placeholder="Email" required>
+            <form id="login" class="input-group-login" th:action="@{/login}" method="post">
+                <input type="text" class="input-field" placeholder="Username" required>
                 <input type="password" class="input-field" placeholder="Password" required>
                 <button class="submit-btn">Log In</button>
             </form>

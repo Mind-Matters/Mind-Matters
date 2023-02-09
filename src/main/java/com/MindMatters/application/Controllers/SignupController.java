@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class SignupController {
 
@@ -23,9 +26,18 @@ public class SignupController {
     }
 
     @GetMapping("/signup")
-    public String showSignupForm(Model model, Model one){
+    public String showSignupForm(Model model){
+        List <User> isproviders = userDao.findAll();
+        List<User> providers = new ArrayList<User>();
+        for( User provider : isproviders){
+            if(provider.getIsProvider()){
+                System.out.println(provider.getUsername());
+                providers.add(provider);
+            }
+        }
+
         model.addAttribute("user", new User());
-        one.addAttribute("providers", userDao.findAll());
+        model.addAttribute("providers", providers);
         return "/signup";
     }
 

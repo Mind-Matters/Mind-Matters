@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class SignupController {
 
@@ -24,7 +27,16 @@ public class SignupController {
 
     @GetMapping("/signup")
     public String showSignupForm(Model model){
+        List <User> isproviders = userDao.findAll();
+        List<User> providers = new ArrayList<User>();
+        for( User provider : isproviders) {
+            if (provider.getIsProvider()) {
+                providers.add(provider);
+            }
+        }
+
         model.addAttribute("user", new User());
+        model.addAttribute("providers", providers);
         return "/signup";
     }
 
@@ -35,4 +47,13 @@ public class SignupController {
         userDao.save(user);
         return "/home";
     }
+
+//    @GetMapping("/signup")
+//    public String allProviders(Model model){
+//
+//        model.addAttribute("providers", userDao.findAll());
+//        return "/login";
+//    }
+
+
 }

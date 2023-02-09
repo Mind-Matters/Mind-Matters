@@ -23,8 +23,9 @@ public class SignupController {
     }
 
     @GetMapping("/signup")
-    public String showSignupForm(Model model){
+    public String showSignupForm(Model model, Model one){
         model.addAttribute("user", new User());
+        one.addAttribute("providers", userDao.findAll());
         return "/signup";
     }
 
@@ -35,4 +36,13 @@ public class SignupController {
         userDao.save(user);
         return "/home";
     }
+
+//    @GetMapping("/signup")
+//    public String allProviders(Model model){
+//
+//        model.addAttribute("providers", userDao.findAll());
+//        return "/login";
+//    }
+
+
 }

@@ -8,16 +8,21 @@
 <form th:action="@{/signup}" th:method="post" th:object="${user}">
 
   <label for="username">Username:</label>
-  <input type="text" id="username" name="username" th:field="*{username}">
+  <input type="text" id="username" name="username" >
   <br><br>
   <label for="password">Password:</label>
-  <input type="password" id="password" name="password" th:field="*{password}">
+  <input type="password" id="password" name="password" >
   <br><br>
+  <label for="provider">Choose a provider:</label>
+
+  <select name="provider" id="provider" >
+    <option value="" th:each="provider : ${providers}"><span th:text="${provider.getUsername}"></span></option>
+  </select>
 <!--  nice to have password confirmation-->
-  <label for="patient">Patient</label>
-  <input type="radio" id="patient" name="provider" value="false" th:field="*{isProvider}">
-  <label for="provider">Provider</label>
-  <input type="radio" id="provider" name="provider" value="true" th:field="*{isProvider}"><br>
+  <label for="ispatient">Patient</label>
+  <input type="radio" id="ispatient" name="isprovider" value="false" >
+  <label for="isprovider">Provider</label>
+  <input type="radio" id="isprovider" name="isprovider" value="true" ><br>
   <input type="submit" value="Submit">
 </form>
 </body>

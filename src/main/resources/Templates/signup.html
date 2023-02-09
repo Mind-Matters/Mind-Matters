@@ -16,9 +16,9 @@
 <!--  nice to have password confirmation-->
   <!-- checkbox for isProvider instead of radio buttons-->
   <label for="patient">Patient</label>
-  <input type="radio" id="patient" name="is-provider" value="false">
+  <input type="radio" id="patient" name="provider" value="false" th:field="*{isProvider}">
   <label for="provider">Provider</label>
-  <input type="radio" id="provider" name="is-provider" value="true" th:field="*{isProvider}"><br>
+  <input type="radio" id="provider" name="provider" value="true" th:field="*{isProvider}"><br>
   <input type="submit" value="Submit">
 </form>
 </body>

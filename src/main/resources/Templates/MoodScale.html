@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mood Scale</title>
+   <link rel="stylesheet" href="/CSS/MoodScale.css">
+</head>
+<body>
+<form action="" oninput="val.value = parseInt(range.value)">
+    <div class ="form-group" id="moodDiv">
+        <label for ="range">Mood Slider of Rage</label>
+        <input type ="range" min="1" max="10" value = "0" class ="form-control-range" id="range" step="1" list="ticks" >
+        <output name="val" for="range"></output>
+        <datalist id="ticks">
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
+            <option value="5"></option>
+            <option value="6"></option>
+            <option value="7"></option>
+            <option value="8"></option>
+            <option value="9"></option>
+            <option value="10"></option>
+        </datalist>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+
+
+
+</body>
+</html>

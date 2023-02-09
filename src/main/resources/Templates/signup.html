@@ -18,7 +18,11 @@
   <label for="patient">Patient</label>
   <input type="radio" id="patient" name="provider" value="false" th:field="*{isProvider}">
   <label for="provider">Provider</label>
-  <input type="radio" id="provider" name="provider" value="true" th:field="*{isProvider}"><br>
+  <input type="radio" id="provider" name="provider" value="true" th:field="*{isProvider}">
+<!--
+  <input type="hidden" id="isVerified" name="isVerified" value="false" th:field="*{isVerified}">
+-->
+  <br>
   <input type="submit" value="Submit">
 </form>
 </body>

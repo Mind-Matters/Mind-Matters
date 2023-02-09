@@ -2,7 +2,7 @@ package com.MindMatters.application.Controllers;
 
 
 import com.MindMatters.application.Models.User;
-import com.MindMatters.application.Controllers.Repositories.UserRepo;
+import com.MindMatters.application.Repositories.UserRepo;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +32,7 @@ public class SignupController {
     public String createUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+        user.setIsVerified(false);
         userDao.save(user);
         return "/home";
     }

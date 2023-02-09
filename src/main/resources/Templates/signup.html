@@ -19,10 +19,16 @@
     <option value="" th:each="provider : ${providers}"><span th:text="${provider.getUsername}"></span></option>
   </select>
 <!--  nice to have password confirmation-->
-  <label for="ispatient">Patient</label>
-  <input type="radio" id="ispatient" name="ispatient" value="false" >
-  <label for="isProvider">Provider</label>
-  <input type="radio" id="isProvider" name="isProvider" value="true" ><br>
+
+  <!-- checkbox for isProvider instead of radio buttons-->
+  <label for="patient">Patient</label>
+  <input type="radio" id="patient" name="provider" value="false" th:field="*{isProvider}">
+  <label for="provider">Provider</label>
+  <input type="radio" id="provider" name="provider" value="true" th:field="*{isProvider}">
+<!--
+  <input type="hidden" id="isVerified" name="isVerified" value="false" th:field="*{isVerified}">
+-->
+  <br>
   <input type="submit" value="Submit">
 </form>
 </body>

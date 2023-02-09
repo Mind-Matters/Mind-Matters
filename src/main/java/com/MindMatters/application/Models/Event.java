@@ -20,6 +20,7 @@ public class Event {
 
     @Column(nullable = false)
     private Date date;
+    // LocalDate type
 
    @ManyToOne
     private User user;

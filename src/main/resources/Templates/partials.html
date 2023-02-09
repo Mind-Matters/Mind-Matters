@@ -12,7 +12,23 @@
 
 <body>
 
-
+<div th:fragment="pendingUsers" class="pendingUsers" id="pendingUsers">
+    <h1>Pending Users</h1>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Approve</th>
+            <th>Deny</th>
+        </tr>
+        <tr th:each="user : ${pendingUsers}">
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.isProvider}"></td>
+            <td><a th:href="@{/approveUser/{id}(id=${user.id})}">Approve</a></td>
+            <td><a th:href="@{/denyUser/{id}(id=${user.id})}">Deny</a></td>
+        </tr>
+    </table>
+</div>
 
 <header th:fragment="header-one">
     <a class="logo" href="/home"><img src="/resources/Images/LOGO2.png" alt="logo"></a>

@@ -3,6 +3,8 @@ package com.MindMatters.application.Models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -20,6 +22,15 @@ public class User {
     @Column(nullable = false)
     private boolean isProvider;
 
+    @Column(nullable = false)
+    private boolean isVerified; // is pending?
+
+    public boolean isProvider() {
+        return isProvider;
+    }
+
+
+
     public User() {
     }
 
@@ -28,19 +39,22 @@ public class User {
         this.username = copy.username;
         this.password = copy.password;
         this.isProvider = copy.isProvider;
+        this.isVerified = copy.isVerified;
     }
 
-    public User(String username, String password, boolean isProvider) {
+    public User(String username, String password, boolean isProvider, boolean isVerified) {
         this.username = username;
         this.password = password;
         this.isProvider = isProvider;
+        this.isVerified = isVerified;
     }
 
-    public User(long id, String username, String password, boolean isProvider) {
+    public User(long id, String username, String password, boolean isProvider, boolean isVerified) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.isProvider = isProvider;
+        this.isVerified = isVerified;
     }
 
     public long getId() {
@@ -73,5 +87,17 @@ public class User {
 
     public void setIsProvider(boolean isProvider) {
         this.isProvider = isProvider;
+    }
+
+    public void setProvider(boolean provider) {
+        isProvider = provider;
+    }
+
+    public boolean isVerified() {
+        return isVerified;
+    }
+
+    public void setIsVerified(boolean verified) {
+        isVerified = verified;
     }
 }

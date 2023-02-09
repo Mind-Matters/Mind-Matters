@@ -24,7 +24,7 @@ public class DashboardController {
 
         if(loggedInUser.getIsProvider()) {
             // get pending users list
-            List<User> pendingUsers = userDao.findByIsVerified(false);
+            List<User> pendingUsers = userDao.findByIsProviderAndIsVerified(false, false);
             model.addAttribute("pendingUsers", pendingUsers);
             return "provider-dashboard";
         }

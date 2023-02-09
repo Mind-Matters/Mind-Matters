@@ -29,9 +29,8 @@ public class SignupController {
     public String showSignupForm(Model model){
         List <User> isproviders = userDao.findAll();
         List<User> providers = new ArrayList<User>();
-        for( User provider : isproviders){
-            if(provider.getIsProvider()){
-                System.out.println(provider.getUsername());
+        for( User provider : isproviders) {
+            if (provider.getIsProvider()) {
                 providers.add(provider);
             }
         }

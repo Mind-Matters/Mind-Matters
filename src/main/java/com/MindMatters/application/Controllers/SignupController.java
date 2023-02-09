@@ -28,7 +28,7 @@ public class SignupController {
     @GetMapping("/signup")
     public String showSignupForm(Model model){
         List <User> isproviders = userDao.findAll();
-        List<User> providers = new ArrayList<User>();
+        List<User> providers = new ArrayList<>();
         for( User provider : isproviders) {
             if (provider.getIsProvider()) {
                 providers.add(provider);

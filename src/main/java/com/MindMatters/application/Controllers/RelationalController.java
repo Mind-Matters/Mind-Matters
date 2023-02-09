@@ -23,10 +23,10 @@ public class RelationalController {
 
     }
 
-    @GetMapping("/signup")
-    public String assignPatient(Model model){
-        model.addAttribute("myProvider", new ProviderPatient());
-        return ("/signup");
-
-    }
+//    @GetMapping("/signup")
+//    public String assignPatient(Model model){
+//        model.addAttribute("myProvider", new ProviderPatient());
+//        return ("/signup");
+//
+//    }
 }

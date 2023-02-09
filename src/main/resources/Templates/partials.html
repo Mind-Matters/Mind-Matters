@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:fragment="head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <!--<link rel="stylesheet" href="/CSS/footer.css">-->
+    <link rel="stylesheet" href="/CSS/loggedInNav.css">
+    <link rel="stylesheet" href="/CSS/loggedOutNav.css">
+    <!--<link rel="stylesheet" href="/CSS/main.css">-->
+    <title>Default Head</title>
 </head>
+
+
 <body>
+
+
+
 <header th:fragment="header-one">
     <a class="logo" href="/home"><img src="/resources/Images/LOGO2.png" alt="logo"></a>
     <nav>

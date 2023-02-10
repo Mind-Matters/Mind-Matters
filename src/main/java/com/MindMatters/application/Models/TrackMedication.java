@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="track_medication")
-public class trackMedication {
+public class TrackMedication {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,10 +21,10 @@ public class trackMedication {
     @Column(nullable = false)
     private Boolean taken;
 
-    public trackMedication() {
+    public TrackMedication() {
     }
 
-    public trackMedication(User user, Date date, Boolean taken) {
+    public TrackMedication(User user, Date date, Boolean taken) {
         this.user = user;
         this.date = date;
         this.taken = taken;

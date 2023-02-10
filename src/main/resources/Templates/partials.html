@@ -12,6 +12,62 @@
 
 <body>
 
+<div th:fragment="medTracker" class="medTracker" id="medTracker">
+    <h1>Medication Tracker</h1>
+    <form th:action="@{/trackMedication}" th:method="post">
+        <label for="taken">Took Medication</label>
+        <input type="hidden"  id="defaultTaken" name="taken" value="false">
+        <input type="checkbox" id="taken" name="taken" value="true">
+        <input type="submit" value="Submit">
+    </form>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Took Medication</th>
+        </tr>
+        <tr th:each="trackMedication : ${trackMedications}">
+            <td th:text="${trackMedication.date}"></td>
+            <td th:text="${trackMedication.taken}"></td>
+    </table>
+</div>
+<div th:fragment="medList" class="medList" id="medList">
+    <h1>Medication List</h1>
+    <table>
+        <tr>
+            <th>Medication Name</th>
+            <th>Medication Dosage</th>
+            <th>Medication Frequency</th>
+            <th>Medication Start Date</th>
+            <th>Medication End Date</th>
+            <th>Medication Notes</th>
+            <th>Medication Status</th>
+            <th>Medication Edit</th>
+            <th>Medication Delete</th>
+        </tr>
+        <tr th:each="med : ${meds}">
+            <td th:text="${med.medicationName}"></td>
+            <td th:text="${med.medicationDosage}"></td>
+            <td th:text="${med.medicationFrequency}"></td>
+            <td th:text="${med.medicationStartDate}"></td>
+            <td th:text="${med.medicationEndDate}"></td>
+            <td th:text="${med.medicationNotes}"></td>
+            <td th:text="${med.medicationStatus}"></td>
+            <td>
+                <form th:action="@{/editMedication}" th:method="post">
+                    <input type="hidden" th:name="id" th:value="${med.id}">
+                    <input type="submit" value="Edit">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/deleteMedication}" th:method="post">
+                    <input type="hidden" th:name="id" th:value="${med.id}">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
 <div th:fragment="pendingUsers" class="pendingUsers" id="pendingUsers">
     <h1>Pending Users</h1>
     <table>

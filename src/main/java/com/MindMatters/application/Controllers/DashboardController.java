@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,7 +31,16 @@ public class DashboardController {
 
         if(loggedInUser.getIsProvider()) {
             // get pending users list
-            List<User> pendingUsers = userDao.findByIsProviderAndIsVerified(false, false);
+            List<User> pendingUsers = new ArrayList<>();
+            // get pending users list for this particular provider
+            // find all users provider has
+            // find users on that list that are not verified
+            List<ProviderPatient> providerPatients = providerPatientDao.findAllByProvider(loggedInUser);
+            for(ProviderPatient providerPatient : providerPatients){
+                if(!providerPatient.getPatient().getIsVerified()){
+                    pendingUsers.add(providerPatient.getPatient());
+                }
+            }
             model.addAttribute("pendingUsers", pendingUsers);
             return "provider-dashboard";
         }
@@ -41,16 +51,16 @@ public class DashboardController {
 
     @PostMapping("/approval")
     public String approveUser(@RequestParam(name = "id") long id, @RequestParam Boolean isApproved){
-        User user = userDao.findById(id);
+        User patient = userDao.findById(id);
+        User provider = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ProviderPatient providerPatient = new ProviderPatient(provider, patient);
         if(isApproved){
-            user.setIsVerified(true);
-            userDao.save(user);
-            User provider = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            ProviderPatient providerPatient = new ProviderPatient(provider, user);
-            providerPatientDao.save(providerPatient);
+            patient.setIsVerified(true);
+            userDao.save(patient);
         } else {
-            // patient is not approved: remove patient account
-            userDao.delete(user);
+            // patient is not approved: remove patient user and providerPatient rows
+            userDao.delete(patient);
+            providerPatientDao.delete(providerPatient);
         }
         return "redirect:/dashboard";
     }

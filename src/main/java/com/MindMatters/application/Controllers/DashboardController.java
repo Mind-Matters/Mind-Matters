@@ -4,6 +4,8 @@ import com.MindMatters.application.Models.ProviderPatient;
 import com.MindMatters.application.Models.User;
 import com.MindMatters.application.Repositories.ProviderPatientRepository;
 import com.MindMatters.application.Repositories.UserRepo;
+import jakarta.transaction.Transaction;
+import jakarta.transaction.Transactional;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,18 +51,19 @@ public class DashboardController {
         }
     }
 
+    @Transactional
     @PostMapping("/approval")
     public String approveUser(@RequestParam(name = "id") long id, @RequestParam Boolean isApproved){
         User patient = userDao.findById(id);
         User provider = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        ProviderPatient providerPatient = new ProviderPatient(provider, patient);
+        ProviderPatient providerPatient = providerPatientDao.findByProviderAndPatient(provider, patient);
         if(isApproved){
             patient.setIsVerified(true);
             userDao.save(patient);
         } else {
             // patient is not approved: remove patient user and providerPatient rows
-            userDao.delete(patient);
-            providerPatientDao.delete(providerPatient);
+            providerPatientDao.deleteById(providerPatient.getId());
+            userDao.deleteByUsername(patient.getUsername());
         }
         return "redirect:/dashboard";
     }

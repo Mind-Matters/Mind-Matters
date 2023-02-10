@@ -17,4 +17,5 @@ public interface UserRepo extends JpaRepository<User, Long> {
     List<User> findByIsProvider(boolean isProvider);
 
 
+    void deleteByUsername(String username);
 }

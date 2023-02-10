@@ -10,4 +10,8 @@ import java.util.List;
 public interface ProviderPatientRepository extends JpaRepository<ProviderPatient, Long> {
 
     List<ProviderPatient> findAllByProvider(User loggedInUser);
+
+    ProviderPatient findByProviderAndPatient(User provider, User patient);
+
+    void deleteByPatient(User patient);
 }

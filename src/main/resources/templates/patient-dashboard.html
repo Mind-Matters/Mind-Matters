@@ -12,7 +12,7 @@
     <div class="middle-row">
         <h1 class="middle-text">Hello XYZ</h1>
         <h2 class="right-side">Provider Info</h2>
-        <form th:action="@{/event-dashboard}" th:method="post" th:object="${event}">
+        <form th:action="@{/event-dashboard}" th:method="post" th:object="${event}" id="event-form">
             <label for="date">Enter the date</label>
             <!--<input type="text" name="date" id="date">-->
         <input type="date" name="date" id="date" >
@@ -20,7 +20,7 @@
             <input type="text" name="title" id="title">
             <label for="description">Enter the event description below</label>
             <input type="text" name="description" id="description">
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" th:onclick="buttonTwo()">
         </form>
     </div>
 </div>

@@ -2,6 +2,8 @@ package com.MindMatters.application.Controllers;
 
 import com.MindMatters.application.Models.Event;
 import com.MindMatters.application.Controllers.Repositories.EventRepo;
+import com.MindMatters.application.Models.User;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,22 +35,10 @@ public class EventController {
         event.setTitle(title);
         event.setDescription(description);
         event.setDate(new Date());
+        event.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         eventDao.save(event);
-        return "redirect:/event-dashboard";
-    }
-/*  using Form Model Binding
-    Abandoned this approach because we encountered errors. Need instructor assistsance to implement.
-    @GetMapping("/add-event")
-    public String showPatientDashboard(Model model) {
-        model.addAttribute("event", new Event());
         return "/patient-dashboard";
     }
-
-    @PostMapping("/add-event")
-    public String addEvent(@ModelAttribute Event event) {
-        eventDao.save(event);
-        return "patient-dashboard";
-    }*/
 
     @GetMapping("/add-event")
     public String showPatientDashboard() {
@@ -64,7 +54,7 @@ public class EventController {
         Event event = new Event();
         event.setTitle(title);
         event.setDescription(description);
-        event.setDate(new Date(date));
+        event.setDate(new Date());
         eventDao.save(event);
         return "patient-dashboard";
     }

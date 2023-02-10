@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         customButtons: {
             addEventButton: {
                 text: 'submit event',
-                click: function () {
+                click: function buttonTwo () {
                     submitToDB();
                     // var dateStr = prompt('Enter a date in YYYY-MM-DD format');
                     var dateStr = document.getElementById('date').value;

@@ -1,9 +1,32 @@
-#calendar{
+.container {
     display: flex;
-    flex-direction: column;
-    margin: 50px 40px 20px 0;
+    flex-direction: row;
 }
-.center-text {
-    display: flex;
+
+.middle-row {
     justify-content: center;
+}
+.middle-text {
+    display:flex;
+    justify-content: center;
+}
+
+.left-side {
+    display: flex;
+    justify-content: start;
+}
+
+#calendar-position {
+    width: 400px;
+    display: inline-block;
+}
+
+.right-side {
+    display: flex;
+    justify-content: end;
+}
+.scale {
+    display: flex;
+    justify-content: end;
+    align-content: start;
 }

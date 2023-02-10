@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
     <meta charset="UTF-8">
-    <!--<link rel="stylesheet" href="/CSS/footer.css">-->
+    <link rel="stylesheet" href="/CSS/footer.css">
     <link rel="stylesheet" href="/CSS/loggedInNav.css">
     <link rel="stylesheet" href="/CSS/loggedOutNav.css">
-    <!--<link rel="stylesheet" href="/CSS/main.css">-->
+    <link rel="stylesheet" href="/CSS/main.css">
     <title>Default Head</title>
 </head>
 
@@ -31,12 +31,12 @@
 </div>
 
 <header th:fragment="header-one">
-    <a class="logo" href="/home"><img src="/resources/Images/LOGO2.png" alt="logo"></a>
+    <a class="logo" href="/home"><img src="/Images/LOGO2.png" alt="logo"></a>
     <nav>
         <ul class="nav_links">
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            <li><a class="anchors" href="#">Link</a></li>
+            <li><a class="anchors" href="#">Link</a></li>
+            <li><a class="anchors" href="#">Link</a></li>
 <!--            <li><a class="login" href="#"><button class="login-btn" onclick="document.getElementById('login-form').style.display='block'" style="width: auto">Login</button></a></li>-->
             <li><a class="login" href="/login"><button class="login-btn" >Login</button></a></li>
             <li><a class="sign-up" href="/signup"><button class="register-btn" >Get Started</button></a></li>
@@ -45,12 +45,12 @@
 </header>
 
 <header th:fragment="header-two">
-    <img class="logo" src="/resources/Images/LOGO2.png" alt="logo">
+    <img class="logo" src="/Images/LOGO2.png" alt="logo">
     <nav>
         <ul class="nav_links">
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            <li><a class="anchors" href="#">Link</a></li>
+            <li><a class="anchors" href="#">Link</a></li>
+            <li><a class="anchors" href="#">Link</a></li>
             <li><a class="log-out" href="#"><button class="logout-btn" >Log out</button></a></li>
         </ul>
     </nav>
@@ -60,7 +60,7 @@
 </body>
 <div th:fragment="footer" class="footer">
 
-    <a href="#top">Back to top of page</a>
+    <a class="anchors" href="#top">Back to top of page</a>
     <!--We can add links and an about us for a nice to have-->
     <footer> Copyright &copy; 2023 Mind-Matters </footer>
 </div>

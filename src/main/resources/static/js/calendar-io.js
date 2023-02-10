@@ -6,8 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initialDate: '2023-02-08',
         selectable: true,
         editable: true,
-        height: 500,
-        contentHeight: 100,
+        height: 450,
         dayMaxEvents: true,
         headerToolbar: {
             left: 'title,prev,next',

@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head <!--th:insert="partials :: head"-->>
+<head th:insert="partials :: head">
     <meta charset='utf-8'/>
-
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
     <script src="calendar-io.js"></script>
-
-
+    <title>Patient Dashboard</title>
 </head>
 <body>
-    <header th:replace="partials :: header-two"></header>
-    <h1 class="center-text">Patient Dashboard</h1>
-    <form action="/add-event" method="post" >
-        <label for="date">Enter the date in YYYY-MM-DD format below</label>
-        <!--<input type="text" name="date" id="date">-->
+<header th:replace="partials :: header-two"></header>
+<div class="container">
+    <div class="middle-row">
+        <h1 class="middle-text">Hello XYZ</h1>
+        <h2 class="right-side">Provider Info</h2>
+        <form action="/add-event" method="post">
+            <label for="date">Enter the date in YYYY-MM-DD format below</label>
+            <!--<input type="text" name="date" id="date">-->
         <input type="date" name="date" id="date" >
-        <label for="title">Enter the title of the event below</label>
-        <input type="text" name="title" id="title">
-        <label for="description">Enter the event description below</label>
-        <input type="text" name="description" id="description">
-        <input style="display: none" type="submit" value="Submit">
-    </form>
-    <div id="calendar"></div>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
-    <script type="text/javascript" th:src="@{/js/calendar-io.js}"> </script>
+            <label for="title">Enter the title of the event below</label>
+            <input type="text" name="title" id="title">
+            <label for="description">Enter the event description below</label>
+            <input type="text" name="description" id="description">
+            <input style="display: none" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+<div id="calendar-position">
+<div id="calendar"></div>
+    <h2>pill tracker</h2>
+</div>
+<h2 class="scale">Scale question</h2>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
+<script type="text/javascript" th:src="@{/js/calendar-io.js}"></script>
 </body>
 </html>

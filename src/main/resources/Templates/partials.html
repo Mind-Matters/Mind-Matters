@@ -24,8 +24,20 @@
         <tr th:each="user : ${pendingUsers}">
             <td th:text="${user.username}"></td>
             <td th:text="${user.isProvider}"></td>
-            <td><a th:href="@{/approveUser/{id}(id=${user.id})}">Approve</a></td>
-            <td><a th:href="@{/denyUser/{id}(id=${user.id})}">Deny</a></td>
+            <td>
+                <form th:action="@{/approval}" th:method="post">
+                <input type="hidden" th:name="id" th:value="${user.id}">
+                <input type="hidden" th:name="isApproved" th:value="true">
+                <input type="submit" value="Approve">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/approval}" th:method="post">
+                    <input type="hidden" th:name="id" th:value="${user.id}">
+                    <input type="hidden" th:name="isApproved" th:value="false">
+                    <input type="submit" value="Deny">
+                </form>
+            </td>
         </tr>
     </table>
 </div>

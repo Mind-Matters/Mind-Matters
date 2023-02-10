@@ -19,5 +19,6 @@ public class ScalingController {
     @PostMapping("/mood")
     public String submitMood(@ModelAttribute ScalingData scalingData){
         scalingData.setDate(new Date());
+        return "/patient-dashboard";
     }
 }

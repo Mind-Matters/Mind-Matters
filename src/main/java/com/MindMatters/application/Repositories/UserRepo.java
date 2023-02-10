@@ -11,4 +11,6 @@ public interface UserRepo extends JpaRepository<User, Long> {
     List<User> findByIsVerified(boolean isVerified);
 
     List<User> findByIsProviderAndIsVerified(boolean isProvider, boolean isVerified);
+
+    List<User> findByIsProvider(boolean isProvider);
 }

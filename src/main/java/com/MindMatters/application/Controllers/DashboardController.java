@@ -47,11 +47,16 @@ public class DashboardController {
                 if(!providerPatient.getPatient().getIsVerified()){
                     pendingUsers.add(providerPatient.getPatient());
                 }
-            }
+
             model.addAttribute("pendingUsers", pendingUsers);
+            }
             return "provider-dashboard";
-        }
-        else {
+        } else {
+            // user is patient
+            // populate patient info
+            List<TrackMedication> trackMedications = trackMedicationDao.findAllByUser(loggedInUser);
+            model.addAttribute("trackMedications", trackMedications);
+
             return "patient-dashboard";
         }
     }
@@ -74,13 +79,20 @@ public class DashboardController {
     }
 
     @PostMapping("/trackMedication")
-    public String trackMedication(@RequestParam(name = "taken") boolean taken){
+    public String trackMedication(@RequestParam(name = "taken") String taken){
+        // Gather inputs
+        boolean isTaken = taken.equals("true"); //convert string to boolean
         User patient = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        // format data
         TrackMedication trackMedication = new TrackMedication();
         trackMedication.setUser(patient);
-        trackMedication.setTaken(taken);
+        trackMedication.setTaken(isTaken);
         trackMedication.setDate(new Date());
+
+        // update db
         trackMedicationDao.save(trackMedication);
+
         return "redirect:/dashboard";
     }
 }

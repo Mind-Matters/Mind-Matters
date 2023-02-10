@@ -27,16 +27,11 @@ public class SignupController {
 
     @GetMapping("/signup")
     public String showSignupForm(Model model){
-        List <User> isproviders = userDao.findAll();
-        List<User> providers = new ArrayList<User>();
-        for( User provider : isproviders) {
-            if (provider.getIsProvider()) {
-                providers.add(provider);
-            }
-        }
+        List <User> isProviders = userDao.findByIsProvider(true);
+
 
         model.addAttribute("user", new User());
-        model.addAttribute("providers", providers);
+        model.addAttribute("providers", isProviders);
         return "/signup";
     }
 
@@ -48,13 +43,6 @@ public class SignupController {
         userDao.save(user);
         return "/home";
     }
-
-//    @GetMapping("/signup")
-//    public String allProviders(Model model){
-//
-//        model.addAttribute("providers", userDao.findAll());
-//        return "/login";
-//    }
 
 
 }

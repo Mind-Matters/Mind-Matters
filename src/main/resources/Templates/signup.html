@@ -15,9 +15,9 @@
   <br><br>
   <label for="provider">Choose a provider:</label>
 
-  <select name="provider" id="provider" >
+  <select name="providerId" id="provider" >
     <option value="none" selected disabled hidden>Select an Option</option>
-    <option value="true" th:each="provider : ${providers}"><span th:text="${provider.getUsername}"></span></option>
+    <option  th:each="provider : ${providers}" th:value="${provider.id}" th:text="${provider.username}">
   </select>
 <!--  nice to have password confirmation-->
 

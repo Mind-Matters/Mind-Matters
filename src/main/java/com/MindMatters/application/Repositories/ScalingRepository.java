@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ScalingRepo extends JpaRepository<ScalingData, Long> {
+public interface ScalingRepository extends JpaRepository<ScalingData, Long> {
     List<ScalingData> findAllByUser(User loggedInUser);
 }

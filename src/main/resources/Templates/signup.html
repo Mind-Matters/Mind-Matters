@@ -116,7 +116,7 @@
   <label for="provider">Choose a provider:</label>
 
   <select name="providerId" id="provider" >
-<!--    <option th:value="1" selected disabled hidden>Select an Option</option>-->
+    <option th:value="1" selected>Provider</option>
     <option th:value="${provider.id}" th:each="provider : ${providers}"><span th:text="${provider.getUsername}"></span></option>
   </select>
 <!--  nice to have password confirmation-->

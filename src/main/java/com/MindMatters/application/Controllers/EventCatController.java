@@ -1,15 +1,15 @@
 package com.MindMatters.application.Controllers;
 
 
-import com.MindMatters.application.Controllers.Repositories.EventCatRepo;
+import com.MindMatters.application.Repositories.EventCategoryRepository;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class EventCatController {
 
-    private EventCatRepo eventDao;
+    private EventCategoryRepository eventDao;
 
-    public EventCatController(EventCatRepo eventDao) {
+    public EventCatController(EventCategoryRepository eventDao) {
         this.eventDao = eventDao;
     }
 }

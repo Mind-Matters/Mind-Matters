@@ -2,7 +2,6 @@ package com.MindMatters.application.Controllers;
 
 import com.MindMatters.application.Models.*;
 import com.MindMatters.application.Repositories.*;
-import jakarta.transaction.Transaction;
 import jakarta.transaction.Transactional;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,14 +17,14 @@ import java.util.List;
 @Controller
 public class DashboardController {
 
-    public final UserRepo userDao;
+    public final UserRepository userDao;
     public final ProviderPatientRepository providerPatientDao;
     public final TrackMedicationRepository trackMedicationDao;
-    public final ScalingRepo scalingDataDao;
-    public final EventRepo eventDao;
+    public final ScalingRepository scalingDataDao;
+    public final EventRepository eventDao;
 
 
-    public DashboardController(UserRepo userDao, ProviderPatientRepository providerPatientRepository, TrackMedicationRepository trackMedicationRepository, ScalingRepo scalingDataDao, EventRepo eventDao){
+    public DashboardController(UserRepository userDao, ProviderPatientRepository providerPatientRepository, TrackMedicationRepository trackMedicationRepository, ScalingRepository scalingDataDao, EventRepository eventDao){
         this.userDao = userDao;
         this.providerPatientDao = providerPatientRepository;
         this.trackMedicationDao = trackMedicationRepository;

@@ -2,6 +2,9 @@ package com.MindMatters.application.Models;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "categories")
 public class Category {
@@ -11,6 +14,8 @@ public class Category {
     private long id;
 
 
+    @ManyToMany(mappedBy = "categories")
+    private Set<Event> events = new HashSet<>();
 
     @Column(nullable = false, length = 32)
     private String category;

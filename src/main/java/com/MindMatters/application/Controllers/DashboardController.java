@@ -1,13 +1,7 @@
 package com.MindMatters.application.Controllers;
 
-import com.MindMatters.application.Models.ProviderPatient;
-import com.MindMatters.application.Models.ScalingData;
-import com.MindMatters.application.Models.TrackMedication;
-import com.MindMatters.application.Models.User;
-import com.MindMatters.application.Repositories.ProviderPatientRepository;
-import com.MindMatters.application.Repositories.ScalingRepo;
-import com.MindMatters.application.Repositories.TrackMedicationRepository;
-import com.MindMatters.application.Repositories.UserRepo;
+import com.MindMatters.application.Models.*;
+import com.MindMatters.application.Repositories.*;
 import jakarta.transaction.Transaction;
 import jakarta.transaction.Transactional;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,12 +22,15 @@ public class DashboardController {
     public final ProviderPatientRepository providerPatientDao;
     public final TrackMedicationRepository trackMedicationDao;
     public final ScalingRepo scalingDataDao;
+    public final EventRepo eventDao;
 
-    public DashboardController(UserRepo userDao, ProviderPatientRepository providerPatientRepository, TrackMedicationRepository trackMedicationRepository, ScalingRepo scalingDataDao){
+
+    public DashboardController(UserRepo userDao, ProviderPatientRepository providerPatientRepository, TrackMedicationRepository trackMedicationRepository, ScalingRepo scalingDataDao, EventRepo eventDao){
         this.userDao = userDao;
         this.providerPatientDao = providerPatientRepository;
         this.trackMedicationDao = trackMedicationRepository;
         this.scalingDataDao = scalingDataDao;
+        this.eventDao = eventDao;
     }
 
     @GetMapping("/dashboard")
@@ -65,6 +62,9 @@ public class DashboardController {
             List<ScalingData> scalingData = scalingDataDao.findAllByUser(loggedInUser);
             model.addAttribute("scalingData", scalingData);
 
+            // populate calendar data
+            List<Event> events = eventDao.findAllByUser(loggedInUser);
+            model.addAttribute("events", events);
 
             return "patient-dashboard";
         }

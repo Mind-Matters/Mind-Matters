@@ -1,7 +1,7 @@
 package com.MindMatters.application.Controllers;
 
 import com.MindMatters.application.Models.Event;
-import com.MindMatters.application.Controllers.Repositories.EventRepo;
+import com.MindMatters.application.Repositories.EventRepo;
 import com.MindMatters.application.Models.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -19,12 +19,12 @@ public class EventController {
         this.eventDao = eventDao;
     }
 
-    @GetMapping ("/event-dashboard")
+/*    @GetMapping ("/event-dashboard")
     public String addEvent(Model model) {
         model.addAttribute("event", new Event());
         return "/patient-dashboard";
-    }
-    @PostMapping("/event-dashboard")
+    }*/
+    @PostMapping("/submit-event")
     public String createEvent(@RequestParam(name = "title") String title,
                               @RequestParam(name = "description") String description,
                               @RequestParam(name = "date") String date
@@ -35,15 +35,15 @@ public class EventController {
         event.setDate(new Date());
         event.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         eventDao.save(event);
-        return "/patient-dashboard";
+        return "redirect:/dashboard";
     }
 
-    @GetMapping("/add-event")
+/*    @GetMapping("/add-event")
     public String showPatientDashboard() {
         return "/patient-dashboard";
-    }
+    }*/
 
-    @PostMapping("/add-event")
+/*    @PostMapping("/add-event")
     public String addEvent(
             @RequestParam(name = "title") String title,
             @RequestParam(name = "description") String description,
@@ -55,5 +55,5 @@ public class EventController {
         event.setDate(new Date());
         eventDao.save(event);
         return "patient-dashboard";
-    }
+    }*/
 }

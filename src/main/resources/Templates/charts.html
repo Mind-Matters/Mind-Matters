@@ -18,27 +18,15 @@
     function drawChart() {
 
       // Create the data table.
-      // dummy data:
-        var data = new google.visualization.arrayToDataTable(
-        [
-          ['ScoreId', 'Score'],
-          [1, 7],
-          [2, 8],
-          [3, 9],
-          [4, 10],
-          [5, 10]
-        ]
-      );
-      // Grab data from Thymeleaf
-/*      let scalingData = /!*[[${scalingData}]]*!/;
+
+      let scalingData = /*[[${scalingData}]]*/;
       var data = new google.visualization.DataTable();
         data.addColumn('number', 'ScoreId');
         data.addColumn('number', 'Score');
-        data.addRow(
-                [scalingData[0].id, scalingData[0].score]
-                [scalingData[1].id, scalingData[1].score]
-                [scalingData[2].id, scalingData[2].score]
-        );*/
+        scalingData.forEach(function (item) {
+            data.addRow([item.id, item.score]);
+        });
+
       // Set chart options
       var options = {'title':'Mood Over Time',
                       legend: {position: 'bottom'},

@@ -1,38 +1,11 @@
 function submitToDB(date, title, description) {
-/*    var date = document.getElementById('date').value;
-    var title = document.getElementById('title').value;
-    var description = document.getElementById('description').value;*/
-/*    let event = {
-        "date": date,
-        "title": title,
-        "description": description
-    };*/
-/*    console.log(event.title);
-    console.log(event.description);*/
-
     // invisible form to submit to db
     document.getElementById("titleDb").value = title;
     document.getElementById("descriptionDb").value = description;
     document.getElementById("dateDb").value = date;
     document.getElementById("calendar-event-to-db").submit();
-
-
-    /*fetch('http://localhost:8081/dashboard'),{
-        method: 'POST',
-        headers: {
-         Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            date: date,
-            title: title,
-            description: description
-        })
-    };*/
 }
 
-    // let x = document.getElementById("submit")
-    //     x.addEventListener("click", addToDB)
 //API CODE STARTS HERE
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
@@ -62,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     var eventForm = document.getElementById("eventForm");
                     submitToDB(date, title, description);
 
-                    if (!isNaN(date.valueOf())) { // valid?
+/*                    if (!isNaN(date.valueOf())) { // valid?
                         calendar.addEvent({
                             title: title,
                             start: date,
@@ -71,11 +44,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         alert('Great. Now, update your database...');
                     } else {
                         alert('Invalid date.');
-                    }
+                    }*/
                 }
             }
         }
+
     });
 
+    // populate calendar with events from db
+    let events = /*[[${events}]]*/;
+    events.forEach(function(event) {
+        calendar.addEvent({
+            title: event.title,
+            start: event.date,
+            allDay: true
+        });
+    });
     calendar.render();
 });

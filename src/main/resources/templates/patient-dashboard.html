@@ -12,20 +12,21 @@
     <div class="middle-row">
         <h1 class="middle-text">Hello XYZ</h1>
         <h2 class="right-side">Provider Info</h2>
-        <form action="/add-event" method="post">
-            <label for="date">Enter the date in YYYY-MM-DD format below</label>
-            <!--<input type="text" name="date" id="date">-->
+        <form th:action="@{/event-dashboard}" th:method="post" th:object="${event}" id="event-form">
+            <label for="date">Enter the date</label>
         <input type="date" name="date" id="date" >
             <label for="title">Enter the title of the event below</label>
             <input type="text" name="title" id="title">
             <label for="description">Enter the event description below</label>
             <input type="text" name="description" id="description">
-            <input style="display: none" type="submit" value="Submit">
+            <input type="submit" value="Submit" th:onclick="addToDB()" id="submit">
         </form>
     </div>
 </div>
 <div id="calendar-position">
-<div id="calendar"></div>
+<div id="calendar">
+
+</div>
     <h2>pill tracker</h2>
 </div>
 <h2 class="scale">Scale question</h2>

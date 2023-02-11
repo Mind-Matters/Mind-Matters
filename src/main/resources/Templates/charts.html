@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head th:fragment="moodOverTime">
+<head >
+
   <!--Load the AJAX API-->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript">
+  <script type="text/javascript" th:inline="javascript" th:fragment="moodOverTime">
 
     // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
@@ -17,7 +18,8 @@
     function drawChart() {
 
       // Create the data table.
-      var data = new google.visualization.arrayToDataTable(
+      // dummy data:
+        var data = new google.visualization.arrayToDataTable(
         [
           ['ScoreId', 'Score'],
           [1, 7],
@@ -27,7 +29,16 @@
           [5, 10]
         ]
       );
-
+      // Grab data from Thymeleaf
+/*      let scalingData = /!*[[${scalingData}]]*!/;
+      var data = new google.visualization.DataTable();
+        data.addColumn('number', 'ScoreId');
+        data.addColumn('number', 'Score');
+        data.addRow(
+                [scalingData[0].id, scalingData[0].score]
+                [scalingData[1].id, scalingData[1].score]
+                [scalingData[2].id, scalingData[2].score]
+        );*/
       // Set chart options
       var options = {'title':'Mood Over Time',
                       legend: {position: 'bottom'},

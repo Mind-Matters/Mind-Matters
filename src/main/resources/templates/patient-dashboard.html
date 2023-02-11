@@ -14,18 +14,19 @@
         <h2 class="right-side">Provider Info</h2>
         <form th:action="@{/event-dashboard}" th:method="post" th:object="${event}" id="event-form">
             <label for="date">Enter the date</label>
-            <!--<input type="text" name="date" id="date">-->
         <input type="date" name="date" id="date" >
             <label for="title">Enter the title of the event below</label>
             <input type="text" name="title" id="title">
             <label for="description">Enter the event description below</label>
             <input type="text" name="description" id="description">
-            <input type="submit" value="Submit" th:onclick="buttonTwo()">
+            <input type="submit" value="Submit" th:onclick="addToDB()" id="submit">
         </form>
     </div>
 </div>
 <div id="calendar-position">
-<div id="calendar"></div>
+<div id="calendar">
+
+</div>
     <h2>pill tracker</h2>
 </div>
 <h2 class="scale">Scale question</h2>

@@ -15,8 +15,6 @@ import java.util.Date;
 public class EventController {
     private final EventRepo eventDao;
 
-    private Event event;
-
     public EventController(EventRepo eventDao) {
         this.eventDao = eventDao;
     }

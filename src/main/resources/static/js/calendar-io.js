@@ -20,7 +20,11 @@ function submitToDB() {
         })
     };
 }
-document.addEventListener('DOMContentLoaded', function () {
+
+    // let x = document.getElementById("submit")
+    //     x.addEventListener("click", addToDB)
+//API CODE STARTS HERE
+document.addEventListener('DOMContentLoaded', function oneFunction() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
@@ -37,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         customButtons: {
             addEventButton: {
                 text: 'submit event',
-                click: function buttonTwo () {
+                click: function addToDB() {
                     submitToDB();
                     // var dateStr = prompt('Enter a date in YYYY-MM-DD format');
                     var dateStr = document.getElementById('date').value;
@@ -53,10 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             start: date,
                             allDay: true
                         });
-                        //create mindmatters event, "event bean"
-                        //make bean accessible
-                        // send bean to java file ?
-                        // event controller has @POSTMAPPING
                         alert('Great. Now, update your database...');
                     } else {
                         alert('Invalid date.');

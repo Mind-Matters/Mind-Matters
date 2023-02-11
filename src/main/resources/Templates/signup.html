@@ -2,39 +2,187 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Sign Up</title>
+  <style>
+    #login-form{
+      /*display: none;*/
+    }
+    .form-box{
+      width: 380px;
+      height: 480px;
+      position: relative;
+      margin: 2% auto;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 10px;
+      overflow: hidden;
+    }
+    h3{
+      text-align: center;
+    }
+    .button-box{
+      width: 220px;
+      margin: 35px auto;
+      position: relative;
+      box-shadow: 0 0 20px 9px #ff61241f;
+      border-radius: 30px;
+    }
+    .toggle-btn{
+      padding: 10px 30px;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      outline: none;
+      position: relative;
+
+    }
+    #btn{
+      top: 0;
+      left: 0;
+      position: absolute;
+      width: 110px;
+      height: 100%;
+      background: #f3c693;
+      border-radius: 30px;
+      transition: 0.5s;
+    }
+    .input-group-login{
+      top: 150px;
+      position: absolute;
+      width: 280px;
+      transition: 0.5s;
+    }
+    .input-group-register{
+      top: 120px;
+      position: absolute;
+      width: 280px;
+      transition: 0.5s;
+    }
+    .input-field{
+      width: 100%;
+      padding:10px 0;
+      margin:5px 0;
+      border-left: 0;
+      border-top:0;
+      border-right:0;
+      border-bottom:1px solid #999;
+      outline: none;
+      background: transparent;
+
+    }
+    #isProvider{
+      margin:5px 0;
+    }
+    #login{
+      left: 50px;
+    }
+    #login input{
+      color: white;
+      font-size: 15px;
+    }
+
+    #provide{
+      left:450px;
+    }
+    #provide input{
+      color: white;
+      font-size: 15px;
+    }
+    .submit-btn{
+      width: 85%;
+      padding: 10px 30px;
+      cursor: pointer;
+      display: block;
+      margin: auto;
+      margin-top: 30px;
+      background: #9BD58B;
+      border: none;
+      outline: none;
+      border-radius: 30px;
+      color: #5B855E;
+
+    }
+  </style>
 </head>
 <body>
 <h1>Sign Up</h1>
-<form th:action="@{/signup}" th:method="post" th:object="${user}">
 
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username" >
-  <br><br>
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password" >
-  <br><br>
-  <label for="ispatient">Patient</label>
-  <input type="radio" id="ispatient" name="isProvider" value="false" >
-  <label for="isProvider">Provider</label>
-  <input type="radio" id="isProvider" name="isProvider" value="true" >
-  <br>
+<!--<form th:action="@{/signup}" th:method="post" th:object="${user}">-->
 
-  <label for="provider">Choose a provider:</label>
+<!--  <label for="username">Username:</label>-->
+<!--  <input type="text" id="username" name="username" >-->
+<!--  <br><br>-->
+<!--  <label for="password">Password:</label>-->
+<!--  <input type="password" id="password" name="password" >-->
+<!--  <br><br>-->
+<!--  <label for="provider">Choose a provider:</label>-->
 
-  <select name="providerId" id="provider" >
-    <option value="none" selected th:value="1">Select an Option</option>
-    <option  th:each="provider : ${providers}" th:value="${provider.id}" th:text="${provider.username}">
-  </select>
-<!--  nice to have password confirmation-->
+<!--  <select name="provider" id="provider" >-->
+<!--    <option value="none" selected disabled hidden>Select an Option</option>-->
+<!--    <option value="true" th:each="provider : ${providers}"><span th:text="${provider.getUsername}"></span></option>-->
+<!--  </select>-->
+<!--&lt;!&ndash;  nice to have password confirmation&ndash;&gt;-->
 
-  <!-- checkbox for isProvider instead of radio buttons-->
+<!--  &lt;!&ndash; checkbox for isProvider instead of radio buttons&ndash;&gt;-->
+<!--  <label for="ispatient">Patient</label>-->
+<!--  <input type="radio" id="ispatient" name="isProvider" value="false" >-->
+<!--  <label for="isProvider">Provider</label>-->
+<!--  <input type="radio" id="isProvider" name="isProvider" value="true" >-->
+<!--&lt;!&ndash;-->
 
-<!--
+<!--  <input type="hidden" id="isVerified" name="isVerified" value="false" th:field="*{isVerified}">-->
+<!--&ndash;&gt;-->
+<!--  <br>-->
+<!--  <input type="submit" value="Submit">-->
+<!--</form>-->
 
-  <input type="hidden" id="isVerified" name="isVerified" value="false" th:field="*{isVerified}">
--->
-  <br>
-  <input type="submit" value="Submit">
-</form>
+
+
+
+
+
+
+
+<div id="login-form" class="login-page">
+  <div class="form-box">
+    <h3>Register!</h3>
+    <div class="button-box">
+      <div id="btn"></div>
+      <button type="button" onclick="patient()" class="toggle-btn">Patient</button>
+      <button type="button" onclick="provide()" class="toggle-btn">Provider</button>
+    </div>
+    <form id="login" class="input-group-login" th:action="@{/signup}" method="post">
+      <input name="username" type="text" class="input-field" placeholder="Username" required>
+      <input name="password" type="password" class="input-field" placeholder="Password" required>
+      <select name="provider" id="provider" class="input-field" placeholder="yes">
+        <option value="none" selected disabled hidden>Select A Provider</option>
+        <option value="true" th:each="provider : ${providers}"><span th:text="${provider.getUsername}"></span></option>
+      </select>
+      <button type="submit" class="submit-btn">Register</button>
+    </form>
+    <form id="provide" class="input-group-register" th:action="@{/signup}" method="post">
+      <input name="username" type="text" class="input-field" placeholder="Username" required>
+      <input name="password" type="password" class="input-field" placeholder="Password" required>
+      <input type="checkbox" id="isProvider" name="isProvider" value="true" ><span>I Swear I Am a Doctor</span>
+      <button type="submit" class="submit-btn">Register</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  var x = document.getElementById('login');
+  var y = document.getElementById('provide');
+  var z = document.getElementById('btn');
+  function provide(){
+    x.style.left='-400px';
+    y.style.left='50px';
+    z.style.left='110px';
+  }
+  function patient(){
+    x.style.left='50px';
+    y.style.left='450px';
+    z.style.left='0px';
+  }
+
+</script>
+
 </body>
 </html>

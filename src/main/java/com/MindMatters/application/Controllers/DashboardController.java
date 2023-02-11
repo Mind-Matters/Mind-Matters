@@ -1,9 +1,11 @@
 package com.MindMatters.application.Controllers;
 
 import com.MindMatters.application.Models.ProviderPatient;
+import com.MindMatters.application.Models.ScalingData;
 import com.MindMatters.application.Models.TrackMedication;
 import com.MindMatters.application.Models.User;
 import com.MindMatters.application.Repositories.ProviderPatientRepository;
+import com.MindMatters.application.Repositories.ScalingRepo;
 import com.MindMatters.application.Repositories.TrackMedicationRepository;
 import com.MindMatters.application.Repositories.UserRepo;
 import jakarta.transaction.Transaction;
@@ -25,11 +27,13 @@ public class DashboardController {
     public final UserRepo userDao;
     public final ProviderPatientRepository providerPatientDao;
     public final TrackMedicationRepository trackMedicationDao;
+    public final ScalingRepo scalingDataDao;
 
-    public DashboardController(UserRepo userDao, ProviderPatientRepository providerPatientRepository, TrackMedicationRepository trackMedicationRepository){
+    public DashboardController(UserRepo userDao, ProviderPatientRepository providerPatientRepository, TrackMedicationRepository trackMedicationRepository, ScalingRepo scalingDataDao){
         this.userDao = userDao;
         this.providerPatientDao = providerPatientRepository;
         this.trackMedicationDao = trackMedicationRepository;
+        this.scalingDataDao = scalingDataDao;
     }
 
     @GetMapping("/dashboard")
@@ -53,9 +57,14 @@ public class DashboardController {
             return "provider-dashboard";
         } else {
             // user is patient
-            // populate patient info
+            // populate trackMedications info
             List<TrackMedication> trackMedications = trackMedicationDao.findAllByUser(loggedInUser);
             model.addAttribute("trackMedications", trackMedications);
+
+            // populate mood_over_time info
+            List<ScalingData> scalingData = scalingDataDao.findAllByUser(loggedInUser);
+            model.addAttribute("scalingData", scalingData);
+
 
             return "patient-dashboard";
         }

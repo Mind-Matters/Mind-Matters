@@ -10,7 +10,7 @@
     <div class="middle-row">
         <h1 class="middle-text">Hello XYZ</h1>
         <h2 class="right-side">Provider Info</h2>
-        <form th:action="@{/event-dashboard}" th:method="post" th:object="${event}" id="event-form">
+        <form th:action="@{/event-dashboard}" th:method="post" th:object="${event}" id="event-form" name="event-form">
             <label for="date">Enter the date</label>
         <input type="date" name="date" id="date" >
             <label for="title">Enter the title of the event below</label>
@@ -21,12 +21,19 @@
         </form>
     </div>
 </div>
-<div id="calendar-position">
-<div id="calendar">
+<div id="calendar-position"></div>
+<div id="calendar"></div>
+<!-- experimental calendar event submit form-->
+    <form id="calendar-event-to-db" th:action="@{/submit-event}" th:method="post" style="display: none">
+        <input name="title" id="titleDb" >
+        <input name="description" id="descriptionDb">
+        <input name="date" id="dateDb">
+        <!--<input type="submit" value="Submit">-->
+    </form>
 
-</div>
-    <h2>pill tracker</h2>
-</div>
+
+<h2>pill tracker</h2>
+
 <h2 class="scale">Scale question</h2>
 
 <div th:replace="~{partials :: medTracker}"></div>

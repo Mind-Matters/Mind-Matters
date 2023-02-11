@@ -24,7 +24,7 @@ public class EventController {
         model.addAttribute("event", new Event());
         return "/patient-dashboard";
     }
-    @PostMapping("/event-dashboard")
+    @PostMapping("/submit-event")
     public String createEvent(@RequestParam(name = "title") String title,
                               @RequestParam(name = "description") String description,
                               @RequestParam(name = "date") String date

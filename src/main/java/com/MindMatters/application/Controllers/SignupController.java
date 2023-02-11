@@ -1,7 +1,9 @@
 package com.MindMatters.application.Controllers;
 
 
+import com.MindMatters.application.Models.ProviderPatient;
 import com.MindMatters.application.Models.User;
+import com.MindMatters.application.Repositories.ProviderPatientRepository;
 import com.MindMatters.application.Repositories.UserRepo;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +19,16 @@ import java.util.List;
 @Controller
 public class SignupController {
 
-    private UserRepo userDao;
+    private final UserRepo userDao;
 
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    public SignupController(UserRepo userDao, PasswordEncoder passwordEncoder){
+    private final ProviderPatientRepository providerPatientDao;
+
+    public SignupController(UserRepo userDao, PasswordEncoder passwordEncoder, ProviderPatientRepository providerPatientDao){
         this.passwordEncoder = passwordEncoder;
         this.userDao = userDao;
+        this.providerPatientDao = providerPatientDao;
     }
 
     @GetMapping("/signup")
@@ -36,11 +42,14 @@ public class SignupController {
     }
 
     @PostMapping("/signup")
-    public String createUser(@ModelAttribute User user){
+    public String createUser(@ModelAttribute User user, @RequestParam(name = "providerId") long providerId){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setIsVerified(false);
         userDao.save(user);
+        User provider = userDao.findById(providerId);
+        ProviderPatient providerPatient = new ProviderPatient(provider, user);
+        providerPatientDao.save(providerPatient);
         return "/home";
     }
 

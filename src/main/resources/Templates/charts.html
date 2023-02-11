@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head >
+
+  <!--Load the AJAX API-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" th:inline="javascript" th:fragment="moodOverTime">
+
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Callback that creates and populates a data table,
+    // instantiates the pie chart, passes in the data and
+    // draws it.
+    function drawChart() {
+
+      // Create the data table.
+      // dummy data:
+        var data = new google.visualization.arrayToDataTable(
+        [
+          ['ScoreId', 'Score'],
+          [1, 7],
+          [2, 8],
+          [3, 9],
+          [4, 10],
+          [5, 10]
+        ]
+      );
+      // Grab data from Thymeleaf
+/*      let scalingData = /!*[[${scalingData}]]*!/;
+      var data = new google.visualization.DataTable();
+        data.addColumn('number', 'ScoreId');
+        data.addColumn('number', 'Score');
+        data.addRow(
+                [scalingData[0].id, scalingData[0].score]
+                [scalingData[1].id, scalingData[1].score]
+                [scalingData[2].id, scalingData[2].score]
+        );*/
+      // Set chart options
+      var options = {'title':'Mood Over Time',
+                      legend: {position: 'bottom'},
+                     'width':400,
+                     'height':300};
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.LineChart(document.getElementById('mood_over_time_chart'));
+      chart.draw(data, options);
+    }
+    </script>
+</head>
+  <body>
+    <div id="mood_over_time_chart"></div>
+  </body>
+</html>

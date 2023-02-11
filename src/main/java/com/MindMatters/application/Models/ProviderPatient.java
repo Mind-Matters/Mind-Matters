@@ -20,8 +20,7 @@ public class ProviderPatient {
     public ProviderPatient() {
     }
 
-    public ProviderPatient(long id, User provider, User patient) {
-        this.id = id;
+    public ProviderPatient( User provider, User patient) {
         this.provider = provider;
         this.patient = patient;
     }

@@ -2,12 +2,13 @@ package com.MindMatters.application.Controllers;
 
 import com.MindMatters.application.Models.Event;
 import com.MindMatters.application.Controllers.Repositories.EventRepo;
+import com.MindMatters.application.Models.User;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 @Controller
@@ -18,19 +19,24 @@ public class EventController {
         this.eventDao = eventDao;
     }
 
-/*  using Form Model Binding
-    Abandoned this approach because we encountered errors. Need instructor assistsance to implement.
-    @GetMapping("/add-event")
-    public String showPatientDashboard(Model model) {
+    @GetMapping ("/event-dashboard")
+    public String addEvent(Model model) {
         model.addAttribute("event", new Event());
         return "/patient-dashboard";
     }
-
-    @PostMapping("/add-event")
-    public String addEvent(@ModelAttribute Event event) {
+    @PostMapping("/event-dashboard")
+    public String createEvent(@RequestParam(name = "title") String title,
+                              @RequestParam(name = "description") String description,
+                              @RequestParam(name = "date") String date
+    ){
+        Event event = new Event();
+        event.setTitle(title);
+        event.setDescription(description);
+        event.setDate(new Date());
+        event.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         eventDao.save(event);
-        return "patient-dashboard";
-    }*/
+        return "/patient-dashboard";
+    }
 
     @GetMapping("/add-event")
     public String showPatientDashboard() {
@@ -46,7 +52,7 @@ public class EventController {
         Event event = new Event();
         event.setTitle(title);
         event.setDescription(description);
-        event.setDate(new Date(date));
+        event.setDate(new Date());
         eventDao.save(event);
         return "patient-dashboard";
     }

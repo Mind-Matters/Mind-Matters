@@ -30,7 +30,6 @@ public class User {
     }
 
 
-
     public User() {
     }
 
@@ -93,11 +92,11 @@ public class User {
         isProvider = provider;
     }
 
-    public boolean isVerified() {
-        return isVerified;
-    }
-
     public void setIsVerified(boolean verified) {
         isVerified = verified;
+    }
+
+    public boolean getIsVerified() {
+        return isVerified;
     }
 }

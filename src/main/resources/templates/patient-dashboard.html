@@ -2,8 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials :: head">
     <meta charset='utf-8'/>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
-    <script src="calendar-io.js"></script>
     <title>Patient Dashboard</title>
 </head>
 <body>
@@ -33,7 +31,12 @@
 
 <div th:replace="~{partials :: medTracker}"></div>
 
+<h1 id="MoodChart">Mood Chart</h1>
+<div id="mood_over_time_chart"></div>
+
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
 <script type="text/javascript" th:src="@{/js/calendar-io.js}"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script th:replace="~{charts :: moodOverTime}"></script>
 </body>
 </html>

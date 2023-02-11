@@ -5,7 +5,11 @@
     <title>Patient Dashboard</title>
 </head>
 <body>
+<!--navbar starts-->
 <header th:replace="partials :: header-two"></header>
+<!--navbar ends-->
+
+<!--calender starts-->
 <div class="container">
     <div class="middle-row">
         <h1 class="middle-text">Hello XYZ</h1>
@@ -23,6 +27,9 @@
 </div>
 <div id="calendar-position"></div>
 <div id="calendar"></div>
+<!--calendar ends-->
+
+
 <!-- experimental calendar event submit form-->
     <form id="calendar-event-to-db" th:action="@{/submit-event}" th:method="post" style="display: none">
         <input name="title" id="titleDb" >
@@ -32,11 +39,17 @@
     </form>
 
 
-<h2>pill tracker</h2>
 
-<h2 class="scale">Scale question</h2>
-
+<!--med tracker starts-->
 <div th:replace="~{partials :: medTracker}"></div>
+<!--med tracker ends-->
+
+
+<!--mood scale starts-->
+<div th:replace="~{partials :: moodScale}"></div>
+<!--mood scale ends-->
+
+
 
 <h1 id="MoodChart">Mood Chart</h1>
 <div id="mood_over_time_chart"></div>

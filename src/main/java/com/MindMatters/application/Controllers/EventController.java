@@ -58,10 +58,14 @@ public class EventController {
         categoriesToSave.add(categoryDao.findByCategory("Education"));*/
 
         // pull category info from user input
-
-/*        categories.forEach((categoryName, checked) -> {
+        Map<String, Boolean> categoryMap = new HashMap<>();
+        categories.forEach(line -> {
+            String[] splitLine = line.split(":");
+            categoryMap.put(splitLine[0].trim(), Boolean.parseBoolean(splitLine[1].trim()));
+        });
+        /*categoryMap.forEach((categoryId, checked) -> {
             if (checked) {
-                categoriesToSave.add(categoryDao.findByCategory(categoryName));
+                categoriesToSave.add(categoryDao.findById(categoryId));
             }
         });*/
         event.setCategories(categoriesToSave);

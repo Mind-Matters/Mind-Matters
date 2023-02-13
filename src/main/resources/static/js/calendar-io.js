@@ -7,6 +7,17 @@ function submitToDB(date, title, description, categories) {
     document.getElementById("calendar-event-to-db").submit();
 }
 
+
+function editEvent(id, date, title, description, categories) {
+    // invisible form to submit to db
+    document.getElementById("idDb").value = id;
+    document.getElementById("titleDb").value = title;
+    document.getElementById("descriptionDb").value = description;
+    document.getElementById("dateDb").value = date;
+    document.getElementById("categoriesDb").value = categories;
+    document.getElementById("calendar-event-to-db").submit();
+}
+
 //API CODE STARTS HERE
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
@@ -23,6 +34,47 @@ document.addEventListener('DOMContentLoaded', function() {
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         customButtons: {
+
+            addEventButton: {
+                text: 'edit event',
+                click: function(e) {
+                    let title = e.target().title; // mess with
+                    // gather data
+                    let targetEvent;
+
+                    events.forEach(function(event) {
+                        if(event.title === title)
+                            targetEvent = event;
+                    });
+                        // the specific event id to edit
+                        // date
+                        // pull that event's data from db
+
+                    // change data
+                        // field for each piece of data (Element.getElementById("title").value=stuff)
+                        // form with submit to change data
+                        // uses same function as before: editEvent()
+
+                    // submit new data to db
+
+                    /* Collect category data as JSON*/
+                    let categories = {
+                        "category1": document.getElementById("category1").checked,
+                        "category2": document.getElementById("category2").checked,
+                        "category3": document.getElementById("category3").checked,
+                        "category4": document.getElementById("category4").checked,
+                        "category5": document.getElementById("category5").checked,
+                        "category6": document.getElementById("category6").checked,
+                        "category7": document.getElementById("category7").checked,
+                        "category8": document.getElementById("category8").checked,
+                        "category9": document.getElementById("category9").checked,
+                        "category10": document.getElementById("category10").checked
+                    };
+
+                    submitToDB(date, title, description, categories);
+
+                }
+            },
             addEventButton: {
                 text: 'submit event',
                 click: function() {
@@ -52,9 +104,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 }
             }
-        }
+        },
 
-    });
+        eventDidMount: function(info) {
+            var tooltip = new Tooltip(info.el, {
+                title: info.event.extendedProps.description,
+                placement: 'top',
+                trigger: 'hover',
+                container: 'body'
+            }
+        );
+    }
+
+});
+
 
     // populate calendar with events from db
     let events = /*[[${events}]]*/;
@@ -62,8 +125,10 @@ document.addEventListener('DOMContentLoaded', function() {
         calendar.addEvent({
             title: event.title,
             start: event.date,
+            description: event.description,
             allDay: true
         });
     });
     calendar.render();
 });
+

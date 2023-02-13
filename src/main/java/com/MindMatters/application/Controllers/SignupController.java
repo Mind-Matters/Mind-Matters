@@ -41,7 +41,7 @@ public class SignupController {
         // user now has provider id, make sure it is in view's signup form
 
     // public String createPatient(@ModelAttribute User user, @RequestParam(name = "providerId") long providerId, @RequestParam(name = "isProvider") boolean isProvider){
-        if(!isProvider){
+        if(!user.getIsProvider()){
 
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);

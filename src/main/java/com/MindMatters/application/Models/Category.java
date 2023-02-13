@@ -1,6 +1,10 @@
 package com.MindMatters.application.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "categories")
@@ -11,6 +15,11 @@ public class Category {
     private long id;
 
 
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.ALL},
+            mappedBy = "categories")
+    @JsonIgnore
+    private Set<Event> events = new HashSet<>();
 
     @Column(nullable = false, length = 32)
     private String category;

@@ -6,20 +6,18 @@ import com.MindMatters.application.Models.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import com.MindMatters.application.Repositories.ScalingRepo;
+import com.MindMatters.application.Repositories.ScalingRepository;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.DateTimeException;
 import java.util.Date;
 
 @Controller
 public class ScalingController {
 
-    private ScalingRepo scalingDao;
+    private ScalingRepository scalingDao;
 
-    public ScalingController(ScalingRepo scalingDao) {
+    public ScalingController(ScalingRepository scalingDao) {
         this.scalingDao = scalingDao;
     }
 

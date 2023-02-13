@@ -33,19 +33,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     var title = document.getElementById('title').value;
                     var description = document.getElementById("description").value;
                     var date = new Date(dateStr + 'T00:00:00');// will be in local time
-                    var categories = document.getElementById("categories");
+
+                    /* Collect category data as JSON*/
+                    let categories = {
+                        "category1": document.getElementById("category1").checked,
+                        "category2": document.getElementById("category2").checked,
+                        "category3": document.getElementById("category3").checked,
+                        "category4": document.getElementById("category4").checked,
+                        "category5": document.getElementById("category5").checked,
+                        "category6": document.getElementById("category6").checked,
+                        "category7": document.getElementById("category7").checked,
+                        "category8": document.getElementById("category8").checked,
+                        "category9": document.getElementById("category9").checked,
+                        "category10": document.getElementById("category10").checked
+                    };
+
                     submitToDB(date, title, description, categories);
 
-/*                    if (!isNaN(date.valueOf())) { // valid?
-                        calendar.addEvent({
-                            title: title,
-                            start: date,
-                            allDay: true
-                        });
-                        alert('Great. Now, update your database...');
-                    } else {
-                        alert('Invalid date.');
-                    }*/
                 }
             }
         }

@@ -1,8 +1,9 @@
-function submitToDB(date, title, description) {
+function submitToDB(date, title, description, categories) {
     // invisible form to submit to db
     document.getElementById("titleDb").value = title;
     document.getElementById("descriptionDb").value = description;
     document.getElementById("dateDb").value = date;
+    document.getElementById("categoriesDb").value = categories;
     document.getElementById("calendar-event-to-db").submit();
 }
 
@@ -32,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     var title = document.getElementById('title').value;
                     var description = document.getElementById("description").value;
                     var date = new Date(dateStr + 'T00:00:00');// will be in local time
-                    var eventForm = document.getElementById("eventForm");
-                    submitToDB(date, title, description);
+                    var categories = document.getElementById("categories");
+                    submitToDB(date, title, description, categories);
 
 /*                    if (!isNaN(date.valueOf())) { // valid?
                         calendar.addEvent({

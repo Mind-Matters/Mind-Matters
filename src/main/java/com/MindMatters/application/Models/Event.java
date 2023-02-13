@@ -1,9 +1,9 @@
 package com.MindMatters.application.Models;
 import jakarta.persistence.*;
-import org.hibernate.mapping.Set;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -24,13 +24,14 @@ public class Event {
     private Date date;
     // LocalDate type
 
-    @ManyToMany(cascade = { CascadeType.ALL})
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = { CascadeType.ALL})
     @JoinTable(
-            name = "Event_Categories",
+            name = "event_categories",
             joinColumns = {@JoinColumn(name = "event_id")},
-            inverseJoinColumns = {@JoinColumn(name = "category_id")}
-    )
-    private Set<Category> categories; = new HashSet<>();
+            inverseJoinColumns = {@JoinColumn(name = "category_id")})
+    private Set<Category> categories = new HashSet<>();
 
    @ManyToOne
     private User user;

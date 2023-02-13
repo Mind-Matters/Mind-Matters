@@ -1,5 +1,6 @@
 package com.MindMatters.application.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -14,7 +15,10 @@ public class Category {
     private long id;
 
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.ALL},
+            mappedBy = "categories")
+    @JsonIgnore
     private Set<Event> events = new HashSet<>();
 
     @Column(nullable = false, length = 32)

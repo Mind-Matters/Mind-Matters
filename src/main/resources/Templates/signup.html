@@ -68,9 +68,22 @@
       background: transparent;
 
     }
-    #isProvider{
-      margin:5px 0;
+    #providerSelect{
+      background-color: transparent;
+      border-bottom:1px solid #999;
+      outline: none;
+      border-left: 0;
+      border-top:0;
+      border-right:0;
+      margin: 5px 0;
+      padding: 10px 0;
+      color: white;
     }
+    #ispatient{
+      margin:5px 0;
+
+    }
+
     #login{
       left: 50px;
     }
@@ -85,6 +98,10 @@
     #provide input{
       color: white;
       font-size: 15px;
+    }
+    #isProvider{
+      margin:5px 0;
+
     }
     .submit-btn{
       width: 85%;
@@ -105,84 +122,91 @@
 <body>
 <h1>Sign Up</h1>
 
-<form th:action="@{/signup}" th:method="post" th:object="${user}">
+<!--<form th:action="@{/signup}" th:method="post" th:object="${user}">-->
 
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username" >
-  <br><br>
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password" >
-  <br><br>
-  <label for="provider">Choose a provider:</label>
+<!--  <label for="username">Username:</label>-->
+<!--  <input type="text" id="username" name="username" >-->
+<!--  <br><br>-->
+<!--  <label for="password">Password:</label>-->
+<!--  <input type="password" id="password" name="password" >-->
+<!--  <br><br>-->
+<!--  <label for="provider">Choose a provider:</label>-->
 
-  <select name="providerId" id="provider" >
-<!--    <option th:value="1" selected disabled hidden>Select an Option</option>-->
-    <option th:value="${provider.id}" th:each="provider : ${providers}"><span th:text="${provider.getUsername}"></span></option>
-  </select>
-<!--  nice to have password confirmation-->
+<!--  <select name="providerId" id="provider" >-->
+<!--&lt;!&ndash;    <option value="none" selected disabled hidden>Select an Option</option>&ndash;&gt;-->
+<!--    <option th:value="${provider.id}" th:each="provider : ${providers}"><span th:text="${provider.getUsername}"></span></option>-->
+<!--  </select>-->
+<!--&lt;!&ndash;  nice to have password confirmation&ndash;&gt;-->
 
-  <!-- checkbox for isProvider instead of radio buttons-->
-  <label for="ispatient">Patient</label>
-  <input type="radio" id="ispatient" name="isProvider" value="false" >
-  <label for="isProvider">Provider</label>
-  <input type="radio" id="isProvider" name="isProvider" value="true" >
-<!--
+<!--  &lt;!&ndash; checkbox for isProvider instead of radio buttons&ndash;&gt;-->
+<!--  <label for="ispatient">Patient</label>-->
+<!--  <input type="radio" id="ispatient" name="isProvider" value="false" >-->
+<!--  <label for="isProvider">Provider</label>-->
+<!--  <input type="radio" id="isProvider" name="isProvider" value="true" >-->
+<!--&lt;!&ndash;-->
 
-  <input type="hidden" id="isVerified" name="isVerified" value="false" th:field="*{isVerified}">
--->
-  <br>
-  <input type="submit" value="Submit">
-</form>
-
-
+<!--  <input type="hidden" id="isVerified" name="isVerified" value="false" th:field="*{isVerified}">-->
+<!--&ndash;&gt;-->
+<!--  <br>-->
+<!--  <input type="submit" value="Submit">-->
+<!--</form>-->
 
 
 
 
 
 
-<!--<div id="login-form" class="login-page">-->
-<!--  <div class="form-box">-->
-<!--    <h3>Register!</h3>-->
-<!--    <div class="button-box">-->
-<!--      <div id="btn"></div>-->
-<!--      <button type="button" onclick="patient()" class="toggle-btn">Patient</button>-->
-<!--      <button type="button" onclick="provide()" class="toggle-btn">Provider</button>-->
-<!--    </div>-->
-<!--    <form id="login" class="input-group-login" th:action="@{/signup}" method="post">-->
-<!--      <input name="username" type="text" class="input-field" placeholder="Username" required>-->
-<!--      <input name="password" type="password" class="input-field" placeholder="Password" required>-->
-<!--      <select name="provider" id="providerId" class="input-field" placeholder="yes">-->
-<!--        <option value="none" selected disabled hidden>Select A Provider</option>-->
-<!--        <option value="true" th:each="provider : ${providers}"><span th:text="${provider.getUsername}"></span></option>-->
-<!--      </select>-->
-<!--      <button type="submit" class="submit-btn">Register</button>-->
-<!--    </form>-->
-<!--    <form id="provide" class="input-group-register" th:action="@{/signup}" method="post">-->
-<!--      <input name="username" type="text" class="input-field" placeholder="Username" required>-->
-<!--      <input name="password" type="password" class="input-field" placeholder="Password" required>-->
-<!--      <input type="checkbox" id="isProvider" name="isProvider" value="true" ><span>I Swear I Am a Doctor</span>-->
-<!--      <button type="submit" class="submit-btn">Register</button>-->
-<!--    </form>-->
-<!--  </div>-->
-<!--</div>-->
 
-<!--<script>-->
-<!--  var x = document.getElementById('login');-->
-<!--  var y = document.getElementById('provide');-->
-<!--  var z = document.getElementById('btn');-->
-<!--  function provide(){-->
-<!--    x.style.left='-400px';-->
-<!--    y.style.left='50px';-->
-<!--    z.style.left='110px';-->
-<!--  }-->
-<!--  function patient(){-->
-<!--    x.style.left='50px';-->
-<!--    y.style.left='450px';-->
-<!--    z.style.left='0px';-->
-<!--  }-->
 
-<!--</script>-->
+<div id="login-form" class="login-page">
+  <div class="form-box">
+    <h3>Register!</h3>
+    <div class="button-box">
+      <div id="btn"></div>
+      <button type="button" onclick="patient()" class="toggle-btn" id=" " name="isProvider" value="false">Patient</button>
+      <button type="button" onclick="provide()" class="toggle-btn" id="" name="isProvider" value="true">Provider</button>
+    </div>
+    <form id="login" class="input-group-login" th:action="@{/signup}" method="post">
+      <input name="username" type="text" class="input-field" placeholder="Username" required>
+      <input name="password" type="password" class="input-field" placeholder="Password" required>
+      <select name="providerId" id="providerSelect" >
+            <option value="none" selected disabled hidden>Select a Provider</option>
+        <option th:value="${provider.id}" th:each="provider : ${providers}" required><span th:text="${provider.getUsername}"></span></option>
+      </select><br>
+      <input type="checkbox" id="ispatient" name="isProvider" value="false" ><span>I agree to the terms and conditions.</span>
+      <button type="submit" class="submit-btn">Register</button>
+    </form>
+    <form id="provide" class="input-group-register" th:action="@{/signup}" method="post">
+      <input name="username" type="text" class="input-field" placeholder="Username" required>
+      <input name="password" type="password" class="input-field" placeholder="Password" required>
+
+      <select name="providerId" id="providerOne" style="display: none" >
+        <!--    <option value="none" selected disabled hidden>Select an Option</option>-->
+        <option th:value="${provider.id}" th:each="provider : ${providers}"><span th:text="${provider.getUsername}"></span></option>
+      </select>
+
+      <input type="checkbox" id="isProvider" name="isProvider" value="true" ><span>I Swear I Am a Doctor</span>
+      <button type="submit" class="submit-btn">Register</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  var x = document.getElementById('login');
+  var y = document.getElementById('provide');
+  var z = document.getElementById('btn');
+  function provide(){
+    x.style.left='-400px';
+    y.style.left='50px';
+    z.style.left='110px';
+  }
+  function patient(){
+    x.style.left='50px';
+    y.style.left='450px';
+    z.style.left='0px';
+  }
+
+</script>
 
 </body>
 </html>

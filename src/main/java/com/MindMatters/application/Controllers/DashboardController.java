@@ -18,15 +18,13 @@ import java.util.List;
 public class DashboardController {
 
     public final UserRepository userDao;
-    public final ProviderPatientRepository providerPatientDao;
     public final TrackMedicationRepository trackMedicationDao;
     public final ScalingRepository scalingDataDao;
     public final EventRepository eventDao;
 
 
-    public DashboardController(UserRepository userDao, ProviderPatientRepository providerPatientRepository, TrackMedicationRepository trackMedicationRepository, ScalingRepository scalingDataDao, EventRepository eventDao){
+    public DashboardController(UserRepository userDao, TrackMedicationRepository trackMedicationRepository, ScalingRepository scalingDataDao, EventRepository eventDao){
         this.userDao = userDao;
-        this.providerPatientDao = providerPatientRepository;
         this.trackMedicationDao = trackMedicationRepository;
         this.scalingDataDao = scalingDataDao;
         this.eventDao = eventDao;
@@ -42,14 +40,14 @@ public class DashboardController {
             // get pending users list for this particular provider
             // find all users provider has
             // find users on that list that are not verified
-            List<ProviderPatient> providerPatients = providerPatientDao.findAllByProvider(loggedInUser);
+/*            List<ProviderPatient> providerPatients = providerPatientDao.findAllByProvider(loggedInUser);
             for(ProviderPatient providerPatient : providerPatients){
                 if(!providerPatient.getPatient().getIsVerified()){
                     pendingUsers.add(providerPatient.getPatient());
                 }
 
             model.addAttribute("pendingUsers", pendingUsers);
-            }
+            }*/
             return "provider-dashboard";
         } else {
             // user is patient
@@ -74,13 +72,13 @@ public class DashboardController {
     public String approveUser(@RequestParam(name = "id") long id, @RequestParam Boolean isApproved){
         User patient = userDao.findById(id);
         User provider = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        ProviderPatient providerPatient = providerPatientDao.findByProviderAndPatient(provider, patient);
+        /*ProviderPatient providerPatient = providerPatientDao.findByProviderAndPatient(provider, patient);*/
         if(isApproved){
             patient.setIsVerified(true);
             userDao.save(patient);
         } else {
             // patient is not approved: remove patient user and providerPatient rows
-            providerPatientDao.deleteById(providerPatient.getId());
+            /*providerPatientDao.deleteById(providerPatient.getId());*/
             userDao.deleteByUsername(patient.getUsername());
         }
         return "redirect:/dashboard";

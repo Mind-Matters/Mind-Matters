@@ -25,6 +25,10 @@ public class User {
     @Column(nullable = false)
     private boolean isVerified; // is pending?
 
+    // this points to the user_id of the provider
+    @Column()
+    private long providerId;
+
     public boolean isProvider() {
         return isProvider;
     }

@@ -1,9 +1,7 @@
 package com.MindMatters.application.Controllers;
 
 
-import com.MindMatters.application.Models.ProviderPatient;
 import com.MindMatters.application.Models.User;
-import com.MindMatters.application.Repositories.ProviderPatientRepository;
 import com.MindMatters.application.Repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -22,12 +20,10 @@ public class SignupController {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final ProviderPatientRepository providerPatientDao;
 
-    public SignupController(UserRepository userDao, PasswordEncoder passwordEncoder, ProviderPatientRepository providerPatientDao){
+    public SignupController(UserRepository userDao, PasswordEncoder passwordEncoder){
         this.passwordEncoder = passwordEncoder;
         this.userDao = userDao;
-        this.providerPatientDao = providerPatientDao;
     }
 
     @GetMapping("/signup")
@@ -41,14 +37,12 @@ public class SignupController {
     }
 
     @PostMapping("/signup")
-    public String createUser(@ModelAttribute User user, @RequestParam(name = "providerId") long providerId){
+    public String createUser(@ModelAttribute User user){
+        // user now has provider id, make sure it is in view's signup form
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setIsVerified(false);
         userDao.save(user);
-        User provider = userDao.findById(providerId);
-        ProviderPatient providerPatient = new ProviderPatient(provider, user);
-        providerPatientDao.save(providerPatient);
         return "/home";
     }
 

@@ -12,22 +12,22 @@ VALUES('Default'),
       ('Recreation'),
       ('On Screens');
 
-INSERT INTO users (is_provider, is_verified, password, username)
-VALUES(true, true, '$2a$10$0PtfEbzDp033Q5FKZTj9ye3YYuwV.E5RtIx8.g.c/WEAGW.IyIogu', 'Provider1'),
-      (true, true, '$2a$10$OmZnptqhXtUzwRFQP1WIuuD6rYSnLL/n7QeiVJET8x5gzMw4gKeXC', 'Provider2'),
-      (true, true, '$2a$10$gptT.F/ebbTnskF5LrLXsez7bpZxzEt97DvfRsmB4Df2ei9KyE/M6', 'Provider3'),
-      (true, true, '$2a$10$7Ju2zeIEJazAqqDFz0nwh.SK5KXsTDESScSWPsUwL6VEBRGDVxIC.', 'Provider4'),
-      (true, true, '$2a$10$klqK4iH6B2ULFdpaRn9RA.E34V1RKRcM3ysNNQzpN6bJy1aBTFNka', 'Provider5'),
-      (false, false, '$2a$10$9IqFg.jSNCj57TPPkuQSleA2Ag.R0Ln8YSe6K1FNIRfMVg/dm8IT2', 'Patient1'),
-      (false, false, '$2a$10$qNKFuEUqiXqEwsCKRxh6wO8s3vbeXZ2VPDlCNLvRpdW7fNGREEcKu', 'Patient2'),
-      (false, false, '$2a$10$PEJ4aDPrFihIISOeBy1t1e0qSJeIfgvx07E4PfsDKiWptqBxU41p2', 'Patient3'),
-      (false, false, '$2a$10$u49bzMeziQ3lRioGYU/TsePs.pVjjrvr1Q1GLK6lmP9.B55m0escC', 'Patient4'),
-      (false, false, '$2a$10$v9dGBncM960WfKf/.6IO/uHbz.mSbYfIjNHQ0dHlzmRJ/IYurLp0K', 'Patient5'),
-      (false, false, '$2a$10$SwWKZmM.r0hJbtPFEqPc3enk/EW5hGcN9SNjJd9U9FmxG5M6QQPRi', 'Patient6'),
-      (false, false, '$2a$10$F1rrQzsk/3aoZDo3uQqdqueFfNW8ApX8T9EnUcvOuV7e/39tTNZ/W', 'Patient7'),
-      (false, false, '$2a$10$FGdsu5qojUjkCpDmO.Ffze8Aeyl2bzDzesXhiJw0.TI46jIsP2LjK', 'Patient8'),
-      (false, false, '$2a$10$KY8L16Idp0MyRDrGY9BPSu705hVWbXkw02JSJYocDFLDe6D2LsO72', 'Patient9'),
-      (false, false, '$2a$10$zrqfauCIT7uBbPh9gtrtAO9UDfbH6UgE37oSd4unOYNqwmwagnNUm', 'Patient10');
+INSERT INTO users (is_provider, is_verified, password, username, provider_id)
+VALUES(true, true, '$2a$10$0PtfEbzDp033Q5FKZTj9ye3YYuwV.E5RtIx8.g.c/WEAGW.IyIogu', 'Admin', 1),
+      (true, true, '$2a$10$OmZnptqhXtUzwRFQP1WIuuD6rYSnLL/n7QeiVJET8x5gzMw4gKeXC', 'Provider2', 1),
+      (true, true, '$2a$10$gptT.F/ebbTnskF5LrLXsez7bpZxzEt97DvfRsmB4Df2ei9KyE/M6', 'Provider3', 1),
+      (true, true, '$2a$10$7Ju2zeIEJazAqqDFz0nwh.SK5KXsTDESScSWPsUwL6VEBRGDVxIC.', 'Provider4', 1),
+      (true, true, '$2a$10$klqK4iH6B2ULFdpaRn9RA.E34V1RKRcM3ysNNQzpN6bJy1aBTFNka', 'Provider5', 1),
+      (false, false, '$2a$10$9IqFg.jSNCj57TPPkuQSleA2Ag.R0Ln8YSe6K1FNIRfMVg/dm8IT2', 'Patient1', 2),
+      (false, false, '$2a$10$qNKFuEUqiXqEwsCKRxh6wO8s3vbeXZ2VPDlCNLvRpdW7fNGREEcKu', 'Patient2', 2),
+      (false, false, '$2a$10$PEJ4aDPrFihIISOeBy1t1e0qSJeIfgvx07E4PfsDKiWptqBxU41p2', 'Patient3', 3),
+      (false, false, '$2a$10$u49bzMeziQ3lRioGYU/TsePs.pVjjrvr1Q1GLK6lmP9.B55m0escC', 'Patient4', 4),
+      (false, false, '$2a$10$v9dGBncM960WfKf/.6IO/uHbz.mSbYfIjNHQ0dHlzmRJ/IYurLp0K', 'Patient5', 4),
+      (false, false, '$2a$10$SwWKZmM.r0hJbtPFEqPc3enk/EW5hGcN9SNjJd9U9FmxG5M6QQPRi', 'Patient6', 4),
+      (false, false, '$2a$10$F1rrQzsk/3aoZDo3uQqdqueFfNW8ApX8T9EnUcvOuV7e/39tTNZ/W', 'Patient7', 3),
+      (false, false, '$2a$10$FGdsu5qojUjkCpDmO.Ffze8Aeyl2bzDzesXhiJw0.TI46jIsP2LjK', 'Patient8', 2),
+      (false, false, '$2a$10$KY8L16Idp0MyRDrGY9BPSu705hVWbXkw02JSJYocDFLDe6D2LsO72', 'Patient9', 1),
+      (false, false, '$2a$10$zrqfauCIT7uBbPh9gtrtAO9UDfbH6UgE37oSd4unOYNqwmwagnNUm', 'Patient10', 2);
 
 INSERT INTO events (date, description, title, user_id)
 VALUES ( '2023-02-01 08:30:00', 'Creating lotsa data rows1', 'Create Seeder file', 6 ),
@@ -144,6 +144,6 @@ VALUES ( '2023-02-01 08:30:00', 'Creating lotsa data rows1', 'Create Seeder file
 
 /* Trying to find SQL Statements that: Provider wants to have a list of all their patients */
 SELECT * FROM users as u
-WHERE u.provider = 1; /* This is the provider's user ID */
+WHERE u.provider_id = 4; /* This is the provider's user ID */
 /* Providers would have a provider_id = 0, meaning they don't have a provider */
 /* user_id = 0 is some sort of default user : means no provider assigned : before users are verified they are assigned 0? */

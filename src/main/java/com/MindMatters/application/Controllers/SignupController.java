@@ -39,12 +39,34 @@ public class SignupController {
     @PostMapping("/signup")
     public String createUser(@ModelAttribute User user){
         // user now has provider id, make sure it is in view's signup form
+
+    // public String createPatient(@ModelAttribute User user, @RequestParam(name = "providerId") long providerId, @RequestParam(name = "isProvider") boolean isProvider){
+        if(!isProvider){
+
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setIsVerified(false);
         userDao.save(user);
+
+        // User provider = userDao.findById(providerId);
+        // ProviderPatient providerPatient = new ProviderPatient(provider, user);
+        // providerPatientDao.save(providerPatient);
+        } else {
+            String hash = passwordEncoder.encode(user.getPassword());
+            user.setPassword(hash);
+            user.setIsVerified(false);
+            userDao.save(user);
+        }
         return "/home";
     }
+//    @PostMapping("/signup")
+//    public String createUser(@ModelAttribute User user){
+//        String hash = passwordEncoder.encode(user.getPassword());
+//        user.setPassword(hash);
+//        user.setIsVerified(false);
+//        userDao.save(user);
+//        return "/home";
+//    }
 
 
 }

@@ -43,6 +43,7 @@ public class User {
         this.password = copy.password;
         this.isProvider = copy.isProvider;
         this.isVerified = copy.isVerified;
+        this.providerId = copy.providerId;
     }
 
     public User(String username, String password, boolean isProvider, boolean isVerified) {
@@ -102,5 +103,13 @@ public class User {
 
     public boolean getIsVerified() {
         return isVerified;
+    }
+
+    public long getProviderId() {
+        return providerId;
+    }
+
+    public void setProviderId(long providerId) {
+        this.providerId = providerId;
     }
 }

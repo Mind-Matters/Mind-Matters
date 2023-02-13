@@ -43,10 +43,10 @@ public class SignupController {
     // public String createPatient(@ModelAttribute User user, @RequestParam(name = "providerId") long providerId, @RequestParam(name = "isProvider") boolean isProvider){
         if(!user.getIsProvider()){
 
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        user.setIsVerified(false);
-        userDao.save(user);
+            String hash = passwordEncoder.encode(user.getPassword());
+            user.setPassword(hash);
+            user.setIsVerified(false);
+            userDao.save(user);
 
         // User provider = userDao.findById(providerId);
         // ProviderPatient providerPatient = new ProviderPatient(provider, user);

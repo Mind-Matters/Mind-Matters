@@ -3,11 +3,15 @@
 <head th:insert="partials :: head">
     <meta charset='utf-8'/>
     <title>Patient Dashboard</title>
+
+
+
 </head>
 <body>
 <!--navbar starts-->
 <header th:replace="partials :: header-two"></header>
 <!--navbar ends-->
+
 
 <!--calender starts-->
 <div class="container">
@@ -148,5 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script th:replace="~{charts :: moodOverTime}"></script>
+<footer th:replace="partials :: footer"></footer>
 </body>
 </html>

@@ -41,10 +41,13 @@ public class DashboardController {
 
             List<User> patients = userDao.findByIsProviderAndProviderId(true, loggedInUser.getId());
             model.addAttribute("patients", patients);
+            //work around to get the events for the patients onclick
             // get events list for this particular provider for their patients
-            List<Event> userEvents = eventDao.findAllByUserId(loggedInUser.getId());
+            //Im logged in as a provider and loggedin user id = provider id which links back to the patient id
+
+
             //I need to link the event id to the patient id in the user table
-            model.addAttribute("events", userEvents);
+//            model.addAttribute("events", userEvents);
             // get pending users list for this particular provider
             // find all users provider has
             // find users on that list that are not verified

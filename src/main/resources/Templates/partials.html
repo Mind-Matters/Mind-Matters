@@ -208,10 +208,14 @@
     <tbody>
     <tr th:each="patient : ${patients}">
         <td th:text="${patient.username}"></td>
-    </tr>
-        <tr th:each="event : ${events}">
+        <div th:each="event : ${patient.events}">
             <td th:text="${event.title}"></td>
-        </tr>
+            <td th:text="${event.description}"></td>
+<!--            <tr th:each="event : ${patient.events}">-->
+<!--                <th th:text="${event.eventName}"></th>-->
+<!--            </tr>-->
+        </div>
+    </tr>
     </tbody>
 </table>
 <!--provider dashboard patient overview-->

@@ -14,7 +14,7 @@
     <div class="middle-row">
         <h1 class="middle-text">Hello XYZ</h1>
         <h2 class="right-side">Provider Info</h2>
-        <form th:action="@{/event-dashboard}" th:method="post" th:object="${event}" id="event-form" name="event-form">
+        <form th:action="@{/submit-event}" th:method="post" id="event-form" name="event-form">
             <label for="date">Enter the date</label>
         <input type="date" name="date" id="date" >
             <label for="title">Enter the title of the event below</label>
@@ -44,7 +44,7 @@
             <label for="category9">Recreation</label>
             <input id="category10" value="10" name="categories" type="checkbox">
             <label for="category10">On Screens</label>
-
+            <input type="submit" value="Submit" id="submit">
 
             <!--<input type="submit" value="Submit" th:onclick="addToDB()" id="submit">-->
         </form>

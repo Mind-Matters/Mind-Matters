@@ -3,7 +3,7 @@ function submitToDB(date, title, description, category1, category2, category3, c
     document.getElementById("titleDb").value = title;
     document.getElementById("descriptionDb").value = description;
     document.getElementById("dateDb").value = date;
-    document.getElementById("categoryDB1").checked = category1;
+    document.getElementById("categoryDB1").checked = document.getElementById("category1").checked;
     document.getElementById("categoryDB2").checked = category2;
     document.getElementById("categoryDB3").checked = category3;
     document.getElementById("categoryDB4").checked = category4;
@@ -13,7 +13,9 @@ function submitToDB(date, title, description, category1, category2, category3, c
     document.getElementById("categoryDB8").checked = category8;
     document.getElementById("categoryDB9").checked = category9;
     document.getElementById("categoryDB10").checked = category10;
-    document.getElementById("calendar-event-to-db").submit();
+    console.log("DB1 Checked value: " + document.getElementById("categoryDB1").checked)
+    console.log("DB2 Checked value: " + document.getElementById("categoryDB2").checked)
+    /*document.getElementById("calendar-event-to-db").submit();*/
 }
 
 
@@ -80,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         "category10": document.getElementById("category10").checked
                     };*/
 
-                    submitToDB(date, title, description, category1, category2, category3, category4, category5, category6, category7, category8, category9, category10);
+                    // submitToDB(date, title, description, category1, category2, category3, category4, category5, category6, category7, category8, category9, category10);
 
                 }
             }

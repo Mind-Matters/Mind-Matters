@@ -13,7 +13,7 @@ public class AuthenticationController {
 
     @GetMapping("/logout")
     public String showLogout(){
-        return "index";
+        return "home";
     }
 
 }

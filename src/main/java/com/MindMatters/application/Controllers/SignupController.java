@@ -56,7 +56,7 @@ public class SignupController {
             user.setIsVerified(false);
             userDao.save(user);
         }
-        return "index";
+        return "home";
     }
 //    @PostMapping("/signup")
 //    public String createUser(@ModelAttribute User user){

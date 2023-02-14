@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class SignupController {
 
         model.addAttribute("user", new User());
         model.addAttribute("providers", isProviders);
-        return "/signup";
+        return "signup";
     }
 
     @PostMapping("/signup")
@@ -57,7 +56,7 @@ public class SignupController {
             user.setIsVerified(false);
             userDao.save(user);
         }
-        return "/home";
+        return "splash";
     }
 //    @PostMapping("/signup")
 //    public String createUser(@ModelAttribute User user){

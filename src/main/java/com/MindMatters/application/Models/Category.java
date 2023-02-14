@@ -3,7 +3,9 @@ package com.MindMatters.application.Models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,7 +21,7 @@ public class Category {
             cascade = {CascadeType.ALL},
             mappedBy = "categories")
     @JsonIgnore
-    private Set<Event> events = new HashSet<>();
+    private List<Event> events = new ArrayList<>();
 
     @Column(nullable = false, length = 32)
     private String category;
@@ -28,9 +30,10 @@ public class Category {
 
     }
 
-    public Category(long id, String category) {
+    public Category(long id, String category, List<Event> events) {
         this.id = id;
         this.category = category;
+        this.events = events;
     }
 
     public long getId() {
@@ -47,5 +50,13 @@ public class Category {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }

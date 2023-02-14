@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ProviderDashController {
     @GetMapping("/provider-dashboard")
     public String goProviderDashboard(){
-        return "/provider-dashboard";
+        return "provider-dashboard";
     }
 
 }

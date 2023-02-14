@@ -1,10 +1,21 @@
-function submitToDB(date, title, description, categories) {
+function submitToDB(date, title, description, category1, category2, category3, category4, category5, category6, category7, category8, category9, category10) {
     // invisible form to submit to db
     document.getElementById("titleDb").value = title;
     document.getElementById("descriptionDb").value = description;
     document.getElementById("dateDb").value = date;
-    document.getElementById("categoriesDb").value = categories;
-    document.getElementById("calendar-event-to-db").submit();
+    document.getElementById("categoryDB1").checked = document.getElementById("category1").checked;
+    document.getElementById("categoryDB2").checked = category2;
+    document.getElementById("categoryDB3").checked = category3;
+    document.getElementById("categoryDB4").checked = category4;
+    document.getElementById("categoryDB5").checked = category5;
+    document.getElementById("categoryDB6").checked = category6;
+    document.getElementById("categoryDB7").checked = category7;
+    document.getElementById("categoryDB8").checked = category8;
+    document.getElementById("categoryDB9").checked = category9;
+    document.getElementById("categoryDB10").checked = category10;
+    console.log("DB1 Checked value: " + document.getElementById("categoryDB1").checked)
+    console.log("DB2 Checked value: " + document.getElementById("categoryDB2").checked)
+    /*document.getElementById("calendar-event-to-db").submit();*/
 }
 
 
@@ -36,58 +47,29 @@ document.addEventListener('DOMContentLoaded', function() {
         customButtons: {
 
             addEventButton: {
-                text: 'edit event',
-                click: function(e) {
-                    let title = e.target().title; // mess with
-                    // gather data
-                    let targetEvent;
-
-                    events.forEach(function(event) {
-                        if(event.title === title)
-                            targetEvent = event;
-                    });
-                        // the specific event id to edit
-                        // date
-                        // pull that event's data from db
-
-                    // change data
-                        // field for each piece of data (Element.getElementById("title").value=stuff)
-                        // form with submit to change data
-                        // uses same function as before: editEvent()
-
-                    // submit new data to db
-
-                    /* Collect category data as JSON*/
-                    let categories = {
-                        "category1": document.getElementById("category1").checked,
-                        "category2": document.getElementById("category2").checked,
-                        "category3": document.getElementById("category3").checked,
-                        "category4": document.getElementById("category4").checked,
-                        "category5": document.getElementById("category5").checked,
-                        "category6": document.getElementById("category6").checked,
-                        "category7": document.getElementById("category7").checked,
-                        "category8": document.getElementById("category8").checked,
-                        "category9": document.getElementById("category9").checked,
-                        "category10": document.getElementById("category10").checked
-                    };
-
-                    submitToDB(date, title, description, categories);
-
-                }
-            },
-            addEventButton: {
-                text: 'submit event',
+                text: 'add event',
                 click: function() {
 
-                    // var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-                    var dateStr = document.getElementById('date').value;
-                    // var title = prompt('Enter a date in YYYY-MM-DD format');
-                    var title = document.getElementById('title').value;
-                    var description = document.getElementById("description").value;
-                    var date = new Date(dateStr + 'T00:00:00');// will be in local time
+                    // gather data
+                    let title = document.getElementById("title");
+                    let description = document.getElementById("description");
+                    let date = document.getElementById("date");
+
+                    // collect category data by line
+                    let category1 = document.getElementById("category1").checked;
+                    let category2 = document.getElementById("category2").checked;
+                    let category3 = document.getElementById("category3").checked;
+                    let category4 = document.getElementById("category4").checked;
+                    let category5 = document.getElementById("category5").checked;
+                    let category6 = document.getElementById("category6").checked;
+                    let category7 = document.getElementById("category7").checked;
+                    let category8 = document.getElementById("category8").checked;
+                    let category9 = document.getElementById("category9").checked;
+                    let category10 = document.getElementById("category10").checked;
+
 
                     /* Collect category data as JSON*/
-                    let categories = {
+/*                    let categories = {
                         "category1": document.getElementById("category1").checked,
                         "category2": document.getElementById("category2").checked,
                         "category3": document.getElementById("category3").checked,
@@ -98,13 +80,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         "category8": document.getElementById("category8").checked,
                         "category9": document.getElementById("category9").checked,
                         "category10": document.getElementById("category10").checked
-                    };
+                    };*/
 
-                    submitToDB(date, title, description, categories);
+                    // submitToDB(date, title, description, category1, category2, category3, category4, category5, category6, category7, category8, category9, category10);
 
                 }
             }
-        },
+        }
+    },
 
         eventDidMount: function(info) {
             var tooltip = new Tooltip(info.el, {

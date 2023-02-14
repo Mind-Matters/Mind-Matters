@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /*import java.text.DateFormat;*/
-import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -25,49 +25,29 @@ public class EventController {
     }
 
     @PostMapping("/submit-event")
-    public String createEvent(@RequestParam(name = "title") String title,
-                              @RequestParam(name = "description") String description,
-                              @RequestParam(name = "date") String date,
-                              @RequestParam(name = "categories") List<String> categories
-    ){
-        System.out.println("categories = " + categories);
+    public String createEvent(
+                                @RequestParam(name = "title") String title,
+                                @RequestParam(name = "description") String description,
+                                @RequestParam(name = "date") String date,
+                                @RequestParam(name = "categories") String[] categories
+    ) throws ParseException {
+        for(int i = 0; i < categories.length; i++) {
+            System.out.println("categories[i] = " + categories[i]);
+        }
 
         Event event = new Event();
         event.setTitle(title);
         event.setDescription(description);
+
+        Date eventDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
         // using depreciated method
-        event.setDate(new Date(date));
+        event.setDate(eventDate);
 
-        // trying new simpledateformat
-        /*System.out.println("date = " + date);
-        DateFormat df = new SimpleDateFormat();
-        try {
-            event.setDate(df.parse(date));
-        } catch (Exception e) {
-            System.out.println("Error processing date in EventController");
-            e.printStackTrace();
-        }*/
-
-
-        // categoryName | boolean
-        // event.setCategories(categories);
         List<Category> categoriesToSave = new ArrayList<>();
+        for(String category : categories) {
+            categoryDao.findById(Long.parseLong(category)).ifPresent(categoriesToSave::add);
+        }
 
-        /* hardcode categories for testing
-        categoriesToSave.add(categoryDao.findByCategory("Work"));
-        categoriesToSave.add(categoryDao.findByCategory("Education"));*/
-
-        // pull category info from user input
-        Map<String, Boolean> categoryMap = new HashMap<>();
-        categories.forEach(line -> {
-            String[] splitLine = line.split(":");
-            categoryMap.put(splitLine[0].trim(), Boolean.parseBoolean(splitLine[1].trim()));
-        });
-        /*categoryMap.forEach((categoryId, checked) -> {
-            if (checked) {
-                categoriesToSave.add(categoryDao.findById(categoryId));
-            }
-        });*/
         event.setCategories(categoriesToSave);
         event.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 
@@ -75,7 +55,7 @@ public class EventController {
         System.out.println("event.getTitle() = " + event.getTitle());
         System.out.println("event.getDescription() = " + event.getDescription());
         System.out.println("event.getDate() = " + event.getDate());
-        System.out.println("categories = " + categories);
+
 
         eventDao.save(event);
         return "redirect:/dashboard";

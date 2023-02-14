@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class SplashController {
-    @GetMapping("/index")
+    @GetMapping("/")
     public String renderSplash(){
 
         return "splash";

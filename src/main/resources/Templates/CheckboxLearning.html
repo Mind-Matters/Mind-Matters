@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Checkbox</title>
+</head>
+<body>
+  <label for="accept">Accept</label>
+    <input type="checkbox" name="accept" id="accept" value="accept">
+  <button type="button" onclick="if(cb.checked){console.log('truth')}">Check</button>
+<script>
+  const cb = document.getElementById('accept');
+  console.log(cb.checked);
+</script>
+</body>
+</html>

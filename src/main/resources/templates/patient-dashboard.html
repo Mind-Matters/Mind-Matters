@@ -45,6 +45,7 @@
             <input id="category10" value="10" name="categories" type="checkbox">
             <label for="category10">On Screens</label>
 
+
             <!--<input type="submit" value="Submit" th:onclick="addToDB()" id="submit">-->
         </form>
     </div>
@@ -54,13 +55,21 @@
 <!--calendar ends-->
 
 
-<!-- experimental calendar event submit form-->
+<!-- hidden calendar event submit form-->
     <form id="calendar-event-to-db" th:action="@{/submit-event}" th:method="post" style="display: none">
         <input name="title" id="titleDb" >
         <input name="description" id="descriptionDb">
         <input name="date" id="dateDb">
-        <input name="categories" id="categoriesDb">
-        <!--<input type="submit" value="Submit">-->
+        <input name="categoryDB1" id="categoryDB1" type="checkbox">
+        <input name="categoryDB2" id="categoryDB2" type="checkbox">
+        <input name="categoryDB3" id="categoryDB3" type="checkbox">
+        <input name="categoryDB4" id="categoryDB4" type="checkbox">
+        <input name="categoryDB5" id="categoryDB5" type="checkbox">
+        <input name="categoryDB6" id="categoryDB6" type="checkbox">
+        <input name="categoryDB7" id="categoryDB7" type="checkbox">
+        <input name="categoryDB8" id="categoryDB8" type="checkbox">
+        <input name="categoryDB9" id="categoryDB9" type="checkbox">
+        <input name="categoryDB10" id="categoryDB10" type="checkbox">
     </form>
 
 

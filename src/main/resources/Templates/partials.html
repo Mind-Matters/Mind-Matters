@@ -16,9 +16,9 @@
     <a class="logo" href="/"><img class="logo" src="/Images/LOGOV.png" alt="logo"></a>
     <nav>
         <ul class="nav_links">
-            <li><a class="anchors" href="#">About</a></li>
+<!--            <li><a class="anchors" href="#">About</a></li>-->
             <li><a class="anchors" href="/">Home</a></li>
-            <li><a class="anchors" href="#">Our Team</a></li>
+<!--            <li><a class="anchors" href="#">Our Team</a></li>-->
             <!--            <li><a class="login" href="#"><button class="login-btn" onclick="document.getElementById('login-form').style.display='block'" style="width: auto">Login</button></a></li>-->
             <li><a class="login" href="/login">
                 <button class="login-btn">Login</button>
@@ -29,24 +29,29 @@
         </ul>
     </nav>
 </header>
+
 <!------------------------------Logged Out Nav Ends--------------------------------->
 
 
 <!------------------------------Logged In Nav Starts--------------------------------->
+
 <header th:fragment="header-two">
     <img class="logo" src="/Images/LOGOV.png" alt="logo">
     <nav>
         <ul class="nav_links">
-            <li><a class="anchors" href="#">Link</a></li>
-            <li><a class="anchors" href="#">Link</a></li>
-            <li><a class="anchors" href="#">Settings</a></li>
-            <li><a class="log-out" href="#">
-                <button class="logout-btn">Log out</button>
-            </a></li>
+
+<!--            <li><a class="anchors" href="#">About</a></li>-->
+<!--            <li><a class="anchors" href="/"></a></li>-->
+<!--            <li><a class="anchors" href="#">Settings</a></li>-->
+            <li><a class="log-out" th:href="@{/logout}"><button class="logout-btn" >Log Out</button></a></li>
+
         </ul>
     </nav>
 </header>
-<!------------------------------Logged In Nav Ends--------------------------------->
+
+<!------------------------------Logged Out Nav Ends--------------------------------->
+
+
 
 
 <!------------------------------Med Tracker Starts--------------------------------->
@@ -137,6 +142,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
     <!------------------------------Mood Scale Ends--------------------------------->
 
 
@@ -190,12 +196,14 @@
 
     <h2 th:fragment="h2">i am a fragment</h2>
 </body>
+
 <div th:fragment="footer" class="footer">
 
-    <a class="anchors" href="#top">Back to top of page</a>
+    <a class="anchors" id="footer" href="#top">Back to top of page</a>
     <!--We can add links and an about us for a nice to have-->
     <footer> Copyright &copy; 2023 Mind-Matters</footer>
 </div>
+
 <!--provider dashboard patient overview-->
 <table th:fragment="patient-overview">
     <caption class="patient-overview">Patient Overview</caption>
@@ -216,5 +224,5 @@
     </tr>
     </tbody>
 </table>
-<!--provider dashboard patient overview-->
+
 </html>

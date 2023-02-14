@@ -3,18 +3,22 @@
 <head th:insert="partials :: head">
     <meta charset='utf-8'/>
     <title>Patient Dashboard</title>
+
+
+
 </head>
 <body>
 <!--navbar starts-->
 <header th:replace="partials :: header-two"></header>
 <!--navbar ends-->
 
+
 <!--calender starts-->
 <div class="container">
     <div class="middle-row">
         <h1 class="middle-text">Hello XYZ</h1>
         <h2 class="right-side">Provider Info</h2>
-        <form th:action="@{/event-dashboard}" th:method="post" th:object="${event}" id="event-form" name="event-form">
+        <form th:action="@{/submit-event}" th:method="post" id="event-form" name="event-form">
             <label for="date">Enter the date</label>
         <input type="date" name="date" id="date" >
             <label for="title">Enter the title of the event below</label>
@@ -44,23 +48,33 @@
             <label for="category9">Recreation</label>
             <input id="category10" value="10" name="categories" type="checkbox">
             <label for="category10">On Screens</label>
+            <input type="submit" value="Submit" id="submit">
 
             <!--<input type="submit" value="Submit" th:onclick="addToDB()" id="submit">-->
         </form>
     </div>
 </div>
+<a href="/my-events"><button>Edit My Events</button></a>
 <div id="calendar-position"></div>
 <div id="calendar"></div>
 <!--calendar ends-->
 
 
-<!-- experimental calendar event submit form-->
+<!-- hidden calendar event submit form-->
     <form id="calendar-event-to-db" th:action="@{/submit-event}" th:method="post" style="display: none">
         <input name="title" id="titleDb" >
         <input name="description" id="descriptionDb">
         <input name="date" id="dateDb">
-        <input name="categories" id="categoriesDb">
-        <!--<input type="submit" value="Submit">-->
+        <input name="categoryDB1" id="categoryDB1" type="checkbox" checked>
+        <input name="categoryDB2" id="categoryDB2" type="checkbox" checked>
+        <input name="categoryDB3" id="categoryDB3" type="checkbox">
+        <input name="categoryDB4" id="categoryDB4" type="checkbox">
+        <input name="categoryDB5" id="categoryDB5" type="checkbox">
+        <input name="categoryDB6" id="categoryDB6" type="checkbox">
+        <input name="categoryDB7" id="categoryDB7" type="checkbox">
+        <input name="categoryDB8" id="categoryDB8" type="checkbox">
+        <input name="categoryDB9" id="categoryDB9" type="checkbox">
+        <input name="categoryDB10" id="categoryDB10" type="checkbox">
     </form>
 
 
@@ -148,5 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script th:replace="~{charts :: moodOverTime}"></script>
+<footer th:replace="partials :: footer"></footer>
 </body>
 </html>

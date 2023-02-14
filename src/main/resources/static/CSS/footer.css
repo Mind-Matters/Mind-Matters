@@ -1,5 +1,6 @@
-.footer{
+#footer{
     background-color: transparent;
+    color: black;
     position: sticky;
     display: flex;
     align-items: center;

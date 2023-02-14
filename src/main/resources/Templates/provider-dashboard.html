@@ -6,10 +6,9 @@
     <link rel="stylesheet" href="/CSS/loggedInNav.css">
     <link rel="stylesheet" href="/CSS/loggedOutNav.css">
     <link rel="stylesheet" href="/CSS/main.css">
-    <title>Default Head</title>
-    <meta charset="UTF-8">
     <title>Provider Dashboard</title>
-  <link rel="stylesheet" href="../CSS/main.css">
+    <meta charset="UTF-8">
+  <link rel="stylesheet" href="/CSS/main.css">
 </head>
 <body>
 <header th:replace="partials :: header-two"></header>
@@ -17,6 +16,7 @@
 <div th:replace="partials :: pendingUsers">
   Insert stuff
 </div>
+<table th:replace="partials :: patient-overview"></table>
 <footer th:replace="partials :: footer"></footer>
 </body>
 

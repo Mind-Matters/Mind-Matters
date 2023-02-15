@@ -3,6 +3,30 @@
 <head th:insert="~{partials :: head}">
     <meta charset='utf-8'/>
     <title>Patient Dashboard</title>
+<!--    <link rel="stylesheet" href="/CSS/patient-dashboard.css">-->
+    <style>
+        .inputs{
+            display: flex;
+            justify-content: center;
+        }
+        .input{
+            width: 33%;
+            padding: 40px;
+            margin: 10px;
+            border: 2px solid black;
+            border-radius: 30px;
+        }
+        .title{
+            text-align: center;
+        }
+        .answer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+    </style>
 
 </head>
 <body>
@@ -11,17 +35,16 @@
 <!--navbar ends-->
 
 
-<!--calender input form starts-->
-<div class="container">
-    <div class="middle-row">
-        <h1 class="middle-text">Hello XYZ</h1>
-        <h2 class="right-side">Provider Info</h2>
+<h1 class="middle-text">Hello Patient,</h1>
+
+<div class="inputs">
+    <div class="input">
         <form th:action="@{/submit-event}" th:method="post" id="event-form" name="event-form">
-            <label for="date">Enter the date</label>
-            <input type="date" name="date" id="date" >
-            <label for="title">Enter the title of the event below</label>
-            <input type="text" name="title" id="title">
-            <label for="description">Enter the event description below</label>
+            <label for="date">Date: </label><br>
+            <input type="date" name="date" id="date" ><br>
+            <label for="title">Title: </label><br>
+            <input type="text" name="title" id="title"><br>
+            <label for="description">Description: </label><br>
             <input type="text" name="description" id="description">
 
             <!-- Category checkboxes-->
@@ -48,27 +71,97 @@
             <label for="category10">On Screens</label>
         </form>
     </div>
+    <div class="input">
+        <div class="title">
+            <h2>How do you feel?</h2>
+        </div>
+        <div class="answer">
+            <!--mood scale starts-->
+            <div th:replace="~{partials :: moodScale}"></div>
+            <!--mood scale ends-->
+        </div>
+    </div>
+    <div class="input">
+        <div class="title">
+            <h2>Did you take your medication?</h2>
+        </div>
+        <div class="answer">
+            <form th:action="@{/trackMedication}" th:method="post">
+            <input type="radio" id="taken" name="taken" value="true">
+            <label for="taken">Took Medication</label><br>
+            <input type="radio" id="notTaken" name="taken" value="false">
+            <label for="notTaken">Did Not Take Medication</label><br>
+            <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--calender input form starts-->
+<div class="container">
+    <div class="middle-row">
+<!--        <form th:action="@{/submit-event}" th:method="post" id="event-form" name="event-form">-->
+<!--            <label for="date">Enter the date</label>-->
+<!--            <input type="date" name="date" id="date" >-->
+<!--            <label for="title">Enter the title of the event below</label>-->
+<!--            <input type="text" name="title" id="title">-->
+<!--            <label for="description">Enter the event description below</label>-->
+<!--            <input type="text" name="description" id="description">-->
+
+<!--            &lt;!&ndash; Category checkboxes&ndash;&gt;-->
+<!--            <h3 id="categoryLabel">Select the category of the event</h3>-->
+<!--            <input id="category1" value="1" name="categories" type="checkbox">-->
+<!--            <label for="category1">Default</label>-->
+<!--            <input id="category2" value="2" name="categories" type="checkbox">-->
+<!--            <label for="category2">Work</label>-->
+<!--            <input id="category3" value="3" name="categories" type="checkbox">-->
+<!--            <label for="category3">Outdoors</label>-->
+<!--            <input id="category4" value="4" name="categories" type="checkbox">-->
+<!--            <label for="category4">Social</label>-->
+<!--            <input id="category5" value="5" name="categories" type="checkbox">-->
+<!--            <label for="category5">Exercise</label>-->
+<!--            <input id="category6" value="6" name="categories" type="checkbox">-->
+<!--            <label for="category6">Education</label>-->
+<!--            <input id="category7" value="7" name="categories" type="checkbox">-->
+<!--            <label for="category7">Hobbies</label>-->
+<!--            <input id="category8" value="8" name="categories" type="checkbox">-->
+<!--            <label for="category8">Chores</label>-->
+<!--            <input id="category9" value="9" name="categories" type="checkbox">-->
+<!--            <label for="category9">Recreation</label>-->
+<!--            <input id="category10" value="10" name="categories" type="checkbox">-->
+<!--            <label for="category10">On Screens</label>-->
+<!--        </form>-->
+    </div>
 </div>
 <!-- calendar input form ends -->
 
 <!-- calendar starts-->
 <div id="calendar-position"></div>
 <div id="calendar"></div>
-
 <!-- calendar ends -->
+
+
 <a href="/my-events"><button>Edit My Events</button></a>
 
 
+
+<div class="trackers">
 <!--med tracker starts-->
-<div th:replace="~{partials :: medTracker}"></div>
+    <div class="tracker">
+        <div th:replace="~{partials :: medTracker}"></div>
+    </div>
 <!--med tracker ends-->
+    <div class="tracker">
+        <h1 id="MoodChart">Mood Chart</h1>
+        <div id="mood_over_time_chart" ></div>
+    </div>
+</div>
 
-<!--mood scale starts-->
-<div th:replace="~{partials :: moodScale}"></div>
-<!--mood scale ends-->
 
-<h1 id="MoodChart">Mood Chart</h1>
-<div id="mood_over_time_chart" ></div>
+
 
 <!-- import calendar API-->
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>

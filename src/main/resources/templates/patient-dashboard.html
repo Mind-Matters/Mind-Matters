@@ -3,6 +3,7 @@
 <head th:insert="~{partials :: head}">
     <meta charset='utf-8'/>
     <title>Patient Dashboard</title>
+
 </head>
 <body>
 <!--navbar starts-->
@@ -100,17 +101,19 @@
         });
 
         // populate calendar with events from db
-        let titles = [(${titles})];
-        let descriptions = [(${descriptions})];
-        let dates = [(${dates})];
-        for(let i = 0; i < titles.length; i++) {
-           calendar.addEvent({
-               title: titles[i],
-               start: dates[i],
-               description: descriptions[i],
-               allDay: true
-           });
-        }
+        let titles = /*[(${titles})]*/ null;
+        let descriptions = /*[(${descriptions})]*/ null;
+        let dates = /*[(${dates})]*/ null;
+
+            for (let i = 0; i < titles.length; i++) {
+                calendar.addEvent({
+                    title: titles[i],
+                    start: dates[i],
+                    description: descriptions[i],
+                    allDay: true
+                });
+            }
+
 
         calendar.render();
     });

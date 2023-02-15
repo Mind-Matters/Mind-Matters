@@ -68,7 +68,21 @@ public class DashboardController {
 
             // populate mood_over_time info
             List<ScalingData> scalingData = scalingDataDao.findAllByUser(loggedInUser);
-            model.addAttribute("scalingData", scalingData);
+            StringBuilder scores = new StringBuilder("[");
+            StringBuilder ids = new StringBuilder("[");
+            for(int i = 0; i < scalingData.size(); i++){
+                scores.append(scalingData.get(i).getScore());
+                ids.append(scalingData.get(i).getId());
+                if(i < scalingData.size() - 1){
+                    scores.append(",");
+                    ids.append(",");
+                } else {
+                    scores.append("]");
+                    ids.append("]");
+                }
+            }
+            model.addAttribute("scores", scores.toString());
+            model.addAttribute("scoreIds", ids.toString());
 
             // populate calendar data | create a javascript array
             List<Event> events = eventDao.findAllByUser(loggedInUser);

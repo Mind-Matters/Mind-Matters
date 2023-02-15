@@ -19,13 +19,14 @@
 
       // Create the data table.
 
-      let scalingData = /*[[${scalingData}]]*/;
-      var data = new google.visualization.DataTable();
+      let scoreIds = [(${scoreIds})];
+      let scores = [(${scores})];
+      let data = new google.visualization.DataTable();
         data.addColumn('number', 'ScoreId');
         data.addColumn('number', 'Score');
-        scalingData.forEach(function (item) {
-            data.addRow([item.id, item.score]);
-        });
+        for(let i = 0; i < scoreIds.length; i++) {
+            data.addRow([scoreIds[i], scores[i]]);
+        }
 
       // Set chart options
       var options = {'title':'Mood Over Time',

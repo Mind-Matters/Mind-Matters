@@ -52,7 +52,6 @@ public class User {
         return isProvider;
     }
 
-
     public User() {
     }
 

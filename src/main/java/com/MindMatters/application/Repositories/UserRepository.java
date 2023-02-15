@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByIsVerified(boolean isVerified);
 
-    List<User> findByIsProviderAndIsVerified(boolean isProvider, boolean isVerified);
+    List<User> findByIsProviderAndIsVerifiedAndProviderId(boolean isProvider, boolean isVerified, long providerId);
 
     List<User> findByIsProvider(boolean isProvider);
 

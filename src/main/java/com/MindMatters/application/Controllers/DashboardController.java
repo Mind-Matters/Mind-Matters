@@ -36,9 +36,9 @@ public class DashboardController {
 
         if(loggedInUser.getIsProvider()) {
             // get pending users list
-//            List<User> pendingUsers = new ArrayList<>();
-//            User user = userDao.findById(loggedInUser.getId());
-
+            //            List<User> pendingUsers = new ArrayList<>();
+            //            User user = userDao.findById(loggedInUser.getId());
+            //come back to this method
             List<User> patients = userDao.findByIsProviderAndProviderId(true, loggedInUser.getId());
             model.addAttribute("patients", patients);
 
@@ -119,7 +119,10 @@ public class DashboardController {
         } else {
             // patient is not approved: remove patient user and providerPatient rows
             /*providerPatientDao.deleteById(providerPatient.getId());*/
-            userDao.deleteByUsername(patient.getUsername());
+            userDao.deleteById(patient.getId());
+            System.out.println(patient.getId() + patient.getUsername());
+
+
         }
         return "redirect:/dashboard";
     }

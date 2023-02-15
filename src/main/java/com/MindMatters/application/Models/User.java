@@ -29,7 +29,7 @@ public class User {
     @Column()
     private long providerId;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Event> events;
 
     public boolean isVerified() {

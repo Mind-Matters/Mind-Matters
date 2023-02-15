@@ -52,7 +52,7 @@
             <option value="none" selected disabled hidden>Select a Provider</option>
         <option th:value="${provider.id}" th:each="provider : ${providers}" required><span th:text="${provider.getUsername}"></span></option>
       </select><br>
-      <input type="checkbox" id="ispatient" name="isProvider" value="false" ><span>I agree to the terms and conditions.</span>
+<!--      <input type="checkbox" id="ispatient" name="isProvider" value="false" ><span>I agree to the terms and conditions.</span>-->
       <button type="submit" class="submit-btn">Register</button>
     </form>
     <form id="provide" class="input-group-register" th:action="@{/signup}" method="post">
@@ -64,7 +64,7 @@
         <option th:value="${provider.id}" th:each="provider : ${providers}"><span th:text="${provider.getUsername}"></span></option>
       </select>
 
-      <input type="checkbox" id="isProvider" name="isProvider" value="true" ><span>I Swear I Am a Doctor</span>
+      <input type="checkbox" id="isProvider" name="isProvider" value="true" required><span>I Swear I Am a Doctor</span>
       <button type="submit" class="submit-btn">Register</button>
     </form>
   </div>

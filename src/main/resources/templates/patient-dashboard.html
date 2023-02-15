@@ -69,7 +69,8 @@
 <!-- import calendar API-->
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
 <!-- import calendar-io.js -->
-<script src="../static/js/calendar-io.js"></script>
+<script src="/js/calendar-io.js" th:inline="javascript">/*<![CDATA[*/ /*]]>*/
+</script>
 <!-- import chart api-->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script th:replace="~{charts :: moodOverTime}"></script>

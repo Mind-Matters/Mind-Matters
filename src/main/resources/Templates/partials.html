@@ -11,7 +11,7 @@
 
 
 <body>
-<!------------------------------Logged Out Nav Starts--------------------------------->
+<!------------------------------Logged In Nav Starts--------------------------------->
 <header th:fragment="header-one">
     <a class="logo" href="/"><img class="logo" src="/Images/LOGOV.png" alt="logo"></a>
     <nav>
@@ -30,16 +30,16 @@
     </nav>
 </header>
 
-<!------------------------------Logged Out Nav Ends--------------------------------->
+<!------------------------------Logged In Nav Ends--------------------------------->
 
 
-<!------------------------------Logged In Nav Starts--------------------------------->
+<!------------------------------Logged Out Nav Starts--------------------------------->
 
 <header th:fragment="header-two">
     <img class="logo" src="/Images/LOGOV.png" alt="logo">
     <nav>
         <ul class="nav_links">
-
+            <li><a class="anchors" href="/">Home</a></li>
             <!--            <li><a class="anchors" href="#">About</a></li>-->
             <!--            <li><a class="anchors" href="/"></a></li>-->
             <!--            <li><a class="anchors" href="#">Settings</a></li>-->
@@ -178,23 +178,7 @@
     </div>
     <!------------------------------Pending Users Ends--------------------------------->
 
-
-    <header th:fragment="header-two">
-        <img class="logo" src="/Images/LOGOV.png" alt="logo">
-        <nav>
-            <ul class="nav_links">
-                <li><a class="anchors" href="#">Link</a></li>
-                <li><a class="anchors" href="#">Link</a></li>
-                <li><a class="anchors" href="#">Settings</a></li>
-                <li><a class="log-out" th:href="@{/logout}">
-                    <button class="logout-btn">Log out</button>
-                </a></li>
-            </ul>
-        </nav>
-    </header>
-
-
-    <h2 th:fragment="h2">i am a fragment</h2>
+</div>
 </body>
 
 <div th:fragment="footer" class="footer">
@@ -221,8 +205,10 @@
             <td th:text="${event.description}"></td>
             <!--            change into a link to expand on multiple events-->
         </div>
+
     </tr>
     </tbody>
 </table>
+
 
 </html>

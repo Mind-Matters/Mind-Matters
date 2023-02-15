@@ -101,14 +101,14 @@ public class EventController {
         event.setTitle(title);
         event.setDescription(body);
         eventDao.save(event);
-        return "patient-dashboard";
+        return "redirect:/dashboard";
     }
 
     @GetMapping(path = "/delete/{id}")
     public String deleteEvent(@PathVariable long id){
         eventDao.deleteById(id);
 
-        return "patient-dashboard";
+        return "redirect:/dashboard";
     }
 
 }

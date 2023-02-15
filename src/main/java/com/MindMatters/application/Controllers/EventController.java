@@ -74,16 +74,16 @@ public class EventController {
     //this shows my events
     @GetMapping(path = "/my-events")
     public String myEvents(Model model){
-//        User loggedInUser = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User loggedInUser = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        User user = userDao.findById(loggedInUser.getId());
-        List<Event> events = eventDao.findAll();
-        List<Event> myEvents = new ArrayList<>();
-        for (Event event : events){
-            if(event.getUser().getId() == 1){
-                myEvents.add(event);
-            }
-        }
-        model.addAttribute("events", myEvents);
+        List<Event> events = eventDao.findAllByUser(loggedInUser);
+//        List<Event> myEvents = new ArrayList<>();
+//        for (Event event : events){
+//            if(event.getUser().getId() == 1){
+//                myEvents.add(event);
+//            }
+//        }
+        model.addAttribute("events", events);
         return "/my-events";
     }
 
@@ -101,6 +101,13 @@ public class EventController {
         event.setTitle(title);
         event.setDescription(body);
         eventDao.save(event);
+        return "patient-dashboard";
+    }
+
+    @GetMapping(path = "/delete/{id}")
+    public String deleteEvent(@PathVariable long id){
+        eventDao.deleteById(id);
+
         return "patient-dashboard";
     }
 

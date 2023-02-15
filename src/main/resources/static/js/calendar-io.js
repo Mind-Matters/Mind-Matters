@@ -1,5 +1,5 @@
 //API CODE STARTS HERE
-/*<![CDATA[*/
+
 document.addEventListener('DOMContentLoaded', function() {
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -31,10 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
             calendar.addEvent({
                 title: event.title,
                 start: event.date,
+                description: event.description,
                 allDay: true
             });
         });
     }
     calendar.render();
 });
-/*]]>*/
+
+//document.getElementById("jsTest").innerHTML = [${testJs}];
+

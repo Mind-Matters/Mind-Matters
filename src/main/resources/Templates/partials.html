@@ -11,7 +11,7 @@
 
 
 <body>
-<!------------------------------Logged In Nav Starts--------------------------------->
+<!------------------------------Logged Out Nav Starts--------------------------------->
 <header th:fragment="header-one">
     <a class="logo" href="/"><img class="logo" src="/Images/LOGOV.png" alt="logo"></a>
     <nav>
@@ -20,36 +20,27 @@
             <li><a class="anchors" href="/">Home</a></li>
 <!--            <li><a class="anchors" href="#">Our Team</a></li>-->
             <!--            <li><a class="login" href="#"><button class="login-btn" onclick="document.getElementById('login-form').style.display='block'" style="width: auto">Login</button></a></li>-->
-            <li><a class="login" href="/login">
-                <button class="login-btn">Login</button>
-            </a></li>
-            <li><a class="sign-up" href="/signup">
-                <button class="register-btn">Get Started</button>
-            </a></li>
+            <li><a class="login" href="/login"><button class="login-btn" >Login</button></a></li>
+            <li><a class="sign-up" href="/signup"><button class="register-btn" >Get Started</button></a></li>
         </ul>
     </nav>
 </header>
-
 <!------------------------------Logged In Nav Ends--------------------------------->
-
-
 <!------------------------------Logged Out Nav Starts--------------------------------->
-
 <header th:fragment="header-two">
     <img class="logo" src="/Images/LOGOV.png" alt="logo">
     <nav>
         <ul class="nav_links">
-                <li><a class="anchors" href="/">Home</a></li>
 <!--            <li><a class="anchors" href="#">About</a></li>-->
 <!--            <li><a class="anchors" href="/"></a></li>-->
 <!--            <li><a class="anchors" href="#">Settings</a></li>-->
             <li><a class="log-out" th:href="@{/logout}"><button class="logout-btn" >Log Out</button></a></li>
-
         </ul>
     </nav>
 </header>
 
 <!------------------------------Logged Out Nav Ends--------------------------------->
+
 
 
 
@@ -118,14 +109,14 @@
 <!------------------------------Med List Ends--------------------------------->
 
 
+
 <!------------------------------Mood Scale Starts--------------------------------->
 <div th:fragment="moodScale" class="moodScale" id="moodScale">
     <h1>moodScale</h1>
     <form th:action="@{/mood}" th:object="${mood}" method="post" oninput="val.value = parseInt(range.value)">
-        <div class="form-group" id="moodDiv">
-            <label for="range">Mood Slider of Rage</label>
-            <input type="range" min="1" max="10" value="0" class="form-control-range" id="range" step="1" list="ticks"
-                   name="value">
+        <div class ="form-group" id="moodDiv">
+            <label for ="range">Mood Slider of Rage</label>
+            <input type ="range" min="1" max="10" value = "0" class ="form-control-range" id="range" step="1" list="ticks" name="value">
             <output name="val" for="range"></output>
             <datalist id="ticks">
                 <option value="1"></option>
@@ -142,74 +133,51 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
-    <!------------------------------Mood Scale Ends--------------------------------->
-
-
-    <!------------------------------Pending Users Starts--------------------------------->
-    <div th:fragment="pendingUsers" class="pendingUsers" id="pendingUsers">
-        <h1>Pending Users</h1>
-        <table>
-            <tr>
-                <th>Username</th>
-                <th>Role</th>
-                <th>Approve</th>
-                <th>Deny</th>
-            </tr>
-            <tr th:each="user : ${pendingUsers}">
-                <td th:text="${user.username}"></td>
-                <td th:text="${user.isProvider}"></td>
-                <td>
-                    <form th:action="@{/approval}" th:method="post">
-                        <input type="hidden" th:name="id" th:value="${user.id}">
-                        <input type="hidden" th:name="isApproved" th:value="true">
-                        <input type="submit" value="Approve">
-                    </form>
-                </td>
-                <td>
-                    <form th:action="@{/approval}" th:method="post">
-                        <input type="hidden" th:name="id" th:value="${user.id}">
-                        <input type="hidden" th:name="isApproved" th:value="false">
-                        <input type="submit" value="Deny">
-                    </form>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <!------------------------------Pending Users Ends--------------------------------->
-
-    <h2 th:fragment="h2">i am a fragment</h2>
 </div>
-</body>
+<!------------------------------Mood Scale Ends--------------------------------->
+
+
+
+<!------------------------------Pending Users Starts--------------------------------->
+<div th:fragment="pendingUsers" class="pendingUsers" id="pendingUsers">
+    <h1>Pending Users</h1>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Approve</th>
+            <th>Deny</th>
+        </tr>
+        <tr th:each="user : ${pendingUsers}">
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.isProvider}"></td>
+            <td>
+                <form th:action="@{/approval}" th:method="post">
+                <input type="hidden" th:name="id" th:value="${user.id}">
+                <input type="hidden" th:name="isApproved" th:value="true">
+                <input type="submit" value="Approve">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/approval}" th:method="post">
+                    <input type="hidden" th:name="id" th:value="${user.id}">
+                    <input type="hidden" th:name="isApproved" th:value="false">
+                    <input type="submit" value="Deny">
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+<!------------------------------Pending Users Ends--------------------------------->
+
+<h2 th:fragment="h2">i am a fragment</h2>
 
 <div th:fragment="footer" class="footer">
 
     <a class="anchors" id="footer" href="#top">Back to top of page</a>
     <!--We can add links and an about us for a nice to have-->
-    <footer> Copyright &copy; 2023 Mind-Matters</footer>
+    <footer> Copyright &copy; 2023 Mind-Matters </footer>
 </div>
 
-<!--provider dashboard patient overview-->
-<table th:fragment="patient-overview">
-    <caption class="patient-overview">Patient Overview</caption>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Information</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="patient : ${patients}">
-        <td th:text="${patient.username}"></td>
-        <div th:each="event : ${patient.events}">
-            <td th:text="${event.title}"></td>
-            <td th:text="${event.description}"></td>
-<!--            change into a link to expand on multiple events-->
-        </div>
-
-    </tr>
-    </tbody>
-</table>
-
-
+</body>
 </html>

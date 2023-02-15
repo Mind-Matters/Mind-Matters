@@ -1,7 +1,9 @@
 package com.MindMatters.application.Models;
 import jakarta.persistence.*;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -29,18 +31,17 @@ public class Event {
             name = "event_categories",
             joinColumns = {@JoinColumn(name = "event_id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id")})
-    private List<Category> categories = new ArrayList<>();
+    private Set<Category> categories = new HashSet<>();
 
    @ManyToOne
     private User user;
 
-    public Event(long id, String title, String description, Date date, User user, List<Category> categories) {
+    public Event(long id, String title, String description, Date date, User user) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.date = date;
         this.user = user;
-        this.categories = categories;
     }
 
     public Event() {
@@ -84,13 +85,5 @@ public class Event {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
     }
 }

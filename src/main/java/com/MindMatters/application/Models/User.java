@@ -29,41 +29,12 @@ public class User {
     @Column()
     private long providerId;
 
-    @OneToMany(mappedBy = "user")
-    private List<Event> events;
-
-    public boolean isVerified() {
-        return isVerified;
-    }
-
-    public void setVerified(boolean verified) {
-        isVerified = verified;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
-
     public boolean isProvider() {
         return isProvider;
     }
 
 
     public User() {
-    }
-
-    public User(long id, String username, String password, boolean isProvider, boolean isVerified, long providerId, List<Event> events) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.isProvider = isProvider;
-        this.isVerified = isVerified;
-        this.providerId = providerId;
-        this.events = events;
     }
 
     public User(User copy) {
@@ -73,16 +44,13 @@ public class User {
         this.isProvider = copy.isProvider;
         this.isVerified = copy.isVerified;
         this.providerId = copy.providerId;
-        this.events = copy.events;
     }
 
-    public User(String username, String password, boolean isProvider, boolean isVerified, long providerId, List<Event> events) {
+    public User(String username, String password, boolean isProvider, boolean isVerified) {
         this.username = username;
         this.password = password;
         this.isProvider = isProvider;
         this.isVerified = isVerified;
-        this.providerId = providerId;
-        this.events = events;
     }
 
     public User(long id, String username, String password, boolean isProvider, boolean isVerified) {

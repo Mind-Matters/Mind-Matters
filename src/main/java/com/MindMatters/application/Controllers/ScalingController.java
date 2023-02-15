@@ -23,7 +23,7 @@ public class ScalingController {
 
     @GetMapping("/mood")
     public String displayMood() {
-        return "mood-scale";
+        return "/mood-scale";
     }
 
 

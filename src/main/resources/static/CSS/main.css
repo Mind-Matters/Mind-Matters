@@ -30,16 +30,3 @@
     justify-content: end;
     align-content: start;
 }
-table {
-    border-collapse: collapse;
-}
-th, td {
-    border: 1px solid black;
-    padding: 8px;
-}
-thead th {
-    width: 25%;
-}
-.patient-overview {
-    margin-top: 80px;
-}

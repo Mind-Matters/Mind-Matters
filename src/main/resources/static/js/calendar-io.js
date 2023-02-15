@@ -1,27 +1,5 @@
-function submitToDB(date, title, description, category1, category2, category3, category4, category5, category6, category7, category8, category9, category10) {
+function submitToDB(date, title, description, categories) {
     // invisible form to submit to db
-    document.getElementById("titleDb").value = title;
-    document.getElementById("descriptionDb").value = description;
-    document.getElementById("dateDb").value = date;
-    document.getElementById("categoryDB1").checked = document.getElementById("category1").checked;
-    document.getElementById("categoryDB2").checked = category2;
-    document.getElementById("categoryDB3").checked = category3;
-    document.getElementById("categoryDB4").checked = category4;
-    document.getElementById("categoryDB5").checked = category5;
-    document.getElementById("categoryDB6").checked = category6;
-    document.getElementById("categoryDB7").checked = category7;
-    document.getElementById("categoryDB8").checked = category8;
-    document.getElementById("categoryDB9").checked = category9;
-    document.getElementById("categoryDB10").checked = category10;
-    console.log("DB1 Checked value: " + document.getElementById("categoryDB1").checked)
-    console.log("DB2 Checked value: " + document.getElementById("categoryDB2").checked)
-    /*document.getElementById("calendar-event-to-db").submit();*/
-}
-
-
-function editEvent(id, date, title, description, categories) {
-    // invisible form to submit to db
-    document.getElementById("idDb").value = id;
     document.getElementById("titleDb").value = title;
     document.getElementById("descriptionDb").value = description;
     document.getElementById("dateDb").value = date;
@@ -45,62 +23,34 @@ document.addEventListener('DOMContentLoaded', function() {
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         customButtons: {
-
             addEventButton: {
-                text: 'add event',
+                text: 'submit event',
                 click: function() {
 
-                    // gather data
-                    let title = document.getElementById("title");
-                    let description = document.getElementById("description");
-                    let date = document.getElementById("date");
+                    // var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+                    var dateStr = document.getElementById('date').value;
+                    // var title = prompt('Enter a date in YYYY-MM-DD format');
+                    var title = document.getElementById('title').value;
+                    var description = document.getElementById("description").value;
+                    var date = new Date(dateStr + 'T00:00:00');// will be in local time
+                    var categories = document.getElementById("categories");
+                    submitToDB(date, title, description, categories);
 
-                    // collect category data by line
-                    let category1 = document.getElementById("category1").checked;
-                    let category2 = document.getElementById("category2").checked;
-                    let category3 = document.getElementById("category3").checked;
-                    let category4 = document.getElementById("category4").checked;
-                    let category5 = document.getElementById("category5").checked;
-                    let category6 = document.getElementById("category6").checked;
-                    let category7 = document.getElementById("category7").checked;
-                    let category8 = document.getElementById("category8").checked;
-                    let category9 = document.getElementById("category9").checked;
-                    let category10 = document.getElementById("category10").checked;
-
-
-                    /* Collect category data as JSON*/
-/*                    let categories = {
-                        "category1": document.getElementById("category1").checked,
-                        "category2": document.getElementById("category2").checked,
-                        "category3": document.getElementById("category3").checked,
-                        "category4": document.getElementById("category4").checked,
-                        "category5": document.getElementById("category5").checked,
-                        "category6": document.getElementById("category6").checked,
-                        "category7": document.getElementById("category7").checked,
-                        "category8": document.getElementById("category8").checked,
-                        "category9": document.getElementById("category9").checked,
-                        "category10": document.getElementById("category10").checked
-                    };*/
-
-                    // submitToDB(date, title, description, category1, category2, category3, category4, category5, category6, category7, category8, category9, category10);
-
+/*                    if (!isNaN(date.valueOf())) { // valid?
+                        calendar.addEvent({
+                            title: title,
+                            start: date,
+                            allDay: true
+                        });
+                        alert('Great. Now, update your database...');
+                    } else {
+                        alert('Invalid date.');
+                    }*/
                 }
             }
         }
-    },
 
-        eventDidMount: function(info) {
-            var tooltip = new Tooltip(info.el, {
-                title: info.event.extendedProps.description,
-                placement: 'top',
-                trigger: 'hover',
-                container: 'body'
-            }
-        );
-    }
-
-});
-
+    });
 
     // populate calendar with events from db
     let events = /*[[${events}]]*/;
@@ -108,10 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
         calendar.addEvent({
             title: event.title,
             start: event.date,
-            description: event.description,
             allDay: true
         });
     });
     calendar.render();
 });
-

@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PatientDashController {
     @GetMapping("/patient-dashboard")
     public String goPatientDashboard(){
-        return "patient-dashboard";
+        return "/patient-dashboard";
     }
 }

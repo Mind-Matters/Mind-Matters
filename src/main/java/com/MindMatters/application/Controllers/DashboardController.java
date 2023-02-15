@@ -70,9 +70,28 @@ public class DashboardController {
             List<ScalingData> scalingData = scalingDataDao.findAllByUser(loggedInUser);
             model.addAttribute("scalingData", scalingData);
 
-            // populate calendar data
+            // populate calendar data | create a javascript array
             List<Event> events = eventDao.findAllByUser(loggedInUser);
-            model.addAttribute("events", events);
+            StringBuilder titles = new StringBuilder("['");
+            StringBuilder descriptions = new StringBuilder("['");
+            StringBuilder dates = new StringBuilder("['");
+            for(int i = 0; i < events.size(); i++){
+                titles.append(events.get(i).getTitle());
+                descriptions.append(events.get(i).getDescription());
+                dates.append(events.get(i).getDate().toString());
+                if(i < events.size() - 1){
+                    titles.append("','");
+                    descriptions.append("','");
+                    dates.append("','");
+                } else {
+                    titles.append("']");
+                    descriptions.append("']");
+                    dates.append("']");
+                }
+            }
+            model.addAttribute("titles", titles.toString());
+            model.addAttribute("descriptions", descriptions.toString());
+            model.addAttribute("dates", dates.toString());
 
             return "patient-dashboard";
         }

@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:insert="partials :: head">
+<head th:insert="~{partials :: head}">
     <meta charset='utf-8'/>
     <title>Patient Dashboard</title>
-
-
-
 </head>
 <body>
 <!--navbar starts-->
-<header th:replace="partials :: header-two"></header>
+<header th:replace="~{partials :: header-two}"></header>
 <!--navbar ends-->
 
 
-<!--calender starts-->
+<!--calender input form starts-->
 <div class="container">
     <div class="middle-row">
         <h1 class="middle-text">Hello XYZ</h1>
         <h2 class="right-side">Provider Info</h2>
-        <form th:action="@{/event-dashboard}" th:method="post" th:object="${event}" id="event-form" name="event-form">
+        <form th:action="@{/submit-event}" th:method="post" id="event-form" name="event-form">
             <label for="date">Enter the date</label>
-        <input type="date" name="date" id="date" >
+            <input type="date" name="date" id="date" >
             <label for="title">Enter the title of the event below</label>
             <input type="text" name="title" id="title">
             <label for="description">Enter the event description below</label>
@@ -48,110 +45,81 @@
             <label for="category9">Recreation</label>
             <input id="category10" value="10" name="categories" type="checkbox">
             <label for="category10">On Screens</label>
-
-            <!--<input type="submit" value="Submit" th:onclick="addToDB()" id="submit">-->
         </form>
     </div>
 </div>
+<!-- calendar input form ends -->
+
+<!-- calendar starts-->
 <div id="calendar-position"></div>
 <div id="calendar"></div>
-<!--calendar ends-->
-<a href="/my-events"><button>Edit My Events</button></a>
 
-<!-- experimental calendar event submit form-->
-    <form id="calendar-event-to-db" th:action="@{/submit-event}" th:method="post" style="display: none">
-        <input name="title" id="titleDb" >
-        <input name="description" id="descriptionDb">
-        <input name="date" id="dateDb">
-        <input name="categories" id="categoriesDb">
-        <!--<input type="submit" value="Submit">-->
-    </form>
-
+<!-- calendar ends -->
 
 
 <!--med tracker starts-->
 <div th:replace="~{partials :: medTracker}"></div>
 <!--med tracker ends-->
 
-
 <!--mood scale starts-->
 <div th:replace="~{partials :: moodScale}"></div>
 <!--mood scale ends-->
 
-
-
 <h1 id="MoodChart">Mood Chart</h1>
-<div id="mood_over_time_chart"></div>
+<div id="mood_over_time_chart" ></div>
 
+
+<h1>Testing Thymeleaf to JS connection: </h1>
+<div id="jsTest"></div>
+<!-- import calendar API-->
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
-<script type="text/javascript" th:inline="javascript" <!--th:src="@{/js/calendar-io.js}-->">
-    function submitToDB(date, title, description) {
-    // invisible form to submit to db
-    document.getElementById("titleDb").value = title;
-    document.getElementById("descriptionDb").value = description;
-    document.getElementById("dateDb").value = date;
-    document.getElementById("calendar-event-to-db").submit();
-}
-
-//API CODE STARTS HERE
-document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        initialDate: '2023-02-08',
-        selectable: true,
-        editable: true,
-        height: 450,
-        dayMaxEvents: true,
-        headerToolbar: {
-            left: 'title,prev,next',
-            center: 'addEventButton',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
-        customButtons: {
-            addEventButton: {
-                text: 'submit event',
-                click: function() {
-
-                    // var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-                    var dateStr = document.getElementById('date').value;
-                    // var title = prompt('Enter a date in YYYY-MM-DD format');
-                    var title = document.getElementById('title').value;
-                    var description = document.getElementById("description").value;
-                    var date = new Date(dateStr + 'T00:00:00');// will be in local time
-                    var eventForm = document.getElementById("eventForm");
-                    submitToDB(date, title, description);
-
-                    /*                    if (!isNaN(date.valueOf())) { // valid?
-                                            calendar.addEvent({
-                                                title: title,
-                                                start: date,
-                                                allDay: true
-                                            });
-                                            alert('Great. Now, update your database...');
-                                        } else {
-                                            alert('Invalid date.');
-                                        }*/
+<!-- custom calendar-io script -->
+<script th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        let calendarEl = document.getElementById('calendar');
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            initialDate: '2023-02-08',
+            selectable: true,
+            editable: true,
+            height: 450,
+            dayMaxEvents: true,
+            headerToolbar: {
+                left: 'title,prev,next',
+                center: 'addEventButton',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            /* submit an event described in event-form to the database*/
+            customButtons: {
+                addEventButton: {
+                    text: 'submit event',
+                    click: function() {
+                        document.getElementById("event-form").submit();
+                    }
                 }
             }
+
+        });
+
+        // populate calendar with events from db
+        let titles = [(${titles})];
+        let descriptions = [(${descriptions})];
+        let dates = [(${dates})];
+        for(let i = 0; i < titles.length; i++) {
+           calendar.addEvent({
+               title: titles[i],
+               start: dates[i],
+               description: descriptions[i],
+               allDay: true
+           });
         }
 
+        calendar.render();
     });
-
-    // populate calendar with events from db
-    let events = /*[[${events}]]*/;
-    events.forEach(function(event) {
-        calendar.addEvent({
-            title: event.title,
-            start: event.date,
-            allDay: true
-        });
-    });
-    calendar.render();
-});
 </script>
+<!-- import chart api-->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script th:replace="~{charts :: moodOverTime}"></script>
-<footer th:replace="partials :: footer"></footer>
+<footer th:replace="~{partials :: footer}"></footer>
 </body>
 </html>

@@ -15,7 +15,7 @@
     <div class="middle-row">
         <h1 class="middle-text">Hello XYZ</h1>
         <h2 class="right-side">Provider Info</h2>
-        <form th:action="@{/add-event}" th:method="post" id="event-form" name="event-form">
+        <form th:action="@{/submit-event}" th:method="post" id="event-form" name="event-form">
             <label for="date">Enter the date</label>
             <input type="date" name="date" id="date" >
             <label for="title">Enter the title of the event below</label>
@@ -69,8 +69,7 @@
 <!-- import calendar API-->
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
 <!-- import calendar-io.js -->
-<script src="/js/calendar-io.js" th:inline="javascript">/*<![CDATA[*/ /*]]>*/
-</script>
+<script src="/js/calendar-io.js" th:inline="javascript"></script>
 <!-- import chart api-->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script th:replace="~{charts :: moodOverTime}"></script>

@@ -36,29 +36,25 @@ public class DashboardController {
 
         if(loggedInUser.getIsProvider()) {
             // get pending users list
-            List<User> pendingUsers = new ArrayList<>();
-            User user = userDao.findById(loggedInUser.getId());
-
+            //            List<User> pendingUsers = new ArrayList<>();
+            //            User user = userDao.findById(loggedInUser.getId());
+            //come back to this method
             List<User> patients = userDao.findByIsProviderAndProviderId(true, loggedInUser.getId());
             model.addAttribute("patients", patients);
-            //work around to get the events for the patients onclick
-            // get events list for this particular provider for their patients
-            //Im logged in as a provider and loggedin user id = provider id which links back to the patient id
 
-
-            //I need to link the event id to the patient id in the user table
-//            model.addAttribute("events", userEvents);
+            List<User> pendingUsers = userDao.findByIsProviderAndIsVerifiedAndProviderId(false,false, loggedInUser.getId());
+            model.addAttribute("pendingUsers", pendingUsers);
             // get pending users list for this particular provider
             // find all users provider has
             // find users on that list that are not verified
-/*            List<ProviderPatient> providerPatients = providerPatientDao.findAllByProvider(loggedInUser);
-            for(ProviderPatient providerPatient : providerPatients){
-                if(!providerPatient.getPatient().getIsVerified()){
-                    pendingUsers.add(providerPatient.getPatient());
-                }
-
-            model.addAttribute("pendingUsers", pendingUsers);
-            }*/
+//           List<ProviderPatient> providerPatients = providerPatientDao.findAllByProvider(loggedInUser);
+//            for(ProviderPatient providerPatient : providerPatients){
+//                if(!providerPatient.getPatient().getIsVerified()){
+//                    pendingUsers.add(providerPatient.getPatient());
+//                }
+//
+//            model.addAttribute("pendingUsers", pendingUsers);
+//            }
             return "provider-dashboard";
         } else {
             // user is patient
@@ -123,7 +119,10 @@ public class DashboardController {
         } else {
             // patient is not approved: remove patient user and providerPatient rows
             /*providerPatientDao.deleteById(providerPatient.getId());*/
-            userDao.deleteByUsername(patient.getUsername());
+            userDao.deleteById(patient.getId());
+            System.out.println(patient.getId() + patient.getUsername());
+
+
         }
         return "redirect:/dashboard";
     }

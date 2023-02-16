@@ -35,26 +35,11 @@ public class DashboardController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if(loggedInUser.getIsProvider()) {
-            // get pending users list
-            //            List<User> pendingUsers = new ArrayList<>();
-            //            User user = userDao.findById(loggedInUser.getId());
-            //come back to this method
             List<User> patients = userDao.findByIsProviderAndProviderId(true, loggedInUser.getId());
             model.addAttribute("patients", patients);
 
             List<User> pendingUsers = userDao.findByIsProviderAndIsVerifiedAndProviderId(false,false, loggedInUser.getId());
             model.addAttribute("pendingUsers", pendingUsers);
-            // get pending users list for this particular provider
-            // find all users provider has
-            // find users on that list that are not verified
-//           List<ProviderPatient> providerPatients = providerPatientDao.findAllByProvider(loggedInUser);
-//            for(ProviderPatient providerPatient : providerPatients){
-//                if(!providerPatient.getPatient().getIsVerified()){
-//                    pendingUsers.add(providerPatient.getPatient());
-//                }
-//
-//            model.addAttribute("pendingUsers", pendingUsers);
-//            }
             return "provider-dashboard";
         } else {
             // user is patient
@@ -102,14 +87,13 @@ public class DashboardController {
             model.addAttribute("titles", titles.toString());
             model.addAttribute("descriptions", descriptions.toString());
             model.addAttribute("dates", dates.toString());
-
             return "patient-dashboard";
         }
     }
 
     @Transactional
     @PostMapping("/approval")
-    public String approveUser(@RequestParam(name = "id") long id, @RequestParam Boolean isApproved){
+    public String approveUser(@RequestParam(name = "id") long id, @RequestParam Boolean isApproved, Model model){
         User patient = userDao.findById(id);
         User provider = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         /*ProviderPatient providerPatient = providerPatientDao.findByProviderAndPatient(provider, patient);*/

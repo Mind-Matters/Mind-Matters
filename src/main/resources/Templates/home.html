@@ -2,58 +2,65 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mind Matters</title>
     <link rel="stylesheet" href="/CSS/loggedOutNav.css">
-<style>
-    #bannerimage {
-        width: 100%;
-        background-image: url(/Images/mental-health-banner.jpeg);
-        height: 405px;
-        background-color: blue;
-        background-position: center;
-    }
-    .boxes{
-        display: flex;
-        justify-content: center;
-    }
-    .quote{
-        height: 300px;
-        width: 50%;
-        padding: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .description{
-        height: 300px;
-        width: 50%;
-        padding: 60px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .centerTitle{
-        text-align: center;
-        margin-top: 80px;
-    }
+    <style>
+        #bannerimage {
+            width: 100%;
+            background-image: url(/Images/therapy.svg);
+            height: 405px;
+            background-size: cover;
+            background-position: center;
+            filter:drop-shadow(16px 16px 10px #4F695A);
+        }
 
-    .feature{
-        display: flex;
-        justify-content: center;
-        width: 33%;
-        height: 380px;
-        padding: 80px;
-    }
-    .member{
-        display: flex;
-        justify-content: center;
-        width: 25%;
-        height: 250px;
-        padding: 80px;
-    }
+        .boxes {
+            display: flex;
+            justify-content: center;
+        }
 
-</style>
+        .quote {
+            height: 300px;
+            width: 50%;
+            padding: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .description {
+            height: 300px;
+            width: 50%;
+            padding: 60px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .centerTitle {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .feature {
+            display: flex;
+            justify-content: center;
+            width: 33%;
+            height: 380px;
+            padding: 80px;
+        }
+        .wave-background {
+            background: #4F695A;
+        }
+        .empty-div {
+            color: #4F695A;
+            margin: 0;
+            padding: 0;
+        }
+
+
+    </style>
 </head>
 <body>
 
@@ -70,61 +77,59 @@
 <!--about section starts-->
 <div class="boxes" id="about">
     <div class="quote">
-        <h2>"You don’t have to control your thoughts. You just have to stop letting them control you." — Dan Millman</h2>
+        <h2>"You don’t have to control your thoughts. You just have to stop letting them control you." — Dan
+            Millman</h2>
     </div>
     <div class="description">
-        <p>Here at Mind-Matters we're creating an application for patients and providers that will allow them to document different events throughout their day. This data is then presented in a way that can be  used to notice trends and patterns in the data.</p>
+        <p>Here at Mind-Matters we're creating an application for patients and providers that will allow them to
+            document different events throughout their day. This data is then presented in a way that can be used to
+            notice trends and patterns in the data.</p>
     </div>
 </div>
 <!--about section ends-->
 
-
-
 <!--features start-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#4F695A" fill-opacity="1"
+          d="M0,192L34.3,186.7C68.6,181,137,171,206,149.3C274.3,128,343,96,411,106.7C480,117,549,171,617,213.3C685.7,256,754,288,823,282.7C891.4,277,960,235,1029,192C1097.1,149,1166,107,1234,74.7C1302.9,43,1371,21,1406,10.7L1440,0L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
+</svg>
+<div class="wave-background">
+<div class="wave-background empty-div">stuff</div>
+<div class="wave-background empty-div">stuff</div>
 <div class="centerTitle">
     <h1>Features</h1>
 </div>
-<div class="boxes" id="features">
-    <div class="feature">
-        <a></a>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam doloremque ducimus eligendi mollitia, nemo saepe vel velit! Accusamus aliquid delectus dicta dolorem ea laboriosam, libero necessitatibus obcaecati, qui quia soluta.</p>
+    <div class="boxes" id="features">
+        <div class="feature">
+            <a></a>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam doloremque ducimus eligendi mollitia, nemo
+                saepe vel velit! Accusamus aliquid delectus dicta dolorem ea laboriosam, libero necessitatibus obcaecati,
+                qui quia soluta.</p>
+        </div>
+        <div class="feature">
+            <a></a>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam doloremque ducimus eligendi mollitia, nemo
+                saepe vel velit! Accusamus aliquid delectus dicta dolorem ea laboriosam, libero necessitatibus obcaecati,
+                qui quia soluta.</p>
+        </div>
+        <div class="feature">
+            <a></a>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam doloremque ducimus eligendi mollitia, nemo
+                saepe vel velit! Accusamus aliquid delectus dicta dolorem ea laboriosam, libero necessitatibus obcaecati,
+                qui quia soluta.</p>
+        </div>
     </div>
-    <div class="feature">
-        <a></a>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam doloremque ducimus eligendi mollitia, nemo saepe vel velit! Accusamus aliquid delectus dicta dolorem ea laboriosam, libero necessitatibus obcaecati, qui quia soluta.</p>
+    <!--features end-->
+
+
+    <!--our team starts-->
+    <div class="centerTitle">
+        <h1>Our Team</h1>
     </div>
-    <div class="feature">
-        <a></a>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam doloremque ducimus eligendi mollitia, nemo saepe vel velit! Accusamus aliquid delectus dicta dolorem ea laboriosam, libero necessitatibus obcaecati, qui quia soluta.</p>
+    <div class="boxes" id="ourTeam">
+        <img src="/Images/team.svg" alt="group of people">
     </div>
 </div>
-<!--features end-->
-
-
-
-<!--our team starts-->
-<div class="centerTitle">
-    <h1>Our Team</h1>
-</div>
-<div class="boxes" id="ourTeam">
-    <div class="member">
-        <a></a>
-        <p>Britnney</p>
-    </div>
-    <div class="member">
-        <a></a>
-        <p>Andres</p>
-    </div>
-    <div class="member">
-        <a></a>
-        <p>Miles</p>
-    </div>
-    <div class="member">
-        <a></a>
-        <p>Kiley</p>
-    </div>
-</div>
-
 <!--our team ends-->
 
 

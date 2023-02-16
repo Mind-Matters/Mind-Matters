@@ -3,7 +3,7 @@
 <head th:insert="~{partials :: head}">
     <meta charset='utf-8'/>
     <title>Patient Dashboard</title>
-<!--    <link rel="stylesheet" href="/CSS/patient-dashboard.css">-->
+    <link rel="stylesheet" href="/CSS/patient-dashboard.css">
     <style>
         .inputs{
             display: flex;
@@ -34,10 +34,12 @@
 <header th:replace="~{partials :: header-two}"></header>
 <!--navbar ends-->
 
+
 <!-- Start Greeting and provider info-->
 <h1 class="middle-text" ><span th:text="${greeting}"></span></h1>
 <h3 class="middle-text" ><span th:text="${providerInfo}"></span></h3>
 <!-- End Greeting and Provider info-->
+
 <div class="inputs">
     <div class="input">
         <form th:action="@{/submit-event}" th:method="post" id="event-form" name="event-form">

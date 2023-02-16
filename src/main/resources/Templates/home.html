@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Mind Matters</title>
     <link rel="stylesheet" href="/CSS/loggedOutNav.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <style>
         #bannerimage {
             width: 100%;
@@ -11,12 +14,18 @@
             height: 405px;
             background-size: cover;
             background-position: center;
-            filter:drop-shadow(16px 16px 10px #4F695A);
+            filter: drop-shadow(16px 16px 10px #4F695A);
+        }
+
+        .google-font {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
         }
 
         .boxes {
             display: flex;
             justify-content: center;
+            flex-direction: row;
         }
 
         .quote {
@@ -39,8 +48,9 @@
         }
 
         .centerTitle {
-            text-align: center;
-            margin-top: 80px;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
         }
 
         .feature {
@@ -50,15 +60,57 @@
             height: 380px;
             padding: 80px;
         }
+
         .wave-background {
             background: #4F695A;
         }
-        .empty-div {
-            color: #4F695A;
-            margin: 0;
-            padding: 0;
+
+        .team {
+            margin-top: 50px;
         }
 
+        .border {
+            border: 2px solid black;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        @keyframes slide-in-anim {
+            20% {
+                opacity: 0;
+            }
+            60% {
+                transform: translateX(-45%);
+            }
+            75% {
+                transform: translateX(-52%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-5%);
+            }
+        }
+
+        .container2 {
+            width: 100%;
+        }
+
+        .text {
+            transform: translateX(-200%);
+            opacity: 0;
+            animation: slide-in-anim 1.5s ease-out forwards;
+        }
+        .white-text {
+            color: white;
+        }
+        .img-row{
+            display: flex;
+            flex-direction: row;
+            max-height: 400px;
+            width: 300px;
+            margin: 0;
+            padding:0;
+        }
 
     </style>
 </head>
@@ -67,87 +119,62 @@
 <!--navbar starts-->
 <header th:replace="partials :: header-one"></header>
 <!--navbar ends-->
-
-
 <!--banner starts-->
 <div id="bannerimage"></div>
 <!--banner ends-->
-
-
 <!--about section starts-->
-<div class="boxes" id="about">
-    <div class="quote">
+<div class="boxes container2" id="about">
+    <div class="quote text">
         <h2>"You don’t have to control your thoughts. You just have to stop letting them control you." — Dan
             Millman</h2>
     </div>
-    <div class="description">
+    <div class="description google-font text">
         <p>Here at Mind-Matters we're creating an application for patients and providers that will allow them to
             document different events throughout their day. This data is then presented in a way that can be used to
             notice trends and patterns in the data.</p>
     </div>
 </div>
 <!--about section ends-->
-
-<!--features start-->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
     <path fill="#4F695A" fill-opacity="1"
           d="M0,192L34.3,186.7C68.6,181,137,171,206,149.3C274.3,128,343,96,411,106.7C480,117,549,171,617,213.3C685.7,256,754,288,823,282.7C891.4,277,960,235,1029,192C1097.1,149,1166,107,1234,74.7C1302.9,43,1371,21,1406,10.7L1440,0L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
 </svg>
-<div class="wave-background">
-<div class="wave-background empty-div">stuff</div>
-<div class="wave-background empty-div">stuff</div>
-<div class="centerTitle">
-    <h1>Features</h1>
-</div>
-    <div class="boxes" id="features">
-        <div class="feature">
-            <a></a>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam doloremque ducimus eligendi mollitia, nemo
-                saepe vel velit! Accusamus aliquid delectus dicta dolorem ea laboriosam, libero necessitatibus obcaecati,
-                qui quia soluta.</p>
-        </div>
-        <div class="feature">
-            <a></a>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam doloremque ducimus eligendi mollitia, nemo
-                saepe vel velit! Accusamus aliquid delectus dicta dolorem ea laboriosam, libero necessitatibus obcaecati,
-                qui quia soluta.</p>
-        </div>
-        <div class="feature">
-            <a></a>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam doloremque ducimus eligendi mollitia, nemo
-                saepe vel velit! Accusamus aliquid delectus dicta dolorem ea laboriosam, libero necessitatibus obcaecati,
-                qui quia soluta.</p>
-        </div>
-    </div>
-    <!--features end-->
+<h1 class="border google-font">Features</h1>
 
-
-    <!--our team starts-->
-    <div class="centerTitle">
-        <h1>Our Team</h1>
-    </div>
-    <div class="boxes" id="ourTeam">
-        <img src="/Images/team.svg" alt="group of people">
+<div class="centerTitle wave-background">
+    <div class="wave-background">
+        <div class="img-row">
+            <img src="/Images/graph-icon.svg" alt="graph-icon">
+            <img src="/Images/calendar-icon.svg" alt="calendar-icon">
+            <img src="/Images/mood-icon.svg" alt="mood-icon">
+        </div>
+        <div>
+            <div class="boxes" id="features">
+                <div class="feature">
+                    <p class="google-font white-text">Our graph feature will gather the data submitted to the mood scale and show each user their mood
+                        over time. The data will be displayed in a line graph format because it will be easier for the
+                        provider to quickly assess their patient’s mood.</p>
+                </div>
+                <div class="feature">
+                    <p class="google-font white-text">Users can create events on a calendar with drag-and-drop functionality. Users are able to see
+                        multiple events on the calendar view and edit them.</p>
+                </div>
+                <div class="feature">
+                    <p class="google-font white-text">Users are able to track their moods on a sliding scale each day. Over time the data will be used
+                        by their provider to analyze their mood over time. </p>
+                </div>
+            </div>
+        </div>
+        <!--our team starts-->
+        <div class="centerTitle">
+            <h1>Our Team</h1>
+        </div>
+        <div class="boxes team" id="ourTeam">
+            <img src="/Images/teamv2.svg" alt="group of people">
+        </div>
     </div>
 </div>
+
 <!--our team ends-->
-
-
-<!--dynamic login form starts-->
-<!--    <div id="login-form" class="login-page">-->
-<!--        <div class="form-box">-->
-<!--            <div class="button-box">-->
-<!--&lt;!&ndash;                <div id="btn"></div>&ndash;&gt;-->
-<!--&lt;!&ndash;                <button type="button" onclick="login()" class="toggle-btn">Log In</button>&ndash;&gt;-->
-<!--                <h3>Welcome Back!</h3>-->
-<!--            </div>-->
-<!--            <form id="login" class="input-group-login" th:action="@{/login}" method="post">-->
-<!--                <input type="text" class="input-field" placeholder="Username" required>-->
-<!--                <input type="password" class="input-field" placeholder="Password" required>-->
-<!--                <button class="submit-btn">Log In</button>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--dynamic login form starts-->
 </body>
 </html>

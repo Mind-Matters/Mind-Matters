@@ -69,6 +69,7 @@
             <label for="category9">Recreation</label>
             <input id="category10" value="10" name="categories" type="checkbox">
             <label for="category10">On Screens</label>
+            <input type="submit" value="Submit">
         </form>
     </div>
     <div class="input">
@@ -167,6 +168,7 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
 <!-- custom calendar-io script -->
 <script th:inline="javascript">
+
     document.addEventListener('DOMContentLoaded', function() {
         let calendarEl = document.getElementById('calendar');
         let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -178,7 +180,7 @@
             dayMaxEvents: true,
             headerToolbar: {
                 left: 'title,prev,next',
-                center: 'addEventButton',
+                /*center: 'addEventButton',*/
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
             /* submit an event described in event-form to the database*/

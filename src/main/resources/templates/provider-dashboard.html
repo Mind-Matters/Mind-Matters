@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
+
+<head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/Images/favicon.svg">
+
     <link rel="stylesheet" href="/CSS/footer.css">
     <link rel="stylesheet" href="/CSS/loggedInNav.css">
     <link rel="stylesheet" href="/CSS/loggedOutNav.css">
@@ -14,9 +17,12 @@
 <body>
 <header th:replace="partials :: header-two"></header>
 
+<div class="bigdiv">
 <div th:replace="partials :: pendingUsers">
 </div>
 <div th:replace="partials :: patient-overview"></div>
+    </div>
+
 <footer th:replace="partials :: footer"></footer>
 </body>
 

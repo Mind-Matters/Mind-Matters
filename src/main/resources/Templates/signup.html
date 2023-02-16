@@ -45,34 +45,38 @@
       <button type="button" onclick="patient()" class="toggle-btn" id=" " name="isProvider" value="false">Patient</button>
       <button type="button" onclick="provide()" class="toggle-btn" id="" name="isProvider" value="true">Provider</button>
     </div>
-    <form id="login" class="input-group-login" th:action="@{/signup}" method="post">
-      <input name="username" type="text" class="input-field" placeholder="Username" required>
-      <input name="password" type="password" class="input-field" placeholder="Password" required>
-      <select name="providerId" id="providerSelect" >
+    <!-- Start Patient Signup Form -->
+    <form id="patient" class="input-group-login" th:action="@{/signup}" method="post">
+      <input id="patientUsername" name="username" type="text" class="input-field" placeholder="Username" required>
+      <input id="patientPassword" name="password" type="password" class="input-field" placeholder="Password" required>
+      <select id="providerSelect" name="providerId" required>
             <option value="none" selected disabled hidden>Select a Provider</option>
-        <option th:value="${provider.id}" th:each="provider : ${providers}" required><span th:text="${provider.getUsername}"></span></option>
+        <option th:value="${provider.id}" th:each="provider : ${providers}" ><span th:text="${provider.getUsername}"></span></option>
       </select><br>
 <!--      <input type="checkbox" id="ispatient" name="isProvider" value="false" ><span>I agree to the terms and conditions.</span>-->
-      <button type="submit" class="submit-btn">Register</button>
+      <button type="submit" onclick="registerPatient()" class="submit-btn" id="registerPatient">Register</button>
     </form>
-    <form id="provide" class="input-group-register" th:action="@{/signup}" method="post">
-      <input name="username" type="text" class="input-field" placeholder="Username" required>
-      <input name="password" type="password" class="input-field" placeholder="Password" required>
+    <!-- End Patient Signup Form -->
 
-      <select name="providerId" id="providerOne" style="display: none" >
+    <!-- Start Provider Signup Form-->
+    <form id="provider" class="input-group-register" th:action="@{/signup}" method="post">
+      <input id="providerUsername" name="username" type="text" class="input-field" placeholder="Username" required>
+      <input id="providerPassword" name="password" type="password" class="input-field" placeholder="Password" required>
+      <select id="providerId" name="providerId" style="display: none" required>
         <!--    <option value="none" selected disabled hidden>Select an Option</option>-->
         <option th:value="${provider.id}" th:each="provider : ${providers}"><span th:text="${provider.getUsername}"></span></option>
       </select>
 
       <input type="checkbox" id="isProvider" name="isProvider" value="true" required><span>I confirm I am a provider</span>
-      <button type="submit" class="submit-btn">Register</button>
+      <button type="submit" onclick="validateProvider()" class="submit-btn" id="registerProvider">Register</button>
     </form>
+    <!-- End Provider Signup Form -->
   </div>
 </div>
 
 <script>
-  var x = document.getElementById('login');
-  var y = document.getElementById('provide');
+  var x = document.getElementById('patient');
+  var y = document.getElementById('provider');
   var z = document.getElementById('btn');
   function provide(){
     x.style.left='-400px';
@@ -85,6 +89,66 @@
     z.style.left='0px';
   }
 
+  /* Patient Signup validation */
+  function registerPatient() {
+    // prevent default on type="submit" button
+    document.getElementById("registerPatient").preventDefault();
+
+    // gather elements
+    let username = document.getElementById('patientUsername').value;
+    let password = document.getElementById('patientPassword').value;
+    let provider = document.getElementById('providerSelect').value;
+
+    // validate
+    if (username === "") {
+      alert("Please enter a username");
+      return false;
+    }
+    if (password === "") {
+      alert("Please enter a password");
+      return false;
+    }
+    if (provider === "") {
+      alert("Please select a provider");
+      return false;
+    }
+
+    // submit
+    document.getElementById("patient").submit();
+  }
+
+    /* Provider Signup validation */
+    function validateProvider() {
+      // prevent default on type="submit" button
+      document.getElementById("registerProvider").preventDefault();
+
+      // gather elements
+      let username = document.getElementById('providerUsername').value;
+      let password = document.getElementById('providerPassword').value;
+      let provider = document.getElementById('providerId').value;
+      let confirm = document.getElementById('isProvider').checked;
+
+      // validate
+      if (username === "") {
+          alert("Please enter a username");
+          return false;
+      }
+      if (password === "") {
+          alert("Please enter a password");
+          return false;
+      }
+      if (provider === "") {
+          alert("Please select a provider");
+          return false;
+      }
+      if (confirm === false) {
+          alert("Please confirm you are a provider");
+          return false;
+      }
+
+      // submit
+      document.getElementById("provider").submit();
+    }
 </script>
 
 </body>

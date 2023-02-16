@@ -122,10 +122,10 @@ button{
     background: transparent;
 
 }
-#login{
+#patient{
     left: 50px;
 }
-#login input{
+#patient input{
     color: white;
     font-size: 15px;
 }

@@ -62,10 +62,10 @@
       background: transparent;
 
     }
-    #login{
+    #patient{
       left: 50px;
     }
-    #login input{
+    #patient input{
       color: white;
       font-size: 15px;
     }
@@ -93,6 +93,8 @@
       <h3>Welcome Back!</h3>
     </div>
     <form id="login" class="input-group-login" th:action="@{/login}" method="post">
+      <div th:replace="partials :: loginError"></div>
+
       <input name="username" type="text" class="input-field" placeholder="Username" required>
       <input name="password" type="password" class="input-field" placeholder="Password" required>
       <button type="submit" class="submit-btn">Log In</button>

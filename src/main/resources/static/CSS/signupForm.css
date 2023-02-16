@@ -76,18 +76,18 @@ h3{
 
 }
 
-#login{
+#patient{
     left: 50px;
 }
-#login input{
+#patient input{
     color: white;
     font-size: 15px;
 }
 
-#provide{
+#provider{
     left:450px;
 }
-#provide input{
+#provider input{
     color: white;
     font-size: 15px;
 }

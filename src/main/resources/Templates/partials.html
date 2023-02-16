@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head th:fragment="head">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/CSS/footer.css">
@@ -7,11 +8,21 @@
     <link rel="stylesheet" href="/CSS/loggedOutNav.css">
     <link rel="stylesheet" href="/CSS/main.css">
     <link rel="stylesheet" href="/CSS/MoodScale.css">
-    <title>Default Head</title>
+
+
 </head>
 
 
 <body>
+<!--Start Login Error Handling-->
+<div th:if="${param.error != null}" th:fragment="loginError">
+    <div id="error">
+        <span th:text="${loginErrorMessage}">
+        </span>
+    </div>
+</div>
+<!--End Login Error Handling-->
+
 <!------------------------------Logged Out Nav Starts--------------------------------->
     <header th:fragment="header-one">
         <a class="logo" href="/"><img class="logo" src="/Images/LOGOV.png" alt="logo"></a>

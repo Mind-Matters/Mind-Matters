@@ -66,6 +66,11 @@ public class DashboardController {
 
             // populate mood_over_time info
             List<ScalingData> scalingData = scalingDataDao.findAllByUser(loggedInUser);
+            String scalingChartTitle = "";
+            if(scalingData.size() > 0){
+                scalingChartTitle = "Mood Over Time";
+            }
+            model.addAttribute("scalingChartTitle", scalingChartTitle);
             StringBuilder scores = new StringBuilder("[");
             StringBuilder ids = new StringBuilder("[");
             for(int i = 0; i < scalingData.size(); i++){

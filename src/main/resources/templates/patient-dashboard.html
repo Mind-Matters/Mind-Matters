@@ -157,7 +157,7 @@
     </div>
 <!--med tracker ends-->
     <div class="tracker">
-        <h1 id="MoodChart">Mood Chart</h1>
+        <h1 id="MoodChart" th:text="${scalingChartTitle}"></h1>
         <div id="mood_over_time_chart" ></div>
     </div>
 </div>
@@ -169,12 +169,6 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
 <!-- custom calendar-io script -->
 <script th:inline="javascript">
-
-
-
-
-
-
 
     /* custom calendar-io.js */
     document.addEventListener('DOMContentLoaded', function() {

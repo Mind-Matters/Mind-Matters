@@ -34,9 +34,10 @@
 <header th:replace="~{partials :: header-two}"></header>
 <!--navbar ends-->
 
-
+<!-- Start Greeting and provider info-->
 <h1 class="middle-text" ><span th:text="${greeting}"></span></h1>
-
+<h3 class="middle-text" ><span th:text="${providerInfo}"></span></h3>
+<!-- End Greeting and Provider info-->
 <div class="inputs">
     <div class="input">
         <form th:action="@{/submit-event}" th:method="post" id="event-form" name="event-form">

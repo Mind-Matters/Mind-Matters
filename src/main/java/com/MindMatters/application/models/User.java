@@ -1,4 +1,4 @@
-package com.MindMatters.application.Models;
+package com.MindMatters.application.models;
 
 
 import jakarta.persistence.*;

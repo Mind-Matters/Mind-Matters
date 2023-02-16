@@ -1,12 +1,11 @@
 
-package com.MindMatters.application.Controllers;
+package com.MindMatters.application.controllers;
 
-import com.MindMatters.application.Models.Category;
-import com.MindMatters.application.Models.Event;
-import com.MindMatters.application.Repositories.CategoryRepository;
-import com.MindMatters.application.Repositories.EventRepository;
-import com.MindMatters.application.Models.User;
-import com.MindMatters.application.Repositories.UserRepository;
+import com.MindMatters.application.models.Category;
+import com.MindMatters.application.models.Event;
+import com.MindMatters.application.repositories.CategoryRepository;
+import com.MindMatters.application.repositories.EventRepository;
+import com.MindMatters.application.models.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

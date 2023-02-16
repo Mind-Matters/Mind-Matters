@@ -57,7 +57,9 @@ public class DashboardController {
 //            }
             return "provider-dashboard";
         } else {
-            // user is patient
+            // send user to view
+            model.addAttribute("greeting", "Hello " + loggedInUser.getUsername() + ",");
+
             // populate trackMedications info
             List<TrackMedication> trackMedications = trackMedicationDao.findAllByUser(loggedInUser);
             model.addAttribute("trackMedications", trackMedications);

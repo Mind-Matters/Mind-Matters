@@ -1,4 +1,4 @@
-package com.MindMatters.application.Controllers;
+package com.MindMatters.application.controllers;
 
 
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,7 @@
-package com.MindMatters.application.Controllers;
+package com.MindMatters.application.controllers;
 
-import com.MindMatters.application.Models.*;
-import com.MindMatters.application.Repositories.*;
+import com.MindMatters.application.models.*;
+import com.MindMatters.application.repositories.*;
 import jakarta.transaction.Transactional;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class DashboardController {
@@ -36,38 +34,76 @@ public class DashboardController {
 
         if(loggedInUser.getIsProvider()) {
             // get pending users list
-            List<User> pendingUsers = new ArrayList<>();
-            User user = userDao.findById(loggedInUser.getId());
-
+            //            List<User> pendingUsers = new ArrayList<>();
+            //            User user = userDao.findById(loggedInUser.getId());
+            //come back to this method
             List<User> patients = userDao.findByIsProviderAndProviderId(true, loggedInUser.getId());
             model.addAttribute("patients", patients);
-            //work around to get the events for the patients onclick
-            // get events list for this particular provider for their patients
-            //Im logged in as a provider and loggedin user id = provider id which links back to the patient id
 
-
-            //I need to link the event id to the patient id in the user table
-//            model.addAttribute("events", userEvents);
+            List<User> pendingUsers = userDao.findByIsProviderAndIsVerifiedAndProviderId(false,false, loggedInUser.getId());
+            model.addAttribute("pendingUsers", pendingUsers);
             // get pending users list for this particular provider
             // find all users provider has
             // find users on that list that are not verified
-/*            List<ProviderPatient> providerPatients = providerPatientDao.findAllByProvider(loggedInUser);
-            for(ProviderPatient providerPatient : providerPatients){
-                if(!providerPatient.getPatient().getIsVerified()){
-                    pendingUsers.add(providerPatient.getPatient());
-                }
-
-            model.addAttribute("pendingUsers", pendingUsers);
-            }*/
+//           List<ProviderPatient> providerPatients = providerPatientDao.findAllByProvider(loggedInUser);
+//            for(ProviderPatient providerPatient : providerPatients){
+//                if(!providerPatient.getPatient().getIsVerified()){
+//                    pendingUsers.add(providerPatient.getPatient());
+//                }
+//
+//            model.addAttribute("pendingUsers", pendingUsers);
+//            }
             return "provider-dashboard";
         } else {
-            // user is patient
+            // send user to view
+            model.addAttribute("greeting", "Hello " + loggedInUser.getUsername() + ",");
+
+            // send pt's provider name to view
+            User provider = userDao.findById(loggedInUser.getProviderId());
+            model.addAttribute("providerInfo", "Your provider is: " + provider.getUsername());
+
             // populate trackMedications info
             List<TrackMedication> trackMedications = trackMedicationDao.findAllByUser(loggedInUser);
-            model.addAttribute("trackMedications", trackMedications);
+            // create class to pass medication values to the view and be iterable
+            // not a db model, so don't put this in the model folder
+            class MedTrack{
+                private String date;
+                private String taken;
+                public MedTrack(String date, String taken){
+                    this.date = date;
+                    this.taken = taken;
+                }
+                public String getDate() {
+                    return date;
+                }
+                public void setDate(String date) {
+                    this.date = date;
+                }
+                public String getTaken() {
+                    return taken;
+                }
+                public void setTaken(String taken) {
+                    this.taken = taken;
+                }
+            }
+            List<MedTrack> medTrackList = new ArrayList<>();
+            //  change dates to just yyyy-mm-dd and change boolean to yes or no
+            for(TrackMedication trackMedication : trackMedications){
+                Date date = trackMedication.getDate();
+                String dateStr = date.toString();
+                String[] dateArr = dateStr.split(" ");
+                String newDateStr = dateArr[0];
+                medTrackList.add(new MedTrack(newDateStr, trackMedication.getTaken() ? "Yes" : "No"));
+            }
+            model.addAttribute("trackMedications", medTrackList);
 
             // populate mood_over_time info
             List<ScalingData> scalingData = scalingDataDao.findAllByUser(loggedInUser);
+            String scalingChartTitle = "";
+            if(scalingData.size() > 0){
+                scalingChartTitle = "Mood Over Time";
+            }
+            model.addAttribute("scalingChartTitle", scalingChartTitle);
             StringBuilder scores = new StringBuilder("[");
             StringBuilder ids = new StringBuilder("[");
             for(int i = 0; i < scalingData.size(); i++){
@@ -123,7 +159,10 @@ public class DashboardController {
         } else {
             // patient is not approved: remove patient user and providerPatient rows
             /*providerPatientDao.deleteById(providerPatient.getId());*/
-            userDao.deleteByUsername(patient.getUsername());
+            userDao.deleteById(patient.getId());
+            System.out.println(patient.getId() + patient.getUsername());
+
+
         }
         return "redirect:/dashboard";
     }

@@ -1,4 +1,4 @@
-package com.MindMatters.application.Models;
+package com.MindMatters.application.models;
 
 
 import jakarta.persistence.*;
@@ -29,7 +29,7 @@ public class User {
     @Column()
     private long providerId;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Event> events;
 
     public boolean isVerified() {
@@ -51,7 +51,6 @@ public class User {
     public boolean isProvider() {
         return isProvider;
     }
-
 
     public User() {
     }

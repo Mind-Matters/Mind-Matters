@@ -35,7 +35,10 @@
 <!--navbar ends-->
 
 
-<h1 class="middle-text" th:text="${user.getUsername()}">Hello Patient,</h1>
+<!-- Start Greeting and provider info-->
+<h1 class="middle-text" ><span th:text="${greeting}"></span></h1>
+<h3 class="middle-text" ><span th:text="${providerInfo}"></span></h3>
+<!-- End Greeting and Provider info-->
 
 <div class="inputs">
     <div class="input">
@@ -69,6 +72,8 @@
             <label for="category9">Recreation</label>
             <input id="category10" value="10" name="categories" type="checkbox">
             <label for="category10">On Screens</label>
+            <input id="category11" value="11" name="categories" type="checkbox" checked style="display: none">
+            <input type="submit" value="Submit" >
         </form>
     </div>
     <div class="input">
@@ -155,7 +160,7 @@
     </div>
 <!--med tracker ends-->
     <div class="tracker">
-        <h1 id="MoodChart">Mood Chart</h1>
+        <h1 id="MoodChart" th:text="${scalingChartTitle}"></h1>
         <div id="mood_over_time_chart" ></div>
     </div>
 </div>
@@ -167,6 +172,8 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
 <!-- custom calendar-io script -->
 <script th:inline="javascript">
+
+    /* custom calendar-io.js */
     document.addEventListener('DOMContentLoaded', function() {
         let calendarEl = document.getElementById('calendar');
         let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -178,7 +185,7 @@
             dayMaxEvents: true,
             headerToolbar: {
                 left: 'title,prev,next',
-                center: 'addEventButton',
+                /*center: 'addEventButton',*/
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
             /* submit an event described in event-form to the database*/

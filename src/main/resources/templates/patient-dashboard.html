@@ -49,7 +49,7 @@
 
             <!-- Category checkboxes-->
             <h3 id="categoryLabel">Select the category of the event</h3>
-            <input id="category1" value="1" name="categories" type="checkbox">
+            <input id="category1" value="1" name="categories" type="checkbox" checked style="display: none">
             <label for="category1">Default</label>
             <input id="category2" value="2" name="categories" type="checkbox">
             <label for="category2">Work</label>
@@ -168,7 +168,10 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js'></script>
 <!-- custom calendar-io script -->
 <script th:inline="javascript">
+    /* if no other categories are checked, default should be checked. */
 
+
+    /* custom calendar-io.js */
     document.addEventListener('DOMContentLoaded', function() {
         let calendarEl = document.getElementById('calendar');
         let calendar = new FullCalendar.Calendar(calendarEl, {

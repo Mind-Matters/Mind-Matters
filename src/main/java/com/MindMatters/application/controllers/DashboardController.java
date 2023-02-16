@@ -133,12 +133,13 @@ public class DashboardController {
                     titles.append("','");
                     descriptions.append("','");
                     dates.append("','");
-                } else {
-                    titles.append("']");
-                    descriptions.append("']");
-                    dates.append("']");
                 }
             }
+
+            titles.append("']");
+            descriptions.append("']");
+            dates.append("']");
+
             model.addAttribute("titles", titles.toString());
             model.addAttribute("descriptions", descriptions.toString());
             model.addAttribute("dates", dates.toString());

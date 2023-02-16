@@ -5,6 +5,9 @@
     <title>Patient Dashboard</title>
     <link rel="stylesheet" href="/CSS/patient-dashboard.css">
     <style>
+        body{
+            background-color: yellow;
+        }
         .inputs{
             display: flex;
             justify-content: center;
@@ -23,15 +26,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
-
         }
     </style>
 
 </head>
 <body>
 <!--navbar starts-->
-<header th:replace="~{partials :: header-two}"></header>
+<header th:insert="~{partials :: header-two}"></header>
 <!--navbar ends-->
 
 

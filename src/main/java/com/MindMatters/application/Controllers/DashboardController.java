@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class DashboardController {
@@ -57,13 +55,55 @@ public class DashboardController {
 //            }
             return "provider-dashboard";
         } else {
-            // user is patient
+            // send user to view
+            model.addAttribute("greeting", "Hello " + loggedInUser.getUsername() + ",");
+
+            // send pt's provider name to view
+            User provider = userDao.findById(loggedInUser.getProviderId());
+            model.addAttribute("providerInfo", "Your provider is: " + provider.getUsername());
+
             // populate trackMedications info
             List<TrackMedication> trackMedications = trackMedicationDao.findAllByUser(loggedInUser);
-            model.addAttribute("trackMedications", trackMedications);
+            // create class to pass medication values to the view and be iterable
+            // not a db model, so don't put this in the model folder
+            class MedTrack{
+                private String date;
+                private String taken;
+                public MedTrack(String date, String taken){
+                    this.date = date;
+                    this.taken = taken;
+                }
+                public String getDate() {
+                    return date;
+                }
+                public void setDate(String date) {
+                    this.date = date;
+                }
+                public String getTaken() {
+                    return taken;
+                }
+                public void setTaken(String taken) {
+                    this.taken = taken;
+                }
+            }
+            List<MedTrack> medTrackList = new ArrayList<>();
+            //  change dates to just yyyy-mm-dd and change boolean to yes or no
+            for(TrackMedication trackMedication : trackMedications){
+                Date date = trackMedication.getDate();
+                String dateStr = date.toString();
+                String[] dateArr = dateStr.split(" ");
+                String newDateStr = dateArr[0];
+                medTrackList.add(new MedTrack(newDateStr, trackMedication.getTaken() ? "Yes" : "No"));
+            }
+            model.addAttribute("trackMedications", medTrackList);
 
             // populate mood_over_time info
             List<ScalingData> scalingData = scalingDataDao.findAllByUser(loggedInUser);
+            String scalingChartTitle = "";
+            if(scalingData.size() > 0){
+                scalingChartTitle = "Mood Over Time";
+            }
+            model.addAttribute("scalingChartTitle", scalingChartTitle);
             StringBuilder scores = new StringBuilder("[");
             StringBuilder ids = new StringBuilder("[");
             for(int i = 0; i < scalingData.size(); i++){

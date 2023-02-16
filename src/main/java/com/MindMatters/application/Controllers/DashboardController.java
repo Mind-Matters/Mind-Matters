@@ -35,8 +35,11 @@ public class DashboardController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if(loggedInUser.getIsProvider()) {
-            List<User> patients = userDao.findByIsProviderAndProviderId(true, loggedInUser.getId());
+            List<User> patients = userDao.findByIsProviderAndProviderId(false, loggedInUser.getId());
             model.addAttribute("patients", patients);
+
+            List<Event> eventList = eventDao.findAllByUser(loggedInUser);//       I need events by user
+            model.addAttribute("events", eventList);
 
             List<User> pendingUsers = userDao.findByIsProviderAndIsVerifiedAndProviderId(false,false, loggedInUser.getId());
             model.addAttribute("pendingUsers", pendingUsers);
@@ -95,7 +98,10 @@ public class DashboardController {
     @PostMapping("/approval")
     public String approveUser(@RequestParam(name = "id") long id, @RequestParam Boolean isApproved, Model model){
         User patient = userDao.findById(id);
-        User provider = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+//        List<Event> eventList = eventDao.findAllByUser(loggedInUser);//       I need events by user
+//        model.addAttribute("events", eventList);
         /*ProviderPatient providerPatient = providerPatientDao.findByProviderAndPatient(provider, patient);*/
         if(isApproved){
             patient.setIsVerified(true);
@@ -105,7 +111,6 @@ public class DashboardController {
             /*providerPatientDao.deleteById(providerPatient.getId());*/
             userDao.deleteById(patient.getId());
             System.out.println(patient.getId() + patient.getUsername());
-
 
         }
         return "redirect:/dashboard";

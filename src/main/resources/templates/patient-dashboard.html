@@ -3,7 +3,7 @@
 <head th:insert="~{partials :: head}">
     <meta charset='utf-8'/>
     <title>Patient Dashboard</title>
-<!--    <link rel="stylesheet" href="/CSS/patient-dashboard.css">-->
+    <link rel="stylesheet" href="/CSS/patient-dashboard.css">
     <style>
         .inputs{
             display: flex;
@@ -35,7 +35,7 @@
 <!--navbar ends-->
 
 
-<h1 class="middle-text">Hello Patient,</h1>
+<h1 class="middle-text" th:text="${user.getUsername()}">Hello Patient,</h1>
 
 <div class="inputs">
     <div class="input">

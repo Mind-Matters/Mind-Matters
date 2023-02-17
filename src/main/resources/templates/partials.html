@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="/CSS/loggedOutNav.css">
     <link rel="stylesheet" href="/CSS/main.css">
     <link rel="stylesheet" href="/CSS/MoodScale.css">
+
     <link rel="icon" type="image/x-icon" href="/Images/favicon.svg">
+
     <title>Default Head</title>
 </head>
 
@@ -23,6 +25,7 @@
                 <li><a class="anchors" href="#team" id="team">Our Team</a></li>
                 <!--            <li><a class="login" href="#"><button class="login-btn" onclick="document.getElementById('login-form').style.display='block'" style="width: auto">Login</button></a></li>-->
                 <li><a class="login" href="/login">
+
                     <button class="login-btn nav-btn">Login</button>
                 </a></li>
                 <li><a class="sign-up" href="/signup">
@@ -46,13 +49,16 @@
                 <!--            <li><a class="anchors" href="#">About</a></li>-->
                 <!--            <li><a class="anchors" href="/"></a></li>-->
                 <!--            <li><a class="anchors" href="#">Settings</a></li>-->
+
                 <li><a class="log-out" th:href="@{/logout}"><button class="logout-btn nav-btn" >Log Out</button></a></li>
+
 
             </ul>
         </nav>
     </header>
 
 <!------------------------------Logged In Nav Ends--------------------------------->
+
 
 
 
@@ -85,7 +91,6 @@
     </nav>
 </header>
 <!------------------------------navbar for register ends--------------------------------->
-
 
 
 <!------------------------------Med Tracker Starts--------------------------------->
@@ -158,12 +163,14 @@
     <div th:fragment="moodScale" class="moodScale" id="moodScale">
 
 
+
         <h1>moodScale</h1>
         <form th:action="@{/mood}" th:object="${mood}" method="post" oninput="val.value = parseInt(range.value)">
             <div class="form-group" id="moodDiv">
 
                 <label for="range">How are you feeling?</label><br>
                 <img src="/Images/mood-icon.png" id="faces" class="faces">
+
                 <input type="range" min="1" max="10" value="0" class="form-control-range" id="range" step="1" list="ticks"
                        name="value">
                 <output class="output" name="val" for="range"></output>

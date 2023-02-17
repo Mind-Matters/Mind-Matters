@@ -39,6 +39,7 @@ public class EventController {
             @RequestParam(name = "date") String date,
             @RequestParam(name = "categories") String[] categories
     ) throws ParseException {
+
         // if no categories are selected, set to default category
         if(categories.length == 0) {
             categories = new String[]{"1"};
@@ -49,12 +50,12 @@ public class EventController {
         event.setDescription(description);
 
         Date eventDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-
         // using depreciated method
         event.setDate(eventDate);
 
         List<Category> categoriesToSave = new ArrayList<>();
         for(String category : categories) {
+
             // 11 is the default category, don't save it
             if(Long.parseLong(category) != 11) {
                 categoryDao.findById(Long.parseLong(category)).ifPresent(categoriesToSave::add);

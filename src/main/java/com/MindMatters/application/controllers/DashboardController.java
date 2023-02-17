@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import java.util.*;
+
 
 @Controller
 public class DashboardController {
@@ -33,13 +35,18 @@ public class DashboardController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if(loggedInUser.getIsProvider()) {
+
             // get pending users list
             //            List<User> pendingUsers = new ArrayList<>();
+            
             //            User user = userDao.findById(loggedInUser.getId());
             //come back to this method
             List<User> patients = userDao.findByIsProviderAndProviderId(true, loggedInUser.getId());
             model.addAttribute("patients", patients);
-
+            
+               List<Event> eventList = eventDao.findAllByUser(loggedInUser);//       I need events by user
+            model.addAttribute("events", eventList);
+            
             List<User> pendingUsers = userDao.findByIsProviderAndIsVerifiedAndProviderId(false,false, loggedInUser.getId());
             model.addAttribute("pendingUsers", pendingUsers);
             // get pending users list for this particular provider
@@ -161,7 +168,6 @@ public class DashboardController {
             /*providerPatientDao.deleteById(providerPatient.getId());*/
             userDao.deleteById(patient.getId());
             System.out.println(patient.getId() + patient.getUsername());
-
 
         }
         return "redirect:/dashboard";

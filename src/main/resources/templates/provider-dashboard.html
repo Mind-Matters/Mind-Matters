@@ -24,6 +24,8 @@
 
         }
         .bigdiv{
+
+            overflow: scroll;
             width: 50%;
             padding: 30px;
             margin: 30px;
@@ -32,24 +34,35 @@
             justify-content: center;
             border: 2px solid lightgray;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
-
         }
+        .squish{
+            max-height: 50%;
+            max-width: 50%
+        }
+         .left-div {
+             float: left;
+         }
+         .right-div {
+             float: right;
+         }
+
     </style>
 </head>
 <body>
 <header th:replace="partials :: header-two"></header>
 
 
-
 <div class="bigdivs">
-    <div class="bigdiv">
+    <div class="bigdiv left-div">
         <div th:replace="partials :: pendingUsers"></div>
     </div>
-    <div class="bigdiv">
-        <div th:replace="partials :: patient-overview"></div>
+    <div class="bigdiv right-div">
+        <div class="squish">
+            <div th:replace="partials :: patient-overview"></div>
+        </div>
     </div>
 </div>
+
 
 
 

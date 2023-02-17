@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
-import java.util.List;
+
+import java.util.*;
+
 
 @Controller
 public class DashboardController {
@@ -34,23 +35,82 @@ public class DashboardController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if(loggedInUser.getIsProvider()) {
-            List<User> patients = userDao.findByIsProviderAndProviderId(false, loggedInUser.getId());
+
+            // get pending users list
+            //            List<User> pendingUsers = new ArrayList<>();
+            
+            //            User user = userDao.findById(loggedInUser.getId());
+            //come back to this method
+            List<User> patients = userDao.findByIsProviderAndProviderId(true, loggedInUser.getId());
             model.addAttribute("patients", patients);
-
-            List<Event> eventList = eventDao.findAllByUser(loggedInUser);//       I need events by user
+            
+               List<Event> eventList = eventDao.findAllByUser(loggedInUser);//       I need events by user
             model.addAttribute("events", eventList);
-
+            
             List<User> pendingUsers = userDao.findByIsProviderAndIsVerifiedAndProviderId(false,false, loggedInUser.getId());
             model.addAttribute("pendingUsers", pendingUsers);
+            // get pending users list for this particular provider
+            // find all users provider has
+            // find users on that list that are not verified
+//           List<ProviderPatient> providerPatients = providerPatientDao.findAllByProvider(loggedInUser);
+//            for(ProviderPatient providerPatient : providerPatients){
+//                if(!providerPatient.getPatient().getIsVerified()){
+//                    pendingUsers.add(providerPatient.getPatient());
+//                }
+//
+//            model.addAttribute("pendingUsers", pendingUsers);
+//            }
             return "provider-dashboard";
         } else {
-            // user is patient
+            // send user to view
+            model.addAttribute("greeting", "Hello " + loggedInUser.getUsername() + ",");
+
+            // send pt's provider name to view
+            User provider = userDao.findById(loggedInUser.getProviderId());
+            model.addAttribute("providerInfo", "Your provider is: " + provider.getUsername());
+
             // populate trackMedications info
             List<TrackMedication> trackMedications = trackMedicationDao.findAllByUser(loggedInUser);
-            model.addAttribute("trackMedications", trackMedications);
+            // create class to pass medication values to the view and be iterable
+            // not a db model, so don't put this in the model folder
+            class MedTrack{
+                private String date;
+                private String taken;
+                public MedTrack(String date, String taken){
+                    this.date = date;
+                    this.taken = taken;
+                }
+                public String getDate() {
+                    return date;
+                }
+                public void setDate(String date) {
+                    this.date = date;
+                }
+                public String getTaken() {
+                    return taken;
+                }
+                public void setTaken(String taken) {
+                    this.taken = taken;
+                }
+            }
+            List<MedTrack> medTrackList = new ArrayList<>();
+            //  change dates to just yyyy-mm-dd and change boolean to yes or no
+            for(TrackMedication trackMedication : trackMedications){
+                Date date = trackMedication.getDate();
+                String dateStr = date.toString();
+                String[] dateArr = dateStr.split(" ");
+                String newDateStr = dateArr[0];
+                medTrackList.add(new MedTrack(newDateStr, trackMedication.getTaken() ? "Yes" : "No"));
+            }
+            model.addAttribute("trackMedications", medTrackList);
 
             // populate mood_over_time info
             List<ScalingData> scalingData = scalingDataDao.findAllByUser(loggedInUser);
+            String scalingChartTitle = "";
+            if(scalingData.size() > 0){
+                scalingChartTitle = "Mood Over Time";
+            }
+            model.addAttribute("scalingChartTitle", scalingChartTitle);
             StringBuilder scores = new StringBuilder("[");
             StringBuilder ids = new StringBuilder("[");
             for(int i = 0; i < scalingData.size(); i++){
@@ -89,18 +149,16 @@ public class DashboardController {
             model.addAttribute("titles", titles.toString());
             model.addAttribute("descriptions", descriptions.toString());
             model.addAttribute("dates", dates.toString());
+
             return "patient-dashboard";
         }
     }
 
     @Transactional
     @PostMapping("/approval")
-    public String approveUser(@RequestParam(name = "id") long id, @RequestParam Boolean isApproved, Model model){
+    public String approveUser(@RequestParam(name = "id") long id, @RequestParam Boolean isApproved){
         User patient = userDao.findById(id);
-//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-//        List<Event> eventList = eventDao.findAllByUser(loggedInUser);//       I need events by user
-//        model.addAttribute("events", eventList);
+        User provider = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         /*ProviderPatient providerPatient = providerPatientDao.findByProviderAndPatient(provider, patient);*/
         if(isApproved){
             patient.setIsVerified(true);

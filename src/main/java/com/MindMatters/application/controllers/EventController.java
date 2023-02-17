@@ -39,8 +39,10 @@ public class EventController {
             @RequestParam(name = "date") String date,
             @RequestParam(name = "categories") String[] categories
     ) throws ParseException {
-        for(int i = 0; i < categories.length; i++) {
-            System.out.println("categories[i] = " + categories[i]);
+
+        // if no categories are selected, set to default category
+        if(categories.length == 0) {
+            categories = new String[]{"1"};
         }
 
         Event event = new Event();
@@ -53,7 +55,11 @@ public class EventController {
 
         List<Category> categoriesToSave = new ArrayList<>();
         for(String category : categories) {
-            categoryDao.findById(Long.parseLong(category)).ifPresent(categoriesToSave::add);
+
+            // 11 is the default category, don't save it
+            if(Long.parseLong(category) != 11) {
+                categoryDao.findById(Long.parseLong(category)).ifPresent(categoriesToSave::add);
+            }
         }
 
         event.setCategories(categoriesToSave);

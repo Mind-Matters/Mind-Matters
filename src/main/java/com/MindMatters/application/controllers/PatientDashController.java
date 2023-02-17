@@ -1,5 +1,6 @@
 package com.MindMatters.application.controllers;
 
+
 import com.MindMatters.application.models.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,5 +15,4 @@ public class PatientDashController {
         model.addAttribute("user", user);
         return "/patient-dashboard";
     }
-
 }

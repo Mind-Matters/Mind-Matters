@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <title>Mood Scale</title>
    <link rel="stylesheet" href="/CSS/MoodScale.css">
-    <head th:fragment="head">
+
+
+    <link rel="icon" type="image/x-icon" href="/Images/favicon.svg">
+
+
 </head>
 <body>
 <form th:action="@{/mood}" th:object="${mood}" method="post" oninput="val.value = parseInt(range.value)">

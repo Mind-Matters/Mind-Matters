@@ -2,10 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Sign Up</title>
+
+
+  <link rel="icon" type="image/x-icon" href="/Images/favicon.svg">
+
   <link rel="stylesheet" href="/CSS/signupForm.css">
+  <link rel="stylesheet" href="/CSS/loggedOutNav.css">
 </head>
 <body>
-
+<!--navbar starts-->
+<header th:replace="~{partials :: header-four}"></header>
+<!--navbar ends-->
 
 <!--<form th:action="@{/signup}" th:method="post" th:object="${user}">-->
 
@@ -64,7 +71,9 @@
         <option th:value="${provider.id}" th:each="provider : ${providers}"><span th:text="${provider.getUsername}"></span></option>
       </select>
 
-      <input type="checkbox" id="isProvider" name="isProvider" value="true" required><span>I Swear I Am a Doctor</span>
+
+      <input type="checkbox" id="isProvider" name="isProvider" value="true" required><span>I confirm I am a provider</span>
+
       <button type="submit" class="submit-btn">Register</button>
     </form>
   </div>

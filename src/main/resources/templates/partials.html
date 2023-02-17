@@ -245,25 +245,46 @@
 </div>
 
 <!--provider dashboard patient overview-->
+<!--<table th:fragment="patient-overview">-->
+<!--    <caption class="patient-overview" style="margin: 0"><h1>Patient Overview</h1></caption>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>Patient</th>-->
+<!--        <th>Events</th>-->
+
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="patient : ${patients}">-->
+<!--        <td th:text="${patient.username}"></td>-->
+<!--        <div th:each="event : ${patient.events}">-->
+<!--            <td th:text="${event.title}"></td>-->
+<!--            <td th:text="${event.description}"></td>-->
+<!--            &lt;!&ndash;            change into a link to expand on multiple events&ndash;&gt;-->
+<!--        </div>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
 <table th:fragment="patient-overview">
     <caption class="patient-overview" style="margin: 0"><h1>Patient Overview</h1></caption>
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Information</th>
+        <th>Patient</th>
+        <th>Events</th>
+
     </tr>
     </thead>
     <tbody>
     <tr th:each="patient : ${patients}">
         <td th:text="${patient.username}"></td>
-        <div th:each="event : ${patient.events}">
-            <td th:text="${event.title}"></td>
-            <td th:text="${event.description}"></td>
-            <!--            change into a link to expand on multiple events-->
-        </div>
+        <td>
+            <div th:each="event : ${patient.events}">
+                <span th:text="${event.title} + ' : ' + ${event.description}"></span>
+                <br/>
+            </div>
+        </td>
     </tr>
     </tbody>
 </table>
-
 
 </html>

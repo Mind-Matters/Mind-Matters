@@ -1,7 +1,7 @@
-package com.MindMatters.application.Repositories;
+package com.MindMatters.application.repositories;
 
-import com.MindMatters.application.Models.ScalingData;
-import com.MindMatters.application.Models.User;
+import com.MindMatters.application.models.ScalingData;
+import com.MindMatters.application.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

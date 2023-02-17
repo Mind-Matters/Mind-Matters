@@ -1,8 +1,8 @@
-package com.MindMatters.application.Services;
+package com.MindMatters.application.services;
 
-import com.MindMatters.application.Models.User;
-import com.MindMatters.application.Models.UserWithRoles;
-import com.MindMatters.application.Repositories.UserRepository;
+import com.MindMatters.application.models.User;
+import com.MindMatters.application.models.UserWithRoles;
+import com.MindMatters.application.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

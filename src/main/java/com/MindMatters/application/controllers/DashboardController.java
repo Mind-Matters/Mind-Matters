@@ -1,7 +1,7 @@
-package com.MindMatters.application.Controllers;
+package com.MindMatters.application.controllers;
 
-import com.MindMatters.application.Models.*;
-import com.MindMatters.application.Repositories.*;
+import com.MindMatters.application.models.*;
+import com.MindMatters.application.repositories.*;
 import jakarta.transaction.Transactional;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

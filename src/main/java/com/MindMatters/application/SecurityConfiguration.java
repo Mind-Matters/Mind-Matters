@@ -1,6 +1,6 @@
 package com.MindMatters.application;
 
-import com.MindMatters.application.Services.UserDetailsLoader;
+import com.MindMatters.application.services.UserDetailsLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

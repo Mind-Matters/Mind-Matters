@@ -1,4 +1,4 @@
-package com.MindMatters.application.Models;
+package com.MindMatters.application.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

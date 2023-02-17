@@ -1,13 +1,13 @@
-package com.MindMatters.application.Controllers;
+package com.MindMatters.application.controllers;
 
 
-import com.MindMatters.application.Models.ScalingData;
-import com.MindMatters.application.Models.User;
+import com.MindMatters.application.models.ScalingData;
+import com.MindMatters.application.models.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import com.MindMatters.application.Repositories.ScalingRepository;
+import com.MindMatters.application.repositories.ScalingRepository;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;

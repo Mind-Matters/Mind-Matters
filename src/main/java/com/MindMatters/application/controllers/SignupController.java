@@ -1,20 +1,17 @@
-package com.MindMatters.application.Controllers;
+package com.MindMatters.application.controllers;
 
 
-import com.MindMatters.application.Models.Event;
-import com.MindMatters.application.Models.User;
-import com.MindMatters.application.Repositories.EventRepository;
-import com.MindMatters.application.Repositories.UserRepository;
-import org.springframework.security.core.context.SecurityContextHolder;
+import com.MindMatters.application.models.Event;
+import com.MindMatters.application.models.User;
+import com.MindMatters.application.repositories.EventRepository;
+import com.MindMatters.application.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 

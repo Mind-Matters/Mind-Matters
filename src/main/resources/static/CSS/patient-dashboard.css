@@ -28,15 +28,15 @@ body{
     text-align: center;
     height: 33%;
 }
-.answer{
+.answer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 33%;
     filter: brightness(120%);
     font-size: 0.85rem;
-
 }
+
 .faces{
     max-width:100%;
     max-height:100%;

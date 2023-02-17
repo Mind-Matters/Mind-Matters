@@ -104,8 +104,5 @@ input[type=range]:focus::-ms-fill-upper {
     display: block;
     margin: 0 auto;
 }
-label{
-    width: 100%;
-    text-align: center;
-}
+
 

@@ -4,17 +4,81 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-
     <link rel="icon" type="image/x-icon" href="/Images/favicon.svg">
+    <link rel="stylesheet" href="/CSS/loggedInNav.css">
+    <link rel="stylesheet" href="/CSS/myEvents.css">
 
+    <style>
+        body{
+            font-family: Montserrat, sans-serif;
+        }
+        .container{
+            padding: 30px;
+        }
+        h1{
+            text-align: center;
+        }
+        .events{
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding: 50px 50px 100px 50px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            margin: 15px;
+        }
+        .event{
+
+            max-width: 100%;
+            height: 200px;
+            max-height: 600px;
+            margin: 30px;
+            border-left: 2px solid gainsboro;
+            border-right: 2px solid gainsboro;
+
+        }
+        .btns{
+            display: flex;
+            justify-content: center;
+        }
+        .eventDelete-btn{
+            padding: 4px 10px;
+            border: none;
+            border-radius: 30px;
+            background-color: #f40000;
+            margin: 5px;
+        }
+        .eventEdit-btn{
+            padding: 4px 18px;
+            border: none;
+            border-radius: 30px;
+            background-color: #2ad1ff;
+            color: white;
+            margin: 5px;
+        }
+    </style>
 
 </head>
 <body>
-<h1>Hi</h1>
-<div th:each="event : ${events}">
-    <p th:text="${event.getTitle()}"></p>
-    <a th:href="@{/edit-events/{id}(id=${event.getId()})}"><button>Edit</button></a>
-    <a th:href="@{/delete/{id}(id=${event.getId()})}"><button>Delete</button></a>
+<!--navbar starts-->
+<header th:replace="~{partials :: header-two}"></header>
+<!--navbar ends-->
+
+<div class="container">
+
+    <h1>My Events</h1>
+    <div class="events">
+        <div th:each="event : ${events}">
+            <div class="event">
+                <h3 style="text-align: center; margin: 5px" th:text="${event.getTitle()}"></h3>
+                <p style="text-align: center; margin: 5px" th:text="${event.getDescription()}"></p>
+                <div class="btns">
+                <a th:href="@{/edit-events/{id}(id=${event.getId()})}"><button class="eventEdit-btn">Edit</button></a>
+                <a th:href="@{/delete/{id}(id=${event.getId()})}"><button class="eventDelete-btn">Delete</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

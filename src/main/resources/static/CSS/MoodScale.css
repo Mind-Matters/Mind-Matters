@@ -109,6 +109,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 }
 
+
 .faces{
     width: 33%;
     display: flex;
@@ -118,3 +119,4 @@ input[type=range]:focus::-ms-fill-upper {
     display: block;
     margin: 0 auto;
 }
+

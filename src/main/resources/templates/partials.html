@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="/CSS/main.css">
     <link rel="stylesheet" href="/CSS/MoodScale.css">
 
+
     <link rel="icon" type="image/x-icon" href="/Images/favicon.svg">
+
 
     <title>Default Head</title>
 </head>
@@ -50,7 +52,9 @@
                 <!--            <li><a class="anchors" href="/"></a></li>-->
                 <!--            <li><a class="anchors" href="#">Settings</a></li>-->
 
+
                 <li><a class="log-out" th:href="@{/logout}"><button class="logout-btn nav-btn" >Log Out</button></a></li>
+
 
 
             </ul>
@@ -91,6 +95,7 @@
     </nav>
 </header>
 <!------------------------------navbar for register ends--------------------------------->
+
 
 
 <!------------------------------Med Tracker Starts--------------------------------->
@@ -164,12 +169,14 @@
 
 
 
+
         <h1>moodScale</h1>
-        <form th:action="@{/mood}" th:object="${mood}" method="post" oninput="val.value = parseInt(range.value)">
+           <form id="mood" th:action="@{/mood}" th:object="${mood}" method="post" oninput="val.value = parseInt(range.value)">
             <div class="form-group" id="moodDiv">
 
                 <label for="range">How are you feeling?</label><br>
                 <img src="/Images/mood-icon.png" id="faces" class="faces">
+
 
                 <input type="range" min="1" max="10" value="0" class="form-control-range" id="range" step="1" list="ticks"
                        name="value">
@@ -187,7 +194,9 @@
                     <option value="10"></option>
                 </datalist>
             </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
+
         </form>
     </div>
 <!------------------------------Mood Scale Ends--------------------------------->
@@ -196,7 +205,7 @@
 
 <!------------------------------Pending Users Starts--------------------------------->
     <div th:fragment="pendingUsers" class="pendingUsers" id="pendingUsers">
-        <h1>Pending Users</h1>
+        <h1 style="text-align: center">Pending Users</h1>
         <table>
             <tr>
                 <th>Username</th>
@@ -237,7 +246,7 @@
 
 <!--provider dashboard patient overview-->
 <table th:fragment="patient-overview">
-    <caption class="patient-overview">Patient Overview</caption>
+    <caption class="patient-overview" style="margin: 0"><h1>Patient Overview</h1></caption>
     <thead>
     <tr>
         <th>Name</th>

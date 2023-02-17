@@ -41,7 +41,7 @@ public class DashboardController {
             
             //            User user = userDao.findById(loggedInUser.getId());
             //come back to this method
-            List<User> patients = userDao.findByIsProviderAndProviderId(true, loggedInUser.getId());
+            List<User> patients = userDao.findByIsProviderAndProviderId(false, loggedInUser.getId());
             model.addAttribute("patients", patients);
             
                List<Event> eventList = eventDao.findAllByUser(loggedInUser);//       I need events by user
@@ -119,11 +119,11 @@ public class DashboardController {
                 if(i < scalingData.size() - 1){
                     scores.append(",");
                     ids.append(",");
-                } else {
-                    scores.append("]");
-                    ids.append("]");
                 }
             }
+            scores.append("]");
+            ids.append("]");
+
             model.addAttribute("scores", scores.toString());
             model.addAttribute("scoreIds", ids.toString());
 
@@ -140,12 +140,13 @@ public class DashboardController {
                     titles.append("','");
                     descriptions.append("','");
                     dates.append("','");
-                } else {
-                    titles.append("']");
-                    descriptions.append("']");
-                    dates.append("']");
                 }
             }
+
+            titles.append("']");
+            descriptions.append("']");
+            dates.append("']");
+
             model.addAttribute("titles", titles.toString());
             model.addAttribute("descriptions", descriptions.toString());
             model.addAttribute("dates", dates.toString());

@@ -112,11 +112,11 @@ public class DashboardController {
                 if(i < scalingData.size() - 1){
                     scores.append(",");
                     ids.append(",");
-                } else {
-                    scores.append("]");
-                    ids.append("]");
                 }
             }
+            scores.append("]");
+            ids.append("]");
+
             model.addAttribute("scores", scores.toString());
             model.addAttribute("scoreIds", ids.toString());
 

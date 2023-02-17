@@ -156,7 +156,7 @@
 <!------------------------------Mood Scale Starts--------------------------------->
     <div th:fragment="moodScale" class="moodScale" id="moodScale">
         <h1>moodScale</h1>
-        <form th:action="@{/mood}" th:object="${mood}" method="post" oninput="val.value = parseInt(range.value)">
+        <form id="mood" th:action="@{/mood}" th:object="${mood}" method="post" oninput="val.value = parseInt(range.value)">
             <div class="form-group" id="moodDiv">
                 <label for="range">How are you feeling?</label><br>
                 <input type="range" min="1" max="10" value="0" class="form-control-range" id="range" step="1" list="ticks"
@@ -175,7 +175,10 @@
                     <option value="10"></option>
                 </datalist>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+<!--            <div class="submit-div">-->
+<!--                <button class="submit-btn" type="submit" >Submit</button>-->
+<!--            </div>-->
+
         </form>
     </div>
 <!------------------------------Mood Scale Ends--------------------------------->

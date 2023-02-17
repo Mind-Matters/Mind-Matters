@@ -36,7 +36,7 @@ header{
 .nav_links li a{
     transition: all 0.3s ease 0s;
 }
-button{
+.logout-btn{
     padding: 9px 25px;
     border-radius: 50px;
     cursor: pointer;

@@ -14,6 +14,11 @@
         html{
             scroll-behavior: smooth;
         }
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
         #bannerimage {
             width: 100%;
             background-image: url(/Images/therapy.svg);
@@ -26,6 +31,7 @@
         .google-font {
             font-family: 'Inter', sans-serif;
             font-size: 15px;
+            text-align: center;
         }
 
         .boxes {
@@ -112,6 +118,15 @@
             color: white;
         }
 
+
+        .images{
+            display: flex;
+            justify-content: center;
+            max-height: 100%;
+            max-width: 100%;
+            margin: auto;
+        }
+
         .img-height {
             max-height: 300px;
             float: inherit;
@@ -160,25 +175,34 @@
 
 <div class="centerTitle wave-background">
     <div class="wave-background">
-        <div class="img-row">
-            <img src="/Images/graph-icon.svg" alt="graph-icon">
-            <img src="/Images/calendar-icon.svg" alt="calendar-icon">
-            <img src="/Images/mood-icon.svg" alt="mood-icon">
-        </div>
+<!--        <div class="img-row">-->
+<!--            <img src="/Images/graph-icon.svg" alt="graph-icon">-->
+<!--            <img src="/Images/calendar-icon.svg" alt="calendar-icon">-->
+<!--            <img src="/Images/mood-icon.svg" alt="mood-icon">-->
+<!--        </div>-->
         <div>
             <div class="boxes" >
                 <div class="feature">
+                    <div class="imgDiv">
+                    <img class="images" src="/Images/graph-icon.svg" alt="graph-icon">
                     <p class="google-font white-text">Our graph feature will gather the data submitted to the mood scale and show each user their mood
                         over time. The data will be displayed in a line graph format because it will be easier for the
                         provider to quickly assess their patient’s mood.</p>
+                    </div>
                 </div>
                 <div class="feature">
+                    <div class="imgDiv">
+                    <img class="images" src="/Images/calendar-icon.svg" alt="calendar-icon">
                     <p class="google-font white-text">Users can create events on a calendar with drag-and-drop functionality. Users are able to see
                         multiple events on the calendar view and edit them.</p>
+                    </div>
                 </div>
                 <div class="feature">
+                    <div class="imgDiv">
+                    <img class="images" src="/Images/mood-icon.svg" alt="mood-icon">
                     <p class="google-font white-text">Users are able to track their moods on a sliding scale each day. Over time the data will be used
                         by their provider to analyze their mood over time. </p>
+                    </div>
                 </div>
 
             </div>
@@ -188,7 +212,7 @@
 </div>
 <div class="wave-background">
 <h1 class="wave-background centerTitle"><img class="img-height"src="/Images/Our%20Team.svg" alt="words"></h1>
-<div class="centerTitle wave-background team">
+<div class="centerTitle wave-background team" id="ourTeam">
     <img src="/Images/teamv2.svg" alt="group of people">
 </div>
 </div>

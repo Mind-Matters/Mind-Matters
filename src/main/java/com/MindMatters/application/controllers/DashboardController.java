@@ -41,7 +41,7 @@ public class DashboardController {
             
             //            User user = userDao.findById(loggedInUser.getId());
             //come back to this method
-            List<User> patients = userDao.findByIsProviderAndProviderId(true, loggedInUser.getId());
+            List<User> patients = userDao.findByIsProviderAndProviderId(false, loggedInUser.getId());
             model.addAttribute("patients", patients);
             
                List<Event> eventList = eventDao.findAllByUser(loggedInUser);//       I need events by user

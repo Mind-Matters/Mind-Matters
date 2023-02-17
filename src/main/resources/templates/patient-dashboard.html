@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<!--<head th:insert="~{partials :: head}">-->
+
+
 <head>
     <meta charset='utf-8'/>
     <title>Patient Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/Images/favicon.svg">
     <link rel="stylesheet" href="/CSS/patient-dashboard.css">
     <link rel="stylesheet" href="/CSS/loggedInNav.css">
     <style>
@@ -157,6 +159,7 @@
 
 </head>
 <body>
+
     <!--navbar starts-->
     <header th:replace="~{partials :: header-two}"></header>
     <!--navbar ends-->
@@ -206,6 +209,7 @@
             <div class="submit-div submit-divOne">
                 <input class="submit-btn" type="submit" value="Submit" form="event-form">
             </div>
+
         </div>
         <div class="input">
             <div class="title">

@@ -108,8 +108,15 @@ input[type=range]:focus::-ms-fill-upper {
     margin-bottom: 10px;
 
 }
-.submit-div{
-    /*height: 33%;*/
+
+
+.faces{
+    width: 33%;
     display: flex;
-    justify-content: center;
+    margin: 0 auto;
 }
+#range{
+    display: block;
+    margin: 0 auto;
+}
+

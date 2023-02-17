@@ -278,8 +278,9 @@
     <tr th:each="patient : ${patients}">
         <td th:text="${patient.username}"></td>
         <td>
-            <div th:each="event : ${patient.events}">
-                <span th:text="${event.title} + ' : ' + ${event.description}"></span>
+          <div th:each="event : ${patient.events}" >
+           <strong><span th:text="${event.title} + ' : ' "></span></strong>
+              <span th:text="${event.description}"></span>
                 <br/>
             </div>
         </td>

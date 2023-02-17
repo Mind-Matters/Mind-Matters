@@ -73,6 +73,7 @@
 
         .team {
             margin-top: 50px;
+            max-height: 300px;
         }
 
         .border {
@@ -106,18 +107,25 @@
             opacity: 0;
             animation: slide-in-anim 1.5s ease-out forwards;
         }
+
         .white-text {
             color: white;
         }
-        .img-row{
-            display: flex;
-            flex-direction: row;
-            max-height: 400px;
-            width: 300px;
+
+        .img-height {
+            max-height: 300px;
+            float: inherit;
             margin: 0;
             padding:0;
         }
-
+        .feature-font {
+            font-family: 'Inter', sans-serif;
+            font-size: 70px;
+            filter: drop-shadow(16px 16px 10px grey);
+        }
+        .img-shadow {
+            filter: drop-shadow(16px 16px 10px black);
+        }
     </style>
 
 </head>
@@ -147,6 +155,7 @@
     <path fill="#4F695A" fill-opacity="1"
           d="M0,192L34.3,186.7C68.6,181,137,171,206,149.3C274.3,128,343,96,411,106.7C480,117,549,171,617,213.3C685.7,256,754,288,823,282.7C891.4,277,960,235,1029,192C1097.1,149,1166,107,1234,74.7C1302.9,43,1371,21,1406,10.7L1440,0L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
 </svg>
+
 <h1 class="border google-font" id="features">Features</h1>
 
 <div class="centerTitle wave-background">
@@ -171,21 +180,18 @@
                     <p class="google-font white-text">Users are able to track their moods on a sliding scale each day. Over time the data will be used
                         by their provider to analyze their mood over time. </p>
                 </div>
+
             </div>
-        </div>
-        <!--our team starts-->
-        <div class="centerTitle">
-            <h1>Our Team</h1>
-        </div>
-        <div class="boxes team" id="ourTeam">
-            <img src="/Images/teamv2.svg" alt="group of people">
         </div>
 
     </div>
 </div>
+<div class="wave-background">
+<h1 class="wave-background centerTitle"><img class="img-height"src="/Images/Our%20Team.svg" alt="words"></h1>
+<div class="centerTitle wave-background team">
+    <img src="/Images/teamv2.svg" alt="group of people">
+</div>
+</div>
 
-<!--our team ends-->
-
- 
 </body>
 </html>

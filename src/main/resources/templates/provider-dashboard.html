@@ -6,31 +6,69 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="/Images/favicon.svg">
-
-
-
     <link rel="stylesheet" href="/CSS/footer.css">
     <link rel="stylesheet" href="/CSS/loggedInNav.css">
-    <link rel="stylesheet" href="/CSS/loggedOutNav.css">
     <link rel="stylesheet" href="/CSS/main.css">
     <title>Default Head</title>
     <meta charset="UTF-8">
     <title>Provider Dashboard</title>
   <link rel="stylesheet" href="../CSS/main.css">
+
+    <style>
+         body{
+             font-family: Montserrat, sans-serif;
+         }
+        .bigdivs{
+            display: flex;
+            justify-content: center;
+
+        }
+        .bigdiv{
+
+            overflow: scroll;
+            width: 50%;
+            padding: 30px;
+            margin: 30px;
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            border: 2px solid lightgray;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+        .squish{
+            max-height: 50%;
+            max-width: 50%
+        }
+         .left-div {
+             float: left;
+         }
+         .right-div {
+             float: right;
+         }
+         .right-div th{
+             table-layout: auto;
+         }
+
+    </style>
 </head>
 <body>
 <header th:replace="partials :: header-two"></header>
 
 
-
-<div class="bigdiv">
-<div th:replace="partials :: pendingUsers">
-</div>
-<div th:replace="partials :: patient-overview"></div>
+<div class="bigdivs">
+    <div class="bigdiv left-div">
+        <div th:replace="partials :: pendingUsers"></div>
     </div>
+    <div class="bigdiv right-div">
+        <div class="squish">
+            <div th:replace="partials :: patient-overview"></div>
+        </div>
+    </div>
+</div>
 
 
-<footer th:replace="partials :: footer"></footer>
+
+
 </body>
 
 </html>

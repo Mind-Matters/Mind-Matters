@@ -32,5 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 
-
+### Production Resources ###
 src/main/resources/application.properties
+prooduction_instructions.md

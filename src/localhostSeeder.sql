@@ -140,10 +140,3 @@ VALUES ( '2023-02-01 08:30:00', 'Creating lotsa data rows1', 'Create Seeder file
        ( '2023-02-09 13:30:00', 'Creating lotsa data rows9', 'Create Seeder file', 15 ),
        ( '2023-02-10 11:30:00', 'Creating lotsa data rows10', 'Create Seeder file', 15 ),
        ( '2023-02-11 19:30:00', 'Creating lotsa data rows11', 'Create Seeder file', 15 );
-
-
-/* Trying to find SQL Statements that: Provider wants to have a list of all their patients */
-SELECT * FROM users as u
-WHERE u.provider_id = 4; /* This is the provider's user ID */
-/* Providers would have a provider_id = 0, meaning they don't have a provider */
-/* user_id = 0 is some sort of default user : means no provider assigned : before users are verified they are assigned 0? */
